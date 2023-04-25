@@ -197,7 +197,7 @@ function cadastrarFuncionario() {
             })
         }).then(function (resposta) {
             if (resposta.ok) {
-
+                window.location.reload();
                 fecharModal("#modalRegisterForm");
 
             } else {

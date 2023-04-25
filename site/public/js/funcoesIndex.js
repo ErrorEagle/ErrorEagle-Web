@@ -381,8 +381,8 @@ function cadastrarEmpresa() {
                                     })
                                 }).then(function (resposta) {
                                     if (resposta.ok) {
-                                        alert("foi" + jsonEmpresa.insertId);
-
+                                        
+                                        fecharModal("#modalRegisterForm");
 
                                     } else {
                                         throw ("Houve um erro ao tentar realizar o cadastro!");

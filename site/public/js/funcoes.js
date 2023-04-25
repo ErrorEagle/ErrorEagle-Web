@@ -6,7 +6,7 @@ function validarSessao() {
         var nome = sessionStorage.NOME_USUARIO;
         var b_usuario = document.getElementById("b_usuario");
         console.log("Esta rodando")
-        if (email != undefined && nome != undefine) {
+        if (email != undefined && nome != undefined) {
             // window.alert(`Seja bem-vindo, ${nome}!`);
 
             const Toast = Swal.mixin({
