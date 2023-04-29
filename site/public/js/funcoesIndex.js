@@ -22,6 +22,56 @@ function closeLogin() {
 
 }
 
+function checkSenha() {
+    var str = inpSenhaCadastro.value;
+    console.log(str);
+    var states = 0;
+    // Verifica se a string tem no máximo 8 caracteres
+    if (str.length <= 7) {
+    } else {
+        states++;
+    }
+    // Verifica se a string tem caracteres maiúsculos
+    if (/[A-Z]/.test(str)) {
+        states++;
+        console.log('A string contém caracteres maiúsculos');
+    }
+    // Verifica se a string tem caracteres minúsculos
+    if (/[a-z]/.test(str)) {
+        states++;
+        console.log('A string contém caracteres minúsculos');
+    }
+    // Verifica se a string tem números
+    if (/\d/.test(str)) {
+        states++;
+        console.log('A string contém números');
+    }
+    // Verifica se a string tem caracteres especiais
+    if (/[^A-Za-z0-9]/.test(str)) {
+        states++;
+        console.log('A string contém caracteres especiais');
+    }
+    console.log(states);
+    switch (states) {
+        case 1:
+            loadingSenha.style = "background:red;  transition: 2s;"
+            break;
+        case 2:
+            loadingSenha.style = "background:orange;  transition: 2s;"
+            break;
+        case 3:
+            loadingSenha.style = "background:yellow;  transition: 2s;"
+            break;
+        case 4:
+            loadingSenha.style = "background:blue;  transition: 2s;"
+            break;
+        case 5:
+            loadingSenha.style = "background:green;  transition: 2s;"
+            return true
+            break;
+    }
+}
+
 function checkCamposCadastroEmpresa() {
     var razaoSocial = inpRazaoSocial.value
     var cnpj = inpCNPJ.value
@@ -324,7 +374,7 @@ function cadastrarEmpresa() {
     // emailServer: emailVar,
     // senhaServer: senhaVar,
 
-    if (checkCamposCadastroEmpresa()) {
+    if (checkCamposCadastroEmpresa() && checkSenha()) {
 
 
         fetch("empresa/cadastrar/endereco", {
@@ -381,7 +431,7 @@ function cadastrarEmpresa() {
                                     })
                                 }).then(function (resposta) {
                                     if (resposta.ok) {
-                                        
+
                                         fecharModal("#modalRegisterForm");
 
                                     } else {
@@ -427,8 +477,9 @@ function next() {
     btnVoltar.style = "display:block;";
     formCad[0].style = "display:none;"
     formCad[1].style = "display:none;"
-    formCad[2].style = "display:block;"
+    formCad[2].style = "display:none;"
     formCad[3].style = "display:block;"
+    formCad[4].style = "display:block;"
 
 
 
@@ -447,9 +498,9 @@ function back() {
     btnVoltar.style = "display:none;";
     formCad[0].style = "display:block;"
     formCad[1].style = "display:block;"
-    formCad[2].style = "display:none;"
+    formCad[2].style = "display:block;"
     formCad[3].style = "display:none;"
-
+    formCad[4].style = "display:none;"
 }
 function cep() {
     var cep = inpCep.value;
