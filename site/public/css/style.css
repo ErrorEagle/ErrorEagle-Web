@@ -184,7 +184,7 @@ nav .navbar-nav li a {
 }
 
 .formModal {
-    width: 1200px;
+    width: 1500px;
 }
 
 .my-modal-dialog {
@@ -196,4 +196,18 @@ nav .navbar-nav li a {
 .btnChangeModal {
     border: 0px;
     background-color: #12121200;
+}
+
+#loadingSenha {
+    border-radius: 10px;
+    margin: 10px;
+    height: 15px;
+    background-color: #4D4D4D;
+    transition: 2s;
+}
+
+#loading {
+    height: 10px;
+    width: 50%;
+    background-color: red;
 }
