@@ -6,7 +6,7 @@ var sqlServerConfig = {
     server: "svr-erroreagle.database.windows.net",
     database: "bd-errorEagle",
     user: "admin-erroreagle",
-    password: "#Gfgrup3",
+    password: "#Gfgrupo3",
     pool: {
         max: 10,
         min: 0,

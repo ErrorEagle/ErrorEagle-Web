@@ -75,8 +75,8 @@ function checkSenha() {
 function checkCamposCadastroEmpresa() {
     var razaoSocial = inpRazaoSocial.value
     var cnpj = inpCNPJ.value
-    var telefone1 = inpTelefone1.value
-    var telefone = inpTelefone.value
+    var telefone = inpTelefone1.value
+    // var telefone = inpTelefone.value
     var nomeFuncionario = nomeCadastro.value
     var emailFuncionario = inpEmailCadastro.value
     var telefoneFuncionario = inpTelefoneFuncionario.value
@@ -99,7 +99,7 @@ function checkCamposCadastroEmpresa() {
         inpCNPJ.style = "border: 1px solid #ccc; ";
     }
 
-    if (telefone1 === "") {
+    if (telefone === "") {
         inpTelefone1.style = "border: 3px solid #ff0000 ;";
         hasEmptyFields = true;
     } else {
@@ -205,7 +205,7 @@ function checkCamposCadastroEmpresa() {
 
     if (hasEmptyFields) {
         Swal.fire({
-            title: 'Preencha todos os campos',
+            title: 'Preencha todos os campos corretamente',
             icon: 'error',
             confirmButtonText: 'Continuar'
         })
@@ -293,7 +293,7 @@ function entrar() {
 
         console.log("FORM LOGIN: ", emailVar);
         console.log("FORM SENHA: ", senhaVar);
-        fetch(`empresa/autenticar/funcionario/${emailVar}/${senhaVar}`, {
+        fetch(`empresa/autenticar/funcionario/${emailVar}`, {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -305,24 +305,49 @@ function entrar() {
                 if (resposta.ok) {
                     console.log(resposta);
 
-                    resposta.json().then((json) => {
-                        console.log(json);
-                        console.log(JSON.stringify(json));
-                        console.log(json);
+                    if (resposta.status == 204) {
+                        alert("Você não está cadastrado!")
+                    } else {
+                        resposta.json().then((jsonLogin) => {
+                            console.log(jsonLogin);
+                            console.log(JSON.stringify(jsonLogin));
+                            console.log(jsonLogin);
 
-                        sessionStorage.ID_FUNCIONARIO = json.idFuncionario;
-                        sessionStorage.NOME_USUARIO = json.nome;
-                        sessionStorage.EMAIL_USUARIO = json.email;
-                        sessionStorage.TELEFONE_USUARIO = json.telefone;
-                        sessionStorage.FK_EMPRESA = json.fkEmpresa;
-                        sessionStorage.FK_SURPERVISOR = json.fkSurpervisor
-                        sessionStorage.SENHA_USUARIO = json.senha;
-                        sessionStorage.EMPRESA = json.razaoSocial;
-                        fecharModal("#modalLoginForm");
-                        setTimeout(function () {
-                            window.location = "./dashboard/menu.html";
-                        }, 1000); // apenas para exibir o loading
-                    });
+                            if (jsonLogin.statusEmpresa == 0) {
+                                console.log('Verifique a validade do contrato com a ErrorEagle!')
+
+                            } else if (jsonLogin.statusFuncionario == 0) {
+                                console.log('Você está inativado, verifique o acesso com seu supervisor!')
+
+                            } else if (senhaVar == jsonLogin.senha) {
+
+                                    sessionStorage.ID_FUNCIONARIO = jsonLogin.idFuncionario;
+                                    sessionStorage.NOME_USUARIO = jsonLogin.nome;
+                                    sessionStorage.EMAIL_USUARIO = jsonLogin.email;
+                                    sessionStorage.TELEFONE_USUARIO = jsonLogin.telefone;
+                                    sessionStorage.FK_EMPRESA = jsonLogin.fkEmpresa;
+                                    sessionStorage.FK_SURPERVISOR = jsonLogin.fkSurpervisor
+                                    sessionStorage.SENHA_USUARIO = jsonLogin.senha;
+                                    sessionStorage.NOME_EMPRESA = jsonLogin.razaoSocial;
+                                    sessionStorage.FIRST_ACESS = jsonLogin.firstAcess;
+
+                                    fecharModal("#modalLoginForm");
+                                    setTimeout(function () {
+                                        window.location = "./dashboard/menu.html";
+                                    }, 1000); // apenas para exibir o loading
+
+
+                      
+
+
+                            } else {
+                                console.log('Houve um erro ao realizar o seu login! Tente mais tarde.')
+
+                            }
+                        });
+                    }
+
+
                 } else {
                     console.log("Houve um erro ao tentar realizar o login!");
 
@@ -346,23 +371,8 @@ function cadastrarEmpresa() {
     //aguardar();
     //Recupere o valor da nova input pelo nome do id
     // Agora vá para o método fetch logo abaixo
-    var cep = inpCep.value;
-    var bairro = inpBairro.value;
-    var rua = inpRua.value;
-    var numero = inpNumero.value;
-    var estado = inpEstado.value;
-    var cidade = inpCidade.value;
 
-    var nomeResponsavel = nomeCadastro.value;
-    var emailFuncionario = inpEmailCadastro.value;
-    var telefoneFuncionario = inpTelefoneFuncionario.value;
-    var senhaVar = inpSenhaCadastro.value;
 
-    var razaoSocial = inpRazaoSocial.value;
-    var cnpj = inpCNPJ.value;
-    var telefone1 = inpTelefone1.value;
-    var telefone = inpTelefone.value;
-    var dominioVar = emailFuncionario;
 
     // .split('@')[1];;
 
@@ -376,95 +386,192 @@ function cadastrarEmpresa() {
 
     if (checkCamposCadastroEmpresa() && checkSenha()) {
 
+        var cep = inpCep.value;
+        var numero = inpNumero.value;
 
-        fetch("empresa/cadastrar/endereco", {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-            },
-            body: JSON.stringify({
-                cepServer: cep.replace(/[^\d]+/g, ''),
-                bairroServer: bairro,
-                ruaServer: rua,
-                numeroServer: numero,
-                estadoServer: estado,
-                cidadeServer: cidade
-            })
-        }).then(function (resposta) {
-            // console.log("resposta: ", resposta);
-            if (resposta.ok) {
-                resposta.json().then((jsonEndereco) => {
+        buscarEnderecoCadastrado(cep, numero);
 
-                    fetch("/empresa/cadastrar/empresa", {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/json"
-                        },
-                        body: JSON.stringify({
-                            // crie um atributo que recebe o valor recuperado aqui
-                            // Agora vá para o arquivo routes/usuario.js
-                            nomeResponsavelServer: nomeResponsavel,
-                            razaoSocialServer: razaoSocial,
-                            cnpjServer: cnpj.replace(/[^\d]+/g, ''),
-                            telefoneServer: telefone.replace(/[^\d]+/g, ''),
-                            telefoneOptionalServer: telefone1.replace(/[^\d]+/g, ''),
-                            dominioServer: dominioVar,
-                            fkEnderecoServer: jsonEndereco.insertId
-                        })
-                    }).then(function (resposta) {
-                        resposta.json().then((jsonEmpresa) => {
-                            if (resposta.ok) {
-
-                                fetch("/empresa/cadastrar/funcionario", {
-                                    method: "POST",
-                                    headers: {
-                                        "Content-Type": "application/json"
-                                    },
-                                    body: JSON.stringify({
-                                        // crie um atributo que recebe o valor recuperado aqui
-                                        // Agora vá para o arquivo routes/usuario.js
-                                        nomeFuncionarioServer: nomeResponsavel,
-                                        emailFuncionarioServer: emailFuncionario,
-                                        senhaFuncionarioServer: senhaVar,
-                                        telefoneFuncionarioServer: telefoneFuncionario.replace(/[^\d]+/g, ''),
-                                        empresaFuncionarioServer: jsonEmpresa.insertId
-                                    })
-                                }).then(function (resposta) {
-                                    if (resposta.ok) {
-
-                                        fecharModal("#modalRegisterForm");
-
-                                    } else {
-                                        throw ("Houve um erro ao tentar realizar o cadastro!");
-
-                                    }
-
-                                }).catch(function (resposta) {
-                                    console.log(`#ERRO: ${resposta}`);
-                                    // finalizarAguardar();
-                                });
-                                return false;
-
-                            } else {
-                                throw ("Houve um erro ao tentar realizar o cadastro!");
-                            }
-
-                        }).catch(function (resposta) {
-                            console.log(`#ERRO: ${resposta}`);
-                            // finalizarAguardar();
-                        });
-                        return false;
-                    })
-                })
-
-                console.log("ID do endereco adicionado " + idEnderecoAtual)
-            }
-        }).catch(function (resposta) {
-            console.log(`#ERRO: ${resposta}`);
-            // finalizarAguardar();
-        });
     }
 }
+
+function registrarEndereco(cep, bairro, rua, numero, estado, cidade) {
+    fetch("empresa/cadastrar/endereco", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            cepServer: cep.replace(/[^\d]+/g, ''),
+            bairroServer: bairro,
+            ruaServer: rua,
+            numeroServer: numero,
+            estadoServer: estado,
+            cidadeServer: cidade
+        })
+    }).then(function (resposta) {
+        // console.log("resposta: ", resposta);
+        if (resposta.ok) {
+            console.log("Endereco cadastrado")
+
+        } else {
+            console.log("Erro ao cadastrar endereço")
+        }
+
+        return false;
+
+    }).catch(function (resposta) {
+        console.log(`#ERRO: ${resposta}`);
+        // finalizarAguardar();
+    });
+}
+
+
+
+function buscarEnderecoCadastrado(cep, numero) {
+
+    var rua = inpRua.value;
+    var bairro = inpBairro.value;
+    var estado = inpEstado.value;
+    var cidade = inpCidade.value;
+
+    fetch(`empresa/verificar/Endereco/${cep.replace(/[^\d]+/g, '')}/${numero}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
+        // 403 Forbidden - Não tem permissão é proibido
+        // 204 No cottent - Foi bem sucedido
+
+        if (resposta.ok) {
+
+            if (resposta.status == 204) {
+                registrarEndereco(cep, bairro, rua, numero, estado, cidade)
+                buscarEnderecoCadastrado(cep, numero)
+
+            } else if (resposta.status == 403) {
+                alert("Não permitido dar o select")
+            } else {
+                resposta.json().then((jsonEndereco) => {
+                    registrarEmpresa(jsonEndereco.id)
+                });
+            }
+        }
+
+    })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+
+}
+
+function registrarEmpresa(id) {
+    var nomeResponsavel = nomeCadastro.value;
+    var razaoSocial = inpRazaoSocial.value;
+    var cnpj = inpCNPJ.value;
+    var telefone = inpTelefone1.value;
+    var dominioVar = inpEmailCadastro.value;
+
+    fetch("/empresa/cadastrar/empresa", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeResponsavelServer: nomeResponsavel,
+            razaoSocialServer: razaoSocial,
+            cnpjServer: cnpj.replace(/[^\d]+/g, ''),
+            telefoneServer: telefone.replace(/[^\d]+/g, ''),
+            // telefoneOptionalServer: telefone1.replace(/[^\d]+/g, ''),
+            dominioServer: dominioVar,
+            // Achar uma forma de indicar o ID do endereco já que converter o json n dá certo
+            fkEnderecoServer: id
+        })
+    }).then(function (resposta) {
+
+
+        if (resposta.ok) {
+            console.log("Cadastrei Empresa!")
+            buscarEmpresaPorCNPJ(cnpj.replace(/[^\d]+/g, ''))
+        } else {
+            console.log("Não cadastrei a empresa!")
+        }
+
+    })
+
+    // Passar o valor do id como parametro para uso
+}
+
+function buscarEmpresaPorCNPJ(cnpj) {
+
+    fetch(`empresa/verificar/empresa/${cnpj}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    }).then(function (resposta) {
+        console.log("ESTOU NO THEN DO entrar()!");
+        // 403 Forbidden - Não tem permissão é proibido
+        // 204 No cottent - Foi bem sucedido
+
+        if (resposta.ok) {
+
+            if (resposta.status == 204) {
+                console.log("Eu não achei um CNPJ igual no select")
+            } else if (resposta.status == 403) {
+                console.log("Não consegui buscar o CNPJ na Azure")
+            } else {
+                resposta.json().then((jsonEmpresa) => {
+                    registrarFuncionario(jsonEmpresa.id)
+
+
+                });
+            }
+        }
+
+    })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+}
+
+function registrarFuncionario(fkEmpresa) {
+    var nomeFuncionario = nomeCadastro.value;
+    var emailFuncionario = inpEmailCadastro.value;
+    var telefoneFuncionario = inpTelefoneFuncionario.value;
+    var senhaFuncionario = inpSenhaCadastro.value;
+
+
+    fetch("/empresa/cadastrar/funcionario/plataforma", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+            nomeFuncionarioServer: nomeFuncionario,
+            emailFuncionarioServer: emailFuncionario,
+            senhaFuncionarioServer: senhaFuncionario,
+            telefoneFuncionarioServer: telefoneFuncionario.replace(/[^\d]+/g, ''),
+            empresaFuncionarioServer: fkEmpresa
+        })
+    }).then(function (resposta) {
+
+
+        if (resposta.ok) {
+            console.log("Cadastrei Funcionario!")
+            fecharModal("#modalRegisterForm");
+        } else {
+            console.log("Não cadastrei um funcionário!")
+        }
+
+    })
+}
+
 
 function next() {
 
