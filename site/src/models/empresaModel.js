@@ -53,7 +53,6 @@ function cadastrarEmpresa(responsavel, razaoSocial, CNPJ, telefone, email, fkEnd
 
     console.log("ACESSEI O EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", responsavel, razaoSocial, CNPJ, telefone, email, fkEndereco);
 
-
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
     var instrucao = `insert into Empresa (responsavel, razaoSocial, CNPJ, telefone, email, qtdTotem, statusEmpresa, fkEndereco) values 
@@ -78,21 +77,19 @@ function cadastrarFuncionarioPlataforma(nomeFuncionario, emailFuncionario, senha
 
 
 
-// function cadastrarFuncionarioSistema(nomeFuncionario, emailFuncionario, senhaFuncionario, telefoneFuncionario, empresaFuncionario, supervisor) {
-//     console.log("ACESSEI O EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpresa():", nomeFuncionario, emailFuncionario, senhaFuncionario, telefoneFuncionario, empresaFuncionario);
-//     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
-//     //  e na ordem de inserção dos dados.
+function cadastrarFuncionarioSistema(nomeFuncionario, emailFuncionario, senhaFuncionario, telefoneFuncionario, empresaFuncionario, supervisor) {
+    console.log("ACESSEI O EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpresa():", nomeFuncionario, emailFuncionario, senhaFuncionario, telefoneFuncionario, empresaFuncionario);
+    // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
+    //  e na ordem de inserção dos dados.
 
-//     var instrucao = `
-//     insert into Funcionario (email, senha, nome, telefone, fkEmpresa,fkSupervisor, statusFuncionario) values 
-//     ( '${emailFuncionario}', '${senhaFuncionario}' , '${nomeFuncionario}' , '${telefoneFuncionario}' ,${empresaFuncionario},'${supervisor}',1);
-//     `;
-//     console.log("Executando a instrução SQL: \n" + instrucao);
-//     return database.executar(instrucao);
-// }
+    var instrucao = `
+    insert into Funcionario (email, senha, nome, telefone, fkEmpresa, fkSupervisor, firstAcess, statusFuncionario) values 
+    ( '${emailFuncionario}', '${senhaFuncionario}' , '${nomeFuncionario}' , '${telefoneFuncionario}' ,${empresaFuncionario}, ${supervisor}, 1, 1);
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
 
 module.exports = {
-    entrarFuncionario, listar, cadastrarEndereco, cadastrarFuncionarioPlataforma, cadastrarEmpresa, 
-    // cadastrarFuncionarioSistema,
-     verificarEndereco, verificarEmpresa
+    entrarFuncionario, listar, cadastrarEndereco, cadastrarFuncionarioPlataforma, cadastrarEmpresa, cadastrarFuncionarioSistema,     verificarEndereco, verificarEmpresa
 };

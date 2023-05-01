@@ -74,12 +74,14 @@ function autenticarEmpresa(req, res) {
     }
 }
 
-function cadastrarFuncionario(req, res) {
+function cadastrarFuncionarioSistema(req, res) {
+    
     var nomeFuncionario = req.body.nomeFuncionarioServer;
     var emailFuncionario = req.body.emailFuncionarioServer;
     var senhaFuncionario = req.body.senhaFuncionarioServer;
     var telefoneFuncionario = req.body.telefoneFuncionarioServer;
     var empresaFuncionario = req.body.empresaFuncionarioServer;
+    var surpervisor = req.body.supervisorFuncionarioServer;
 
 
     if (nomeFuncionario == undefined) {
@@ -92,8 +94,11 @@ function cadastrarFuncionario(req, res) {
         res.status(400).send("Seu telefoneFuncionario está undefined!");
     } else if (empresaFuncionario == null) {
         res.status(400).send("Sua empresa está undefined!");
-    } else {
-        empresaModel.cadastrarFuncionario(nomeFuncionario, emailFuncionario, senhaFuncionario, telefoneFuncionario, empresaFuncionario).then(
+    } else if (surpervisor == null) {
+        res.status(400).send("Seu supervisor está undefined!");
+    }
+    else {
+        empresaModel.cadastrarFuncionarioSistema(nomeFuncionario, emailFuncionario, senhaFuncionario, telefoneFuncionario, empresaFuncionario, surpervisor).then(
             function (resultado) {
                 res.json(resultado);
             }
@@ -354,7 +359,7 @@ module.exports = {
     cadastrarEndereco,
     cadastrarEmpresa,
     cadastrarFuncionarioPlataforma,
-  //  cadastrarFuncionarioSistema,
+    cadastrarFuncionarioSistema,
     entrarFuncionario,
     // listarEmpresa,
     listarFuncionario,

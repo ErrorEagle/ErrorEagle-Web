@@ -321,12 +321,12 @@ function entrar() {
 
                             } else if (senhaVar == jsonLogin.senha) {
 
-                                    sessionStorage.ID_FUNCIONARIO = jsonLogin.idFuncionario;
+                                    sessionStorage.ID_FUNCIONARIO = jsonLogin.id;
                                     sessionStorage.NOME_USUARIO = jsonLogin.nome;
                                     sessionStorage.EMAIL_USUARIO = jsonLogin.email;
                                     sessionStorage.TELEFONE_USUARIO = jsonLogin.telefone;
                                     sessionStorage.FK_EMPRESA = jsonLogin.fkEmpresa;
-                                    sessionStorage.FK_SURPERVISOR = jsonLogin.fkSurpervisor
+                                    sessionStorage.FK_SUPERVISOR = jsonLogin.fkSupervisor
                                     sessionStorage.SENHA_USUARIO = jsonLogin.senha;
                                     sessionStorage.NOME_EMPRESA = jsonLogin.razaoSocial;
                                     sessionStorage.FIRST_ACESS = jsonLogin.firstAcess;
@@ -337,12 +337,10 @@ function entrar() {
                                     }, 1000); // apenas para exibir o loading
 
 
-                      
-
 
                             } else {
                                 console.log('Houve um erro ao realizar o seu login! Tente mais tarde.')
-
+                                fecharModal("#modalLoginForm");
                             }
                         });
                     }

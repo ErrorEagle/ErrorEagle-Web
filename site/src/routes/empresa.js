@@ -41,9 +41,9 @@ router.get("/verificar/empresa/:cnpj", function (req, res) {
  });
 
 
-// router.post("/cadastrar/funcionario/sistema", function (req, res) {
-//     empresaController.cadastrarFuncionarioSistema(req, res);
-// });
+router.post("/cadastrar/funcionario/sistema", function (req, res) {
+    empresaController.cadastrarFuncionarioSistema(req, res);
+});
 
 router.put("/autenticar/empresa", function (req, res) {
     empresaController.autenticarEmpresa(req, res);

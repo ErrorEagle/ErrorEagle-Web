@@ -234,7 +234,7 @@ async function deleteFuncionario(idFuncionario) {
     console.log("FORM SENHA: ", senhaVar);
     if (password == sessionStorage.getItem("SENHA_USUARIO")) {
         fetch(`/gerenciadorUsuario/deletar/funcionario/${idFuncionario}`, {
-            method: "POST",
+            method: "PUT",
             headers: {
                 "Content-Type": "application/json",
             },
