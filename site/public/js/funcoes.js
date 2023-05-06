@@ -20,7 +20,6 @@ function validarSessao() {
                     toast.addEventListener('mouseleave', Swal.resumeTimer)
                 }
             })
-
             if (i == 0) {
                 Toast.fire({
                     icon: 'success',

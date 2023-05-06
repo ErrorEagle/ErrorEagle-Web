@@ -306,7 +306,7 @@ function entrar() {
                     console.log(resposta);
 
                     if (resposta.status == 204) {
-                        alert("Você não está cadastrado!")
+                        // alert("Você não está cadastrado!")
                     } else {
                         resposta.json().then((jsonLogin) => {
                             console.log(jsonLogin);
@@ -321,20 +321,20 @@ function entrar() {
 
                             } else if (senhaVar == jsonLogin.senha) {
 
-                                    sessionStorage.ID_FUNCIONARIO = jsonLogin.id;
-                                    sessionStorage.NOME_USUARIO = jsonLogin.nome;
-                                    sessionStorage.EMAIL_USUARIO = jsonLogin.email;
-                                    sessionStorage.TELEFONE_USUARIO = jsonLogin.telefone;
-                                    sessionStorage.FK_EMPRESA = jsonLogin.fkEmpresa;
-                                    sessionStorage.FK_SUPERVISOR = jsonLogin.fkSupervisor
-                                    sessionStorage.SENHA_USUARIO = jsonLogin.senha;
-                                    sessionStorage.NOME_EMPRESA = jsonLogin.razaoSocial;
-                                    sessionStorage.FIRST_ACESS = jsonLogin.firstAcess;
+                                sessionStorage.ID_FUNCIONARIO = jsonLogin.id;
+                                sessionStorage.NOME_USUARIO = jsonLogin.nome;
+                                sessionStorage.EMAIL_USUARIO = jsonLogin.email;
+                                sessionStorage.TELEFONE_USUARIO = jsonLogin.telefone;
+                                sessionStorage.FK_EMPRESA = jsonLogin.fkEmpresa;
+                                sessionStorage.FK_SUPERVISOR = jsonLogin.fkSupervisor
+                                sessionStorage.SENHA_USUARIO = jsonLogin.senha;
+                                sessionStorage.NOME_EMPRESA = jsonLogin.razaoSocial;
+                                sessionStorage.FIRST_ACESS = jsonLogin.firstAcess;
 
-                                    fecharModal("#modalLoginForm");
-                                    setTimeout(function () {
-                                        window.location = "./dashboard/menu.html";
-                                    }, 1000); // apenas para exibir o loading
+                                fecharModal("#modalLoginForm");
+                                setTimeout(function () {
+                                    window.location = "./dashboard/menu.html";
+                                }, 1000); // apenas para exibir o loading
 
 
 
@@ -449,7 +449,7 @@ function buscarEnderecoCadastrado(cep, numero) {
                 buscarEnderecoCadastrado(cep, numero)
 
             } else if (resposta.status == 403) {
-                alert("Não permitido dar o select")
+                // alert("Não permitido dar o select")
             } else {
                 resposta.json().then((jsonEndereco) => {
                     registrarEmpresa(jsonEndereco.id)
