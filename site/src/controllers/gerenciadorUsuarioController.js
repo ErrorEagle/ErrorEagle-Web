@@ -182,6 +182,8 @@ function atualizarPassword(req, res) {
 
     var idFuncionario = req.body.idFuncionarioServer
     var novaPass = req.body.novaPassServer
+    console.log(idFuncionario + " " + novaPass);
+    
 
     if (idFuncionario == undefined) {
         res.status(400).send("Seu id esta undefined");

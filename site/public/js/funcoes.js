@@ -54,6 +54,38 @@ function validarSessao() {
 
 }
 
+function verificarPrimeiroAcesso() {
+    var fkSupervisor = sessionStorage.getItem("FK_SUPERVISOR")
+    var primeiroAcesso = sessionStorage.getItem("FIRST_ACESS")
+
+    if (primeiroAcesso == 1 && fkSupervisor != null) {
+
+        setTimeout(() => {
+
+            
+            var localAtual = window.location.href
+            var localOk = "atualizarSenha.html"
+
+           
+            
+            if (localAtual.indexOf(localOk) == -1) {
+
+                
+                alert(`Você vai ser redirecionado.`)
+                window.location = localOk;
+            
+            } else {
+                console.log("Já está na página.")
+            }
+
+
+        }, 4000)
+
+    }
+
+}
+
+verificarPrimeiroAcesso()
 
 function limparSessao() {
     console.log("Limpei")
