@@ -95,6 +95,27 @@ function limparSessao() {
     window.location = "../index.html";
 }
 
+
+function verificarSupervisor() {
+
+  document.addEventListener('DOMContentLoaded', function() {
+    var nivelUsuario = sessionStorage.getItem("FK_SUPERVISOR");
+    console.log(nivelUsuario);
+
+    var linkColaboradores = document.querySelector('a[href="funcionarios.html"]');
+    if (nivelUsuario == 'null') {
+      linkColaboradores.style.display = 'flex';
+    } else {
+      linkColaboradores.style.display = 'none';
+    }
+  });
+
+}
+
+verificarSupervisor();
+
+
+
 // carregamento (loading)
 // function aguardar() {
 //     var divAguardar = document.getElementById("div_aguardar");

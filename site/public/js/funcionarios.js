@@ -1,3 +1,8 @@
+function limparLista() {
+    listaAtivosDiv.innerHTML = "";
+    listaInativosDiv.innerHTML = ""
+}
+
 function checkCamposCadastroFuncionario() {
     var nomeFuncionario = nomeCadastro.value
     var emailFuncionario = inpEmailCadastro.value
@@ -202,7 +207,6 @@ function cadastrarFuncionario() {
 
 async function deleteFuncionario(idFuncionario) {
 
-    var idFuncionar
 
     const { value: password } = await Swal.fire({
         title: 'Digite a sua senha',
