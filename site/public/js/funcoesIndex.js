@@ -415,30 +415,54 @@ function entrar() {
     return false;
 }
 
-function atualizarSenha() {
+// function atualizarSenha() {
 
-var idFuncionario =  sessionStorage.getItem("ID_FUNCIONARIO");
-var novaSenha = document.getElementById("inpNovaSenha") //inpNovaSenha.value;
+//     var idFuncionario = sessionStorage.getItem("ID_FUNCIONARIO");
+//     var novaSenha = inpNovaSenha.value;
 
-if (checkNovaSenha()) {
+//     alert(idFuncionario + " " + novaSenha + "Teste")
+//     if (checkNovaSenha()) {
+//         fetch('/gerenciadorUsuario/atualizarPassword', {
+//             method: 'PUT',
+//             body: JSON.stringify({
+//                 "idFuncionarioServer": idFuncionario,
+//                 "novaPassServer": novaSenha
+//             }
+//             )
+//         })
+//             .then(response => response.json())
+//             .then(data => console.log(data))
+//             .catch(error => console.error(error));
+//     }
+
+
+
+// }
+
+async function atualizarSenha() {
+    var idFuncionario = sessionStorage.getItem("ID_FUNCIONARIO");
+    var novaSenha = inpNovaSenha.value;
+
     fetch(`/gerenciadorUsuario/atualizarPassword`, {
         method: "PUT",
+        body: JSON.stringify({
+            "idFuncionarioServer": idFuncionario,
+            "novaPassServer": novaSenha
+        }
+        ),
         headers: {
             "Content-Type": "application/json",
         },
-         body: JSON.stringify({
-            "idFuncionarioServer": idFuncionario,
-            "novaPassServer": novaSenha
-        })
     })
         .then(function (resposta) {
             console.log("ESTOU NO THEN DO listar()!");
 
             if (resposta.ok) {
+                Swal
+                sessionStorage.clear;
 
-                limparLista()
-                listarFuncionarios()
-                listarFuncionariosInativos()
+                window.location = "/"
+
 
             } else {
                 console.log("Houve um erro ao tentar Lista");
@@ -450,11 +474,10 @@ if (checkNovaSenha()) {
         .catch(function (erro) {
             console.log(erro);
         });
-}
-    
-
 
 }
+
+
 
 function cadastrarEmpresa() {
     //aguardar();

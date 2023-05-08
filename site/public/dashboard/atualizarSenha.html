@@ -23,8 +23,7 @@
 <body onload="">
     <header>
         <nav id="navMenu">
-            <div class="container"><a href="../index.html" class="imgNavBar"><img src="../assets/icon/logo.svg"
-                        alt=""></a>
+            <div class="container"><a href="menu.html" class="imgNavBar"><img src="../assets/icon/logo.svg" alt=""></a>
                 <ul class="listaItens">
                     <li><a onclick="limparSessao()">Sair</a></li>
                 </ul>
@@ -42,13 +41,18 @@
         </div>
     </div>
     <main>
-        <section class="sec_01 w-100 h-100 d-flex justify-content-center">
-            <div id="caixa-maior" class="container d-flex flex-column h-75 px-0" style="margin:40px 0px;">
+        <section class="w-100 h-100 d-flex justify-content-center">
+            <div id="caixa-maior" class="container d-flex align-items-center w-100 h-75 px-0" style="margin:40px 0px;">
 
 
-                <form>Insira uma nova senha.<input onkeydown="checkNovaSenha()" id="inpNovaSenha" type="password">
-                    <button onclick="atualizarSenha()">Confirmar nova senha</button>
-                </form>
+                <div class="d-flex align-items-center justify-content-center flex-column w-100 h-75"
+                    style="background-color: aliceblue;">
+                    <div class="d-flex flex-column w-50">
+                        <label for="inpNovaSenha">Digite uma nova senha</label>
+                        <input onkeydown="checkNovaSenha()" id="inpNovaSenha" type="password">
+                        <button onclick="atualizarSenha()">Confirmar nova senha</button>
+                    </div>
+                </div>
 
 
             </div>
