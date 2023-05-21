@@ -7,23 +7,6 @@ function testar(req, res) {
     res.json("ESTAMOS FUNCIONANDO!");
 }
 
-// function listarEmpresa(req, res) {
-//     var emaillEmpres = req.body.emailServer
-//     empresaModel.listarEmpresa(emaillEmpres)
-//         .then(function (resultado) {
-//             if (resultado.length > 0) {
-//                 res.status(200).json(resultado);
-//             } else {
-//                 res.status(204).send("Nenhum resultado encontrado!")
-//             }
-//         }).catch(
-//             function (erro) {
-//                 console.log(erro);
-//                 console.log("Houve um erro ao realizar a consulta! Erro: ", erro.sqlMessage);
-//                 res.status(500).json(erro.sqlMessage);
-//             }
-//         );
-// }
 function listarFuncionario(req, res) {
     var nome = req.body.nomeFuncionarioServer;
     var email = req.body.emailFuncionarioServer;
@@ -51,6 +34,7 @@ function listarFuncionario(req, res) {
 
 
 }
+
 function autenticarEmpresa(req, res) {
     var email = req.body.emailFuncionarioServer;
     if (email == undefined) {
@@ -75,7 +59,7 @@ function autenticarEmpresa(req, res) {
 }
 
 function cadastrarFuncionarioSistema(req, res) {
-    
+
     var nomeFuncionario = req.body.nomeFuncionarioServer;
     var emailFuncionario = req.body.emailFuncionarioServer;
     var senhaFuncionario = req.body.senhaFuncionarioServer;
@@ -134,7 +118,7 @@ function cadastrarFuncionarioPlataforma(req, res) {
         res.status(400).send("Seu telefoneFuncionario está undefined!");
     } else if (empresaFuncionario == null) {
         res.status(400).send("Sua empresa está undefined!");
-    } 
+    }
     else {
         empresaModel.cadastrarFuncionarioPlataforma(nomeFuncionario, emailFuncionario, senhaFuncionario, telefoneFuncionario, empresaFuncionario).then(
             function (resultado) {
@@ -162,7 +146,7 @@ function cadastrarEmpresa(req, res) {
     var razaoSocial = req.body.razaoSocialServer;
     var CNPJ = req.body.cnpjServer;
     var telefone = req.body.telefoneServer;
-    // var telefone1 = req.body.telefoneOptionalServer;
+    var bandaLarga = req.body.bandaLargaServer;
     var email = req.body.dominioServer;
     var fkEndereco = req.body.fkEnderecoServer;
 
@@ -175,6 +159,8 @@ function cadastrarEmpresa(req, res) {
         res.status(400).send("O CNPJ está undefined!");
     } else if (telefone == undefined) {
         res.status(400).send("O telefone está undefined!");
+    } else if (bandaLarga == undefined) {
+        res.status(400).send("A bandaLarga está undefined!");
     } else if (email == undefined) {
         res.status(400).send("O email está undefined!");
     } else if (fkEndereco == undefined) {
@@ -182,7 +168,7 @@ function cadastrarEmpresa(req, res) {
     } else {
         console.log(" Requisicao do corpo da empresa:" + req.body)
         // Passe os valores como parâmetro e vá para o arquivoempresaModel.js
-        empresaModel.cadastrarEmpresa(responsavel, razaoSocial, CNPJ, telefone, email, fkEndereco)
+        empresaModel.cadastrarEmpresa(responsavel, razaoSocial, CNPJ, telefone, bandaLarga, email, fkEndereco)
             .then(
                 function (resultado) {
 
@@ -201,6 +187,7 @@ function cadastrarEmpresa(req, res) {
             );
     }
 }
+
 function cadastrarEndereco(req, res) {
 
     var cep = req.body.cepServer;
@@ -246,14 +233,13 @@ function cadastrarEndereco(req, res) {
 
 }
 
-
 function entrarFuncionario(req, res) {
 
     var email = req.params.email;
-  
+
 
     console.log(email);
-    
+
 
     if (email == undefined) {
         res.status(400).send("Seu email está undefined!");
@@ -303,9 +289,9 @@ function verificarEndereco(req, res) {
                     if (resultado.length != 0) {
                         console.log(resultado);
                         res.json(resultado[0]);
-                    } else  {
+                    } else {
                         res.status(204).send("CEP ou Numero não encontrados!");
-                    } 
+                    }
                 }
             ).catch(
                 function (erro) {
@@ -336,9 +322,9 @@ function verificarEmpresa(req, res) {
                     if (resultado.length != 0) {
                         console.log(resultado);
                         res.json(resultado[0]);
-                    } else  {
+                    } else {
                         res.status(204).send("CNPJ não encontrado!");
-                    } 
+                    }
                 }
             ).catch(
                 function (erro) {
@@ -353,19 +339,14 @@ function verificarEmpresa(req, res) {
 
 
 
-
-
 module.exports = {
     cadastrarEndereco,
     cadastrarEmpresa,
     cadastrarFuncionarioPlataforma,
     cadastrarFuncionarioSistema,
     entrarFuncionario,
-    // listarEmpresa,
     listarFuncionario,
     autenticarEmpresa,
     verificarEndereco,
     verificarEmpresa,
-
-
 }

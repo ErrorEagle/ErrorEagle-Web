@@ -134,9 +134,6 @@ function listarFuncionariosInativos() {
                     for (var i = 0; i < funcionarios.length;) {
 
                         if (funcionarios[i].fkSupervisor == null) {
-
-
-
                         } else {
 
                             listaInativosDiv.innerHTML += `<div class="item"> <span class="nomeItemLista">Nome: ${funcionarios[i].nome}</span> <span class="emailItemLista">Email: ${funcionarios[i].email}</span> <span
@@ -165,13 +162,15 @@ function fecharModal(modal) {
     $(`${modal}`).modal('hide');
 }
 
-function cadastrarFuncionario() {
+async function cadastrarFuncionario() {
 
     var nomeResponsavel = nomeCadastro.value;
     var emailFuncionario = inpEmailCadastro.value;
     var telefoneFuncionario = inpTelefoneFuncionario.value;
     var senhaVar = inpSenhaCadastro.value;
 
+    console.log("FORM LOGIN: ", emailVar);
+    console.log("FORM SENHA: ", senhaVar);
     if (checkCamposCadastroFuncionario) {
         fetch("/empresa/cadastrar/funcionario/sistema", {
             method: "POST",
@@ -205,10 +204,10 @@ function cadastrarFuncionario() {
     }
 }
 
+
+
 async function deleteFuncionario(idFuncionario) {
-
-
-    const { value: password } = await Swal.fire({
+    const { value: senhaSupervisor } = await Swal.fire({
         title: 'Digite a sua senha',
         input: 'password',
         inputLabel: 'Senha supervisor',
@@ -220,11 +219,11 @@ async function deleteFuncionario(idFuncionario) {
     })
 
     var emailVar = sessionStorage.EMAIL_USUARIO;
-    var senhaVar = password;
+    var senhaVarSupervisor = senhaSupervisor;
 
     console.log("FORM LOGIN: ", emailVar);
     console.log("FORM SENHA: ", senhaVar);
-    if (password == sessionStorage.getItem("SENHA_USUARIO")) {
+    if (senhaVarSupervisor == sessionStorage.getItem("SENHA_USUARIO")) {
         fetch(`/gerenciadorUsuario/deletar/funcionario/${idFuncionario}`, {
             method: "PUT",
             headers: {

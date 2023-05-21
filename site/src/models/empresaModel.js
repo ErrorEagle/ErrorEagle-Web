@@ -40,7 +40,7 @@ function verificarEmpresa(cnpj) {
 function cadastrarEndereco(cep, bairro, rua, numero, estado, cidade) {
 
     console.log("ACESSEI O EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEndereco(): ", cep, bairro, rua, numero, estado, cidade)
-    
+
     var instrucao = `insert into Endereco (cep, bairro, rua, numero, estado, cidade) values 
     ('${cep}','${bairro}','${rua}',${numero},'${estado}','${cidade}');`;
 
@@ -49,20 +49,20 @@ function cadastrarEndereco(cep, bairro, rua, numero, estado, cidade) {
 
 }
 
-function cadastrarEmpresa(responsavel, razaoSocial, CNPJ, telefone, email, fkEndereco) {
+function cadastrarEmpresa(responsavel, razaoSocial, CNPJ, telefone, bandaLarga, email, fkEndereco) {
 
     console.log("ACESSEI O EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrar():", responsavel, razaoSocial, CNPJ, telefone, email, fkEndereco);
 
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
     //  e na ordem de inserção dos dados.
-    var instrucao = `insert into Empresa (responsavel, razaoSocial, CNPJ, telefone, email, qtdTotem, statusEmpresa, fkEndereco) values 
-    ('${responsavel}','${razaoSocial}','${CNPJ}','${telefone}', '${email}', 0, 0, ${fkEndereco});
+    var instrucao = `insert into Empresa (responsavel, razaoSocial, CNPJ, telefone, bandaLarga,email, statusEmpresa, fkEndereco) values 
+    ('${responsavel}','${razaoSocial}','${CNPJ}','${telefone}', ${bandaLarga}, '${email}', 0, ${fkEndereco});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 
 }
-// Coloque os mesmos parâmetros aqui. Vá para a var instrucao
+
 function cadastrarFuncionarioPlataforma(nomeFuncionario, emailFuncionario, senhaFuncionario, telefoneFuncionario, empresaFuncionario) {
     console.log("ACESSEI O EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpresa():", nomeFuncionario, emailFuncionario, senhaFuncionario, telefoneFuncionario, empresaFuncionario);
     // Insira exatamente a query do banco aqui, lembrando da nomenclatura exata nos valores
@@ -74,8 +74,6 @@ function cadastrarFuncionarioPlataforma(nomeFuncionario, emailFuncionario, senha
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
 }
-
-
 
 function cadastrarFuncionarioSistema(nomeFuncionario, emailFuncionario, senhaFuncionario, telefoneFuncionario, empresaFuncionario, supervisor) {
     console.log("ACESSEI O EMPRESA MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function cadastrarEmpresa():", nomeFuncionario, emailFuncionario, senhaFuncionario, telefoneFuncionario, empresaFuncionario);
@@ -91,5 +89,12 @@ function cadastrarFuncionarioSistema(nomeFuncionario, emailFuncionario, senhaFun
 }
 
 module.exports = {
-    entrarFuncionario, listar, cadastrarEndereco, cadastrarFuncionarioPlataforma, cadastrarEmpresa, cadastrarFuncionarioSistema,     verificarEndereco, verificarEmpresa
+    entrarFuncionario,
+    listar,
+    cadastrarEndereco,
+    cadastrarFuncionarioPlataforma,
+    cadastrarEmpresa,
+    cadastrarFuncionarioSistema,
+    verificarEndereco,
+    verificarEmpresa
 };

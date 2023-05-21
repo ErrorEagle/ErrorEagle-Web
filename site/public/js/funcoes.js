@@ -1,3 +1,4 @@
+
 function validarSessao() {
     // aguardar();
     var i = 0;
@@ -54,6 +55,7 @@ function validarSessao() {
 
 }
 
+// Função que verifica o firstAcess para o usuário trocar a senha
 function verificarPrimeiroAcesso() {
     var fkSupervisor = sessionStorage.getItem("FK_SUPERVISOR")
     var primeiroAcesso = sessionStorage.getItem("FIRST_ACESS")
@@ -62,18 +64,18 @@ function verificarPrimeiroAcesso() {
 
         setTimeout(() => {
 
-            
+
             var localAtual = window.location.href
             var localOk = "atualizarSenha.html"
 
-           
-            
+
+
             if (localAtual.indexOf(localOk) == -1) {
 
-                
+
                 alert(`Você vai ser redirecionado.`)
                 window.location = localOk;
-            
+
             } else {
                 console.log("Já está na página.")
             }
@@ -85,8 +87,6 @@ function verificarPrimeiroAcesso() {
 
 }
 
-verificarPrimeiroAcesso()
-
 function limparSessao() {
     console.log("Limpei")
     // aguardar();
@@ -95,21 +95,27 @@ function limparSessao() {
     window.location = "../index.html";
 }
 
-
+// Função que muda a sidebar de acordo com o nível de acesso
 function verificarSupervisor() {
 
-  document.addEventListener('DOMContentLoaded', function() {
-    var nivelUsuario = sessionStorage.getItem("FK_SUPERVISOR");
-    console.log(nivelUsuario);
+    document.addEventListener('DOMContentLoaded', function () {
+        var nivelUsuario = sessionStorage.getItem("FK_SUPERVISOR");
+        console.log(nivelUsuario);
 
-    var linkColaboradores = document.querySelector('a[href="funcionarios.html"]');
-    if (nivelUsuario == 'null') {
-      linkColaboradores.style.display = 'flex';
-    } else {
-      linkColaboradores.style.display = 'none';
-    }
-  });
+        var linkColaboradores = document.querySelector('a[href="funcionarios.html"]');
+        if (nivelUsuario == 'null') {
+            linkColaboradores.style.display = 'flex';
+        } else {
+            linkColaboradores.style.display = 'none';
+        }
+    });
 
+}
+
+/* ------------------------------- Executando Funções --------------------------------- */
+
+if (window.location != "/index.html") {
+    verificarPrimeiroAcesso()
 }
 
 verificarSupervisor();

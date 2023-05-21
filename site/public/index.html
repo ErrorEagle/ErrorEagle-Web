@@ -63,7 +63,7 @@
     <div class="modal-dialog my-modal-dialog d-flex justify-content-center align-items-center h-100  " role="document">
       <div class="modal-content formModal">
         <div class="modal-header text-center">
-          <h4 class="modal-title w-100 font-weight-bold text-white ">Cadastrar</h4>
+          <h4 class="modal-title w-100 font-weight-bold text-black ">Cadastrar</h4>
           <button type="button" class="close" data-dismiss="modal" aria-label="Close">
             <span aria-hidden="true">&times;</span>
           </button>
@@ -90,12 +90,6 @@
                 oninput="this.value = this.value.replace(/[^0-9]/g, '')" class=" input-phone1  form-control validate"
                 placeholder="(99) 99999-9999" required>
             </div>
-            <div class="md-form mb-2">
-              <i class="fas fa-user prefix grey-text"></i>
-              <label data-error="wrong" data-success="right" for="inpTelefone">Telefone </label>
-              <input type="tel" id="inpTelefone" class=" input-phone form-control validate"
-                placeholder="(99) 99999-9999" required>
-            </div>
           </div>
           <div class="mx-4 w-50" id="formCadastro">
             <div class="md-form mb-2">
@@ -116,6 +110,13 @@
               </label>
               <input type="tel" id="inpTelefoneFuncionario" class=" input-phone2 form-control validate"
                 placeholder="(99) 99999-9999" required>
+            </div>
+            <div class="md-form mb-2">
+              <i class="fas fa-user prefix grey-text"></i>
+              <label data-error="wrong" data-success="right" for="inpBandaLarga">
+                Tamanho banda larga
+              </label>
+              <input type="tel" id="inpBandaLarga" class="form-control validate" placeholder="" required>
             </div>
 
 

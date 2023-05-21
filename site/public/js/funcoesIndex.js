@@ -1,3 +1,5 @@
+// Funções dos Modais Login e Cadastro
+
 function abrirLogin() {
     var cadastroId = document.querySelector(".cadastro");
     var loginId = document.querySelector(".login");
@@ -22,59 +24,34 @@ function closeLogin() {
 
 }
 
-function checkSenha() {
-    var str = inpSenhaCadastro.value;
-    console.log(str);
-    var states = 0;
-    // Verifica se a string tem no máximo 8 caracteres
-    if (str.length <= 7) {
-    } else {
-        states++;
-    }
-    // Verifica se a string tem caracteres maiúsculos
-    if (/[A-Z]/.test(str)) {
-        states++;
-        console.log('A string contém caracteres maiúsculos');
-    }
-    // Verifica se a string tem caracteres minúsculos
-    if (/[a-z]/.test(str)) {
-        states++;
-        console.log('A string contém caracteres minúsculos');
-    }
-    // Verifica se a string tem números
-    if (/\d/.test(str)) {
-        states++;
-        console.log('A string contém números');
-    }
-    // Verifica se a string tem caracteres especiais
-    if (/[^A-Za-z0-9]/.test(str)) {
-        states++;
-        console.log('A string contém caracteres especiais');
-    }
-    console.log(states);
-    switch (states) {
-        case 1:
-            loadingSenha.style = "background:red;  transition: 2s;"
-            break;
-        case 2:
-            loadingSenha.style = "background:orange;  transition: 2s;"
-            break;
-        case 3:
-            loadingSenha.style = "background:yellow;  transition: 2s;"
-            break;
-        case 4:
-            loadingSenha.style = "background:blue;  transition: 2s;"
-            break;
-        case 5:
-            loadingSenha.style = "background:green;  transition: 2s;"
-            return true
-            break;
-    }
+
+// Validações para os campos e as funções de Logar e Cadastrar
+
+function limparErros() {
+
+    const limpar = setTimeout(() => {
+        nomeCadastro.style = " border: 1px solid #ccc; "
+        inpRazaoSocial.style = " border: 1px solid #ccc; "
+        inpCNPJ.style = " border: 1px solid #ccc; ;"
+        inpTelefone1.style = " border: 1px solid #ccc; "
+        inpTelefoneFuncionario.style = " border: 1px solid #ccc; "
+        inpEmailCadastro.style = " border: 1px solid #ccc; "
+        inpSenhaCadastro.style = " border: 1px solid #ccc; "
+        inpSenhaConfirmacao.style = " border: 1px solid #ccc; "
+        inpCep.style = " border: 1px solid #ccc; "
+        inpRua.style = " border: 1px solid #ccc; "
+        inpBairro.style = " border: 1px solid #ccc; "
+        inpNumero.style = " border: 1px solid #ccc; "
+        inpEstado.style = " border: 1px solid #ccc; "
+        inpCidade.style = " border: 1px solid #ccc; "
+        inpBandaLarga.style = " border: 1px solid #ccc; "
+    }, 5000)
+
 }
 
 function checkNovaSenha() {
     var str = inpNovaSenha.value;
-    console.log(str);
+    // console.log(str);
     var states = 0;
     // Verifica se a string tem no máximo 8 caracteres
     if (str.length <= 7) {
@@ -84,24 +61,24 @@ function checkNovaSenha() {
     // Verifica se a string tem caracteres maiúsculos
     if (/[A-Z]/.test(str)) {
         states++;
-        console.log('A string contém caracteres maiúsculos');
+        // console.log('A string contém caracteres maiúsculos');
     }
     // Verifica se a string tem caracteres minúsculos
     if (/[a-z]/.test(str)) {
         states++;
-        console.log('A string contém caracteres minúsculos');
+        // console.log('A string contém caracteres minúsculos');
     }
     // Verifica se a string tem números
     if (/\d/.test(str)) {
         states++;
-        console.log('A string contém números');
+        // console.log('A string contém números');
     }
     // Verifica se a string tem caracteres especiais
     if (/[^A-Za-z0-9]/.test(str)) {
         states++;
-        console.log('A string contém caracteres especiais');
+        // console.log('A string contém caracteres especiais');
     }
-    console.log(states);
+    // console.log(states);
     /*switch (states) {
         case 1:
             loadingSenha.style = "background:red;  transition: 2s;"
@@ -122,11 +99,196 @@ function checkNovaSenha() {
     }*/
 }
 
+function validarLogin() {
+    var emailVar = inpEmailLogin.value;
+    var senhaVar = inpSenhaLogin.value;
+
+    let hasEmptyFields = false; // flag para verificar se há campos vazios
+
+    if (emailVar === "") {
+        inpEmailLogin.style = "border: 3px solid #ff0000 ;";
+        hasEmptyFields = true;
+    } else {
+        inpEmailLogin.style = "border: 1px solid #ccc; ";
+    }
+
+    if (senhaVar === "") {
+        inpSenhaLogin.style = "border: 3px solid #ff0000 ;";
+        hasEmptyFields = true;
+
+    } else {
+        inpSenhaLogin.style = "border: 1px solid #ccc;";
+    }
+
+    if (hasEmptyFields == true) {
+        Swal.fire({
+            title: 'Preencha todos os campos',
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+        })
+        console.log("hasEmptyFields")
+        return false;
+    }
+
+    // Aqui você pode adicionar a lógica para verificar se o email e senha são válidos.
+    // Isso depende da forma como você está autenticando o usuário, seja por meio de um banco de dados ou outra fonte de dados.
+
+    return true; // retorna verdadeiro se não há campos vazios
+}
+
+function entrar() {
+
+    // aguardar();
+    if (validarLogin() == true) {
+        var emailVar = inpEmailLogin.value;
+        var senhaVar = inpSenhaLogin.value;
+
+        console.log("FORM LOGIN: ", emailVar);
+        console.log("FORM SENHA: ", senhaVar);
+        fetch(`empresa/autenticar/funcionario/${emailVar}`, {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then(function (resposta) {
+
+
+                if (resposta.ok) {
+                    console.log(resposta);
+
+                    if (resposta.status == 204) {
+                        Swal.fire({
+                            title: 'Usuário não cadastrado!',
+                            icon: 'error',
+                        })
+                    } else {
+                        resposta.json().then((jsonLogin) => {
+                            console.log(jsonLogin);
+                            console.log(JSON.stringify(jsonLogin));
+                            console.log(jsonLogin);
+
+                            if (jsonLogin.statusEmpresa == 0) {
+                                Swal.fire({
+                                    title: 'Verifique a validade do contrato com a ErrorEagle!',
+                                    icon: 'error',
+                                })
+
+                            } else if (jsonLogin.statusFuncionario == 0) {
+                                Swal.fire({
+                                    title: 'Você está inativado, verifique o acesso com seu supervisor!',
+                                    icon: 'error',
+                                })
+
+
+                            } else if (senhaVar == jsonLogin.senha) {
+
+                                sessionStorage.ID_FUNCIONARIO = jsonLogin.id;
+                                sessionStorage.NOME_USUARIO = jsonLogin.nome;
+                                sessionStorage.EMAIL_USUARIO = jsonLogin.email;
+                                sessionStorage.TELEFONE_USUARIO = jsonLogin.telefone;
+                                sessionStorage.FK_EMPRESA = jsonLogin.fkEmpresa;
+                                sessionStorage.FK_SUPERVISOR = jsonLogin.fkSupervisor
+                                sessionStorage.SENHA_USUARIO = jsonLogin.senha;
+                                sessionStorage.NOME_EMPRESA = jsonLogin.razaoSocial;
+                                sessionStorage.FIRST_ACESS = jsonLogin.firstAcess;
+
+                                fecharModal("#modalLoginForm");
+                                setTimeout(function () {
+                                    window.location = "./dashboard/DashboardGeral.html";
+                                }, 1000); // apenas para exibir o loading
+
+
+
+                            } else {
+                                console.log('Houve um erro ao realizar o seu login! Tente mais tarde.')
+                                fecharModal("#modalLoginForm");
+                            }
+                        });
+                    }
+
+
+                } else {
+                    console.log("Houve um erro ao tentar realizar o login!");
+
+                    resposta.text().then((texto) => {
+                        console.error(texto);
+                        //finalizarAguardar(texto);
+                    });
+                }
+            })
+            .catch(function (erro) {
+                console.log(erro);
+            });
+    } else {
+        console.log("Erro na validação")
+    }
+
+    return false;
+}
+
+async function atualizarSenha() {
+    var idFuncionario = sessionStorage.getItem("ID_FUNCIONARIO");
+    var novaSenha = inpNovaSenha.value;
+
+    fetch(`/gerenciadorUsuario/atualizarPassword`, {
+        method: "PUT",
+        body: JSON.stringify({
+            "idFuncionarioServer": idFuncionario,
+            "novaPassServer": novaSenha
+        }
+        ),
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO listar()!");
+
+            if (resposta.ok) {
+                const Toast = Swal.mixin({
+                    toast: true,
+                    position: 'top-end',
+                    showConfirmButton: false,
+                    timer: 3000,
+                    timerProgressBar: true,
+                    didOpen: (toast) => {
+                        toast.addEventListener('mouseenter', Swal.stopTimer)
+                        toast.addEventListener('mouseleave', Swal.resumeTimer)
+                    }
+                })
+
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Signed in successfully'
+                })
+                setTimeout(() => {
+                    sessionStorage.clear;
+                    window.location = "/"
+                }, 2000)
+
+
+            } else {
+                console.log("Houve um erro ao tentar Lista");
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+        });
+
+}
+
+
+// Validações e Cadastro da Empresa
+
 function checkCamposCadastroEmpresa() {
     var razaoSocial = inpRazaoSocial.value
     var cnpj = inpCNPJ.value
     var telefone = inpTelefone1.value
-    // var telefone = inpTelefone.value
+    var bandaLarga = inpBandaLarga.value
     var nomeFuncionario = nomeCadastro.value
     var emailFuncionario = inpEmailCadastro.value
     var telefoneFuncionario = inpTelefoneFuncionario.value
@@ -156,12 +318,12 @@ function checkCamposCadastroEmpresa() {
         inpTelefone1.style = "border: 1px solid #ccc; ";
     }
 
-    // if (telefone === "") {
-    //     inpTelefone.style = "border: 3px solid #ff0000 ;";
-    //     hasEmptyFields = true;
-    // } else {
-    //     inpTelefone.style = "border: 1px solid #ccc; ";
-    // }
+    if (bandaLarga === "") {
+        inpBandaLarga.style = "border: 3px solid #ff0000 ;";
+        hasEmptyFields = true;
+    } else {
+        inpBandaLarga.style = "border: 1px solid #ccc; ";
+    }
 
     if (nomeFuncionario === "") {
         nomeCadastro.style = "border: 3px solid #ff0000 ;";
@@ -275,226 +437,57 @@ function checkCamposCadastroEmpresa() {
     return true; // retorna verdadeiro se não há campos vazios
 }
 
-function limparErros() {
-
-    const limpar = setTimeout(() => {
-        nomeCadastro.style = " border: 1px solid #ccc; "
-        inpRazaoSocial.style = " border: 1px solid #ccc; "
-        inpCNPJ.style = " border: 1px solid #ccc; ;"
-        inpTelefone.style = " border: 1px solid #ccc; "
-        inpTelefone1.style = " border: 1px solid #ccc; "
-        inpTelefoneFuncionario.style = " border: 1px solid #ccc; "
-        inpEmailCadastro.style = " border: 1px solid #ccc; "
-        inpSenhaCadastro.style = " border: 1px solid #ccc; "
-        inpSenhaConfirmacao.style = " border: 1px solid #ccc; "
-        inpCep.style = " border: 1px solid #ccc; "
-        inpRua.style = " border: 1px solid #ccc; "
-        inpBairro.style = " border: 1px solid #ccc; "
-        inpNumero.style = " border: 1px solid #ccc; "
-        inpEstado.style = " border: 1px solid #ccc; "
-        inpCidade.style = " border: 1px solid #ccc; "
-    }, 5000)
-
-}
-
-function validarLogin() {
-    var emailVar = inpEmailLogin.value;
-    var senhaVar = inpSenhaLogin.value;
-
-    let hasEmptyFields = false; // flag para verificar se há campos vazios
-
-    if (emailVar === "") {
-        inpEmailLogin.style = "border: 3px solid #ff0000 ;";
-        hasEmptyFields = true;
+function checkSenha() {
+    var str = inpSenhaCadastro.value;
+    // console.log(str);
+    var states = 0;
+    // Verifica se a string tem no máximo 8 caracteres
+    if (str.length <= 7) {
     } else {
-        inpEmailLogin.style = "border: 1px solid #ccc; ";
+        states++;
     }
-
-    if (senhaVar === "") {
-        inpSenhaLogin.style = "border: 3px solid #ff0000 ;";
-        hasEmptyFields = true;
-
-    } else {
-        inpSenhaLogin.style = "border: 1px solid #ccc;";
+    // Verifica se a string tem caracteres maiúsculos
+    if (/[A-Z]/.test(str)) {
+        states++;
+        // console.log('A string contém caracteres maiúsculos');
     }
-
-    if (hasEmptyFields == true) {
-        Swal.fire({
-            title: 'Preencha todos os campos',
-            icon: 'error',
-            confirmButtonText: 'Continuar'
-        })
-        console.log("hasEmptyFields")
-        return false;
+    // Verifica se a string tem caracteres minúsculos
+    if (/[a-z]/.test(str)) {
+        states++;
+        // console.log('A string contém caracteres minúsculos');
     }
-
-    // Aqui você pode adicionar a lógica para verificar se o email e senha são válidos.
-    // Isso depende da forma como você está autenticando o usuário, seja por meio de um banco de dados ou outra fonte de dados.
-
-    return true; // retorna verdadeiro se não há campos vazios
+    // Verifica se a string tem números
+    if (/\d/.test(str)) {
+        states++;
+        // console.log('A string contém números');
+    }
+    // Verifica se a string tem caracteres especiais
+    if (/[^A-Za-z0-9]/.test(str)) {
+        states++;
+        // console.log('A string contém caracteres especiais');
+    }
+    // console.log(states);
+    switch (states) {
+        case 1:
+            loadingSenha.style = "background:red;  transition: 2s;"
+            break;
+        case 2:
+            loadingSenha.style = "background:orange;  transition: 2s;"
+            break;
+        case 3:
+            loadingSenha.style = "background:yellow;  transition: 2s;"
+            break;
+        case 4:
+            loadingSenha.style = "background:blue;  transition: 2s;"
+            break;
+        case 5:
+            loadingSenha.style = "background:green;  transition: 2s;"
+            return true
+            break;
+    }
 }
-
-function entrar() {
-
-    // aguardar();
-    if (validarLogin() == true) {
-        var emailVar = inpEmailLogin.value;
-        var senhaVar = inpSenhaLogin.value;
-
-        console.log("FORM LOGIN: ", emailVar);
-        console.log("FORM SENHA: ", senhaVar);
-        fetch(`empresa/autenticar/funcionario/${emailVar}`, {
-            method: "GET",
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then(function (resposta) {
-                console.log("ESTOU NO THEN DO entrar()!");
-
-                if (resposta.ok) {
-                    console.log(resposta);
-
-                    if (resposta.status == 204) {
-                        // alert("Você não está cadastrado!")
-                    } else {
-                        resposta.json().then((jsonLogin) => {
-                            console.log(jsonLogin);
-                            console.log(JSON.stringify(jsonLogin));
-                            console.log(jsonLogin);
-
-                            if (jsonLogin.statusEmpresa == 0) {
-                                console.log('Verifique a validade do contrato com a ErrorEagle!')
-
-                            } else if (jsonLogin.statusFuncionario == 0) {
-                                console.log('Você está inativado, verifique o acesso com seu supervisor!')
-
-                            } else if (senhaVar == jsonLogin.senha) {
-
-                                sessionStorage.ID_FUNCIONARIO = jsonLogin.id;
-                                sessionStorage.NOME_USUARIO = jsonLogin.nome;
-                                sessionStorage.EMAIL_USUARIO = jsonLogin.email;
-                                sessionStorage.TELEFONE_USUARIO = jsonLogin.telefone;
-                                sessionStorage.FK_EMPRESA = jsonLogin.fkEmpresa;
-                                sessionStorage.FK_SUPERVISOR = jsonLogin.fkSupervisor
-                                sessionStorage.SENHA_USUARIO = jsonLogin.senha;
-                                sessionStorage.NOME_EMPRESA = jsonLogin.razaoSocial;
-                                sessionStorage.FIRST_ACESS = jsonLogin.firstAcess;
-
-                                fecharModal("#modalLoginForm");
-                                setTimeout(function () {
-                                    window.location = "./dashboard/menu.html";
-                                }, 1000); // apenas para exibir o loading
-
-
-
-                            } else {
-                                console.log('Houve um erro ao realizar o seu login! Tente mais tarde.')
-                                fecharModal("#modalLoginForm");
-                            }
-                        });
-                    }
-
-
-                } else {
-                    console.log("Houve um erro ao tentar realizar o login!");
-
-                    resposta.text().then((texto) => {
-                        console.error(texto);
-                        //finalizarAguardar(texto);
-                    });
-                }
-            })
-            .catch(function (erro) {
-                console.log(erro);
-            });
-    } else {
-        console.log("Erro na validação")
-    }
-
-    return false;
-}
-
-// function atualizarSenha() {
-
-//     var idFuncionario = sessionStorage.getItem("ID_FUNCIONARIO");
-//     var novaSenha = inpNovaSenha.value;
-
-//     alert(idFuncionario + " " + novaSenha + "Teste")
-//     if (checkNovaSenha()) {
-//         fetch('/gerenciadorUsuario/atualizarPassword', {
-//             method: 'PUT',
-//             body: JSON.stringify({
-//                 "idFuncionarioServer": idFuncionario,
-//                 "novaPassServer": novaSenha
-//             }
-//             )
-//         })
-//             .then(response => response.json())
-//             .then(data => console.log(data))
-//             .catch(error => console.error(error));
-//     }
-
-
-
-// }
-
-async function atualizarSenha() {
-    var idFuncionario = sessionStorage.getItem("ID_FUNCIONARIO");
-    var novaSenha = inpNovaSenha.value;
-
-    fetch(`/gerenciadorUsuario/atualizarPassword`, {
-        method: "PUT",
-        body: JSON.stringify({
-            "idFuncionarioServer": idFuncionario,
-            "novaPassServer": novaSenha
-        }
-        ),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-        .then(function (resposta) {
-            console.log("ESTOU NO THEN DO listar()!");
-
-            if (resposta.ok) {
-                Swal
-                sessionStorage.clear;
-
-                window.location = "/"
-
-
-            } else {
-                console.log("Houve um erro ao tentar Lista");
-                resposta.text().then((texto) => {
-                    console.error(texto);
-                });
-            }
-        })
-        .catch(function (erro) {
-            console.log(erro);
-        });
-
-}
-
-
 
 function cadastrarEmpresa() {
-    //aguardar();
-    //Recupere o valor da nova input pelo nome do id
-    // Agora vá para o método fetch logo abaixo
-
-
-
-    // .split('@')[1];;
-
-    var idEmpresaAtual;
-    var idEnderecoAtual;
-
-    var enderecoOk;
-    var empresaOk;
-    // emailServer: emailVar,
-    // senhaServer: senhaVar,
 
     if (checkCamposCadastroEmpresa() && checkSenha()) {
 
@@ -524,7 +517,6 @@ function registrarEndereco(cep, bairro, rua, numero, estado, cidade) {
         // console.log("resposta: ", resposta);
         if (resposta.ok) {
             console.log("Endereco cadastrado")
-
         } else {
             console.log("Erro ao cadastrar endereço")
         }
@@ -536,8 +528,6 @@ function registrarEndereco(cep, bairro, rua, numero, estado, cidade) {
         // finalizarAguardar();
     });
 }
-
-
 
 function buscarEnderecoCadastrado(cep, numero) {
 
@@ -578,45 +568,6 @@ function buscarEnderecoCadastrado(cep, numero) {
 
 }
 
-function registrarEmpresa(id) {
-    var nomeResponsavel = nomeCadastro.value;
-    var razaoSocial = inpRazaoSocial.value;
-    var cnpj = inpCNPJ.value;
-    var telefone = inpTelefone1.value;
-    var dominioVar = inpEmailCadastro.value;
-
-    fetch("/empresa/cadastrar/empresa", {
-        method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify({
-            // crie um atributo que recebe o valor recuperado aqui
-            // Agora vá para o arquivo routes/usuario.js
-            nomeResponsavelServer: nomeResponsavel,
-            razaoSocialServer: razaoSocial,
-            cnpjServer: cnpj.replace(/[^\d]+/g, ''),
-            telefoneServer: telefone.replace(/[^\d]+/g, ''),
-            // telefoneOptionalServer: telefone1.replace(/[^\d]+/g, ''),
-            dominioServer: dominioVar,
-            // Achar uma forma de indicar o ID do endereco já que converter o json n dá certo
-            fkEnderecoServer: id
-        })
-    }).then(function (resposta) {
-
-
-        if (resposta.ok) {
-            console.log("Cadastrei Empresa!")
-            buscarEmpresaPorCNPJ(cnpj.replace(/[^\d]+/g, ''))
-        } else {
-            console.log("Não cadastrei a empresa!")
-        }
-
-    })
-
-    // Passar o valor do id como parametro para uso
-}
-
 function buscarEmpresaPorCNPJ(cnpj) {
 
     fetch(`empresa/verificar/empresa/${cnpj}`, {
@@ -638,8 +589,6 @@ function buscarEmpresaPorCNPJ(cnpj) {
             } else {
                 resposta.json().then((jsonEmpresa) => {
                     registrarFuncionario(jsonEmpresa.id)
-
-
                 });
             }
         }
@@ -648,6 +597,46 @@ function buscarEmpresaPorCNPJ(cnpj) {
         .catch(function (erro) {
             console.log(erro);
         });
+}
+
+function registrarEmpresa(id) {
+    var nomeResponsavel = nomeCadastro.value;
+    var razaoSocial = inpRazaoSocial.value;
+    var cnpj = inpCNPJ.value;
+    var telefone = inpTelefone1.value;
+    var dominioVar = inpEmailCadastro.value;
+    var bandaLarga = inpBandaLarga.value;
+
+    fetch("/empresa/cadastrar/empresa", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            // crie um atributo que recebe o valor recuperado aqui
+            // Agora vá para o arquivo routes/usuario.js
+
+            nomeResponsavelServer: nomeResponsavel,
+            razaoSocialServer: razaoSocial,
+            cnpjServer: cnpj.replace(/[^\d]+/g, ''),
+            telefoneServer: telefone.replace(/[^\d]+/g, ''),
+            bandaLargaServer: bandaLarga,
+            dominioServer: dominioVar,
+
+            // Achar uma forma de indicar o ID do endereco já que converter o json n dá certo
+            fkEnderecoServer: id
+        })
+    }).then(function (resposta) {
+
+        if (resposta.ok) {
+            console.log("Cadastrei Empresa!")
+            buscarEmpresaPorCNPJ(cnpj.replace(/[^\d]+/g, ''))
+        } else {
+            console.log("Não cadastrei a empresa!")
+        }
+
+    })
+
 }
 
 function registrarFuncionario(fkEmpresa) {
@@ -670,10 +659,9 @@ function registrarFuncionario(fkEmpresa) {
             senhaFuncionarioServer: senhaFuncionario,
             telefoneFuncionarioServer: telefoneFuncionario.replace(/[^\d]+/g, ''),
             empresaFuncionarioServer: fkEmpresa
+
         })
     }).then(function (resposta) {
-
-
         if (resposta.ok) {
             console.log("Cadastrei Funcionario!")
             fecharModal("#modalRegisterForm");
@@ -683,7 +671,6 @@ function registrarFuncionario(fkEmpresa) {
 
     })
 }
-
 
 function next() {
 
@@ -721,6 +708,7 @@ function back() {
     formCad[3].style = "display:none;"
     formCad[4].style = "display:none;"
 }
+
 function cep() {
     var cep = inpCep.value;
     var bairro = inpBairro.value;
@@ -767,11 +755,11 @@ function fecharModal(modal) {
 
     $(`${modal}`).modal('hide');
 }
+
 function abrirModal(modal) {
 
     $(`${modal}`).modal('show');
 }
-
 
 //Mask Test
 //CleaverJS lib de masks
@@ -780,10 +768,7 @@ new Cleave('.cep-input', {
     blocks: [5, 3],
     numericOnly: true
 });
-new Cleave('.input-phone', {
-    delimiters: ['(', ') ', ' - '],
-    blocks: [0, 2, 5, 4]
-});
+
 new Cleave('.input-phone1', {
     delimiters: ['(', ') ', ' - '],
     blocks: [0, 2, 5, 4]
