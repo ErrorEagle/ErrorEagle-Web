@@ -50,13 +50,15 @@
 
                 <div id="caixa-menor" class="d-flex align-items-center justify-content-center flex-column w-100 h-75"
                     style="background-color: rgb(128, 9, 9);">
-                    <h1 class="tituloUsuario">Olá, (usuario)!</h1>
+                    <h1 class="tituloUsuario">Olá, (usuário)!</h1>
                     <h2>Por favor, altere sua senha </h2>
                     <div id = "caixa-senha" class="d-flex flex-column w-50">
                         <label for="inpNovaSenha">Digite uma nova senha</label>
                         <input onkeydown="checkNovaSenha()" id="inpNovaSenha" type="password">
                         <label for="inpConfirmarSenha">Confirme sua senha</label>
-                        <button onclick="atualizarSenha()">Confirmar nova senha</button>
+                        <input onkeydown="checkNovaSenha()" id="inpConfirmSenha" type="password">
+                       
+                        <button id="btnNovaSenha" onclick="atualizarSenha()">Alterar senha</button>
                     </div>
                 </div>
 

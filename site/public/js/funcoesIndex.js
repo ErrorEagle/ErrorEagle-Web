@@ -230,55 +230,65 @@ function entrar() {
 async function atualizarSenha() {
     var idFuncionario = sessionStorage.getItem("ID_FUNCIONARIO");
     var novaSenha = inpNovaSenha.value;
+    var confirmSenha = inpConfirmSenha.value;
 
-    fetch(`/gerenciadorUsuario/atualizarPassword`, {
-        method: "PUT",
-        body: JSON.stringify({
-            "idFuncionarioServer": idFuncionario,
-            "novaPassServer": novaSenha
-        }
-        ),
-        headers: {
-            "Content-Type": "application/json",
-        },
-    })
-        .then(function (resposta) {
-            console.log("ESTOU NO THEN DO listar()!");
+    if (novaSenha != confirmSenha) {
+        inpNovaSenha.style = "border: 3px solid #ff0000 ;";
+        inpConfirmSenha.style = "border: 3px solid #ff0000 ;";
+        alert(`As senhas não coincidem!`)
 
-            if (resposta.ok) {
-                const Toast = Swal.mixin({
-                    toast: true,
-                    position: 'top-end',
-                    showConfirmButton: false,
-                    timer: 3000,
-                    timerProgressBar: true,
-                    didOpen: (toast) => {
-                        toast.addEventListener('mouseenter', Swal.stopTimer)
-                        toast.addEventListener('mouseleave', Swal.resumeTimer)
-                    }
-                })
-
-                Toast.fire({
-                    icon: 'success',
-                    title: 'Signed in successfully'
-                })
-                setTimeout(() => {
-                    sessionStorage.clear;
-                    window.location = "/"
-                }, 2000)
+    } else {
 
 
-            } else {
-                console.log("Houve um erro ao tentar Lista");
-                resposta.text().then((texto) => {
-                    console.error(texto);
-                });
+
+        fetch(`/gerenciadorUsuario/atualizarPassword`, {
+            method: "PUT",
+            body: JSON.stringify({
+                "idFuncionarioServer": idFuncionario,
+                "novaPassServer": novaSenha
             }
+            ),
+            headers: {
+                "Content-Type": "application/json",
+            },
         })
-        .catch(function (erro) {
-            console.log(erro);
-        });
+            .then(function (resposta) {
+                console.log("ESTOU NO THEN DO listar()!");
 
+                if (resposta.ok) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Signed in successfully'
+                    })
+                    setTimeout(() => {
+                        sessionStorage.clear;
+                        window.location = "/"
+                    }, 2000)
+
+
+                } else {
+                    console.log("Houve um erro ao tentar Lista");
+                    resposta.text().then((texto) => {
+                        console.error(texto);
+                    });
+                }
+            })
+            .catch(function (erro) {
+                console.log(erro);
+            });
+    }
 }
 
 

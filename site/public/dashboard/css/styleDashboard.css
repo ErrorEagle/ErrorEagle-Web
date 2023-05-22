@@ -137,3 +137,13 @@ color: white;
     margin-bottom: 1px;
     color: white;
 }
+
+#inpNovaSenha {
+    border-radius: 3px;
+    width: 350px;
+}
+
+#btnNovaSenha {
+    
+    width: 180px;
+}
