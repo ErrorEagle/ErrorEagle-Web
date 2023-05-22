@@ -1,0 +1,18 @@
+
+#caixa-menor {
+    margin-bottom: 1px;
+    color: white;
+}
+
+.formInput input {
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+}
+
+
+
+#btnNovaSenha {
+    border-radius: 5px;
+    width: 190px;
+}

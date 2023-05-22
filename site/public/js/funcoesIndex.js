@@ -239,7 +239,8 @@ async function atualizarSenha() {
 
     } else {
 
-
+        inpNovaSenha.style = "border: 1px solid #ccc; ";
+        inpConfirmSenha.style = "border: 1px solid #ccc;";
 
         fetch(`/gerenciadorUsuario/atualizarPassword`, {
             method: "PUT",

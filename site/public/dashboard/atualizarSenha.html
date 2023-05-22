@@ -14,6 +14,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styleDashboard.css" />
+    <link rel="stylesheet" href="styleAtualizarSenha.css">
     <link rel="stylesheet" href="css/styleSideBar.css">
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
@@ -44,15 +45,15 @@
     </div>
     <main>
         <section class="w-100 h-100 d-flex justify-content-center">
-            <div id="caixa-maior" class="container d-flex align-items-center w-100 h-75 px-0" style="margin:40px 0px;">
+            <div id="caixa-maior" class="container d-flex align-items-center w-100 h-50 px-0" style="margin:40px 0px;">
 
 
 
-                <div id="caixa-menor" class="d-flex align-items-center justify-content-center flex-column w-100 h-75"
+                <div id="caixa-menor" class="d-flex align-items-center flex-column w-100 h-75"
                     style="background-color: rgb(128, 9, 9);">
-                    <h1 class="tituloUsuario">Olá, (usuário)!</h1>
+                    <h1 class="titulo-usuario">Olá, (usuário)!</h1>
                     <h2>Por favor, altere sua senha </h2>
-                    <div id = "caixa-senha" class="d-flex flex-column w-50">
+                    <div id = "caixa-senha" class="formInput">
                         <label for="inpNovaSenha">Digite uma nova senha</label>
                         <input onkeydown="checkNovaSenha()" id="inpNovaSenha" type="password">
                         <label for="inpConfirmarSenha">Confirme sua senha</label>
