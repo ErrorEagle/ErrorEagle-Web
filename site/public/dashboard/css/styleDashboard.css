@@ -78,7 +78,7 @@ h3 {
 
 #caixa-maior {
     box-shadow: rgba(10, 9, 9, 0.2) 0px 2px 8px 0px;
-    background-color: #332F2E;
+    background-color: #222121;
     border-radius: 7px;
 }
 
@@ -126,4 +126,14 @@ h3 {
     text-align: center;
     font-size: 16px;
     font-weight: bold;
+}
+
+.tituloUsuario {
+margin-top: 1px;
+color: white;
+}
+
+.caixa-menor .caixa-senha{
+    margin-bottom: 1px;
+    color: white;
 }

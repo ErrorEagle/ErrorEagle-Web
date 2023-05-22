@@ -15,6 +15,7 @@
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styleDashboard.css" />
     <link rel="stylesheet" href="css/styleSideBar.css">
+    <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/funcoes.js"></script>
 
@@ -46,11 +47,15 @@
             <div id="caixa-maior" class="container d-flex align-items-center w-100 h-75 px-0" style="margin:40px 0px;">
 
 
-                <div class="d-flex align-items-center justify-content-center flex-column w-100 h-75"
-                    style="background-color: aliceblue;">
-                    <div class="d-flex flex-column w-50">
+
+                <div id="caixa-menor" class="d-flex align-items-center justify-content-center flex-column w-100 h-75"
+                    style="background-color: rgb(128, 9, 9);">
+                    <h1 class="tituloUsuario">Olá, (usuario)!</h1>
+                    <h2>Por favor, altere sua senha </h2>
+                    <div id = "caixa-senha" class="d-flex flex-column w-50">
                         <label for="inpNovaSenha">Digite uma nova senha</label>
                         <input onkeydown="checkNovaSenha()" id="inpNovaSenha" type="password">
+                        <label for="inpConfirmarSenha">Confirme sua senha</label>
                         <button onclick="atualizarSenha()">Confirmar nova senha</button>
                     </div>
                 </div>
