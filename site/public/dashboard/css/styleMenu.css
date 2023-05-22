@@ -148,6 +148,10 @@ header {
     margin: 0px 0px 60px 0px;
 }
 
+#line2 a{
+    text-decoration: none;
+}
+
 #contains {
     display: flex;
 

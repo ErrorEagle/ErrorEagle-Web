@@ -30,17 +30,17 @@ bntGenerate.addEventListener("click", () =>{
     
 
     if(validarCampo() == true){
-            const content = document.querySelector(".relatorio-conteudo")
+                var conteudo = '<H1> RELATÓRIO <H1>'
 
-            var opt = {
-            margin:       1,
-            filename:     'ErrorEagle-relatório.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
-            };
+                var opt = {
+                margin:       1,
+                filename:     'ErrorEagle-relatório.pdf',
+                image:        { type: 'jpeg', quality: 0.98 },
+                html2canvas:  { scale: 2 },
+                jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+                };
 
-            html2pdf().set(opt).from(content).save();
+                html2pdf().set(opt).from(conteudo).save();
     }
 
 })
