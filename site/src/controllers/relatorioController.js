@@ -1,0 +1,1 @@
+var gerenciadorUsuarioModel = require("../models/relatorioController");
