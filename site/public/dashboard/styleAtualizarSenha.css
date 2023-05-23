@@ -1,4 +1,8 @@
 
+#caixaMenor {
+    width: 100px;
+}
+
 #caixa-menor {
     margin-bottom: 1px;
     color: white;
@@ -8,11 +12,19 @@
     display: flex;
     flex-direction: column;
     width: 300px;
+    margin-bottom: 10px;
+    border: solid 3px #222121;
+    border-radius: 5px;
+}
+
+.formInput label {
+    margin-bottom: 1px;
 }
 
 
-
 #btnNovaSenha {
+    margin-top: 10px;
     border-radius: 5px;
     width: 190px;
+    margin-left: 50px;
 }

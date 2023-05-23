@@ -136,6 +136,95 @@ function validarLogin() {
     return true; // retorna verdadeiro se não há campos vazios
 }
 
+
+async function atualizarSenha() {
+    var idFuncionario = sessionStorage.getItem("ID_FUNCIONARIO");
+    var novaSenha = inpNovaSenha.value;
+    var confirmSenha = inpConfirmSenha.value;
+
+    if (novaSenha == "" || confirmSenha == "") {
+
+        inpNovaSenha.style = "border: 3px solid #ff0000 ;";
+        inpConfirmSenha.style = "border: 3px solid #ff0000 ;";
+
+        Swal.fire({
+            title: 'Preencha todos os campos',
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+        })
+        console.log("hasEmptyFields")
+        return false;
+    }
+
+    else if (novaSenha != confirmSenha) {
+        inpNovaSenha.style = "border: 3px solid #ff0000 ;";
+        inpConfirmSenha.style = "border: 3px solid #ff0000 ;";
+        Swal.fire({
+            title: 'As senhas não coincidem!',
+            icon: 'error',
+            confirmButtonText: 'Continuar'
+        })
+        console.log("Senhas não coincidem")
+        return false;
+
+    } else {
+
+        inpNovaSenha.style = "border: solid 3px #222121;";
+        inpConfirmSenha.style = "border: solid 3px #222121;";
+
+        fetch(`/gerenciadorUsuario/atualizarPassword`, {
+            method: "PUT",
+            body: JSON.stringify({
+                "idFuncionarioServer": idFuncionario,
+                "novaPassServer": novaSenha
+            }
+            ),
+            headers: {
+                "Content-Type": "application/json",
+            },
+        })
+            .then(function (resposta) {
+                console.log("ESTOU NO THEN DO listar()!");
+
+                if (resposta.ok) {
+                    const Toast = Swal.mixin({
+                        toast: true,
+                        position: 'top-end',
+                        showConfirmButton: false,
+                        timer: 3000,
+                        timerProgressBar: true,
+                        didOpen: (toast) => {
+                            toast.addEventListener('mouseenter', Swal.stopTimer)
+                            toast.addEventListener('mouseleave', Swal.resumeTimer)
+                        }
+                    })
+
+                    Toast.fire({
+                        icon: 'success',
+                        title: 'Signed in successfully'
+                    })
+                    setTimeout(() => {
+                        sessionStorage.clear;
+                        window.location = "/"
+                    }, 2000)
+
+
+                } else {
+                    console.log("Houve um erro ao tentar Lista");
+                    resposta.text().then((texto) => {
+                        console.error(texto);
+                    });
+                }
+            })
+            .catch(function (erro) {
+                console.log(erro);
+            });
+    }
+}
+
+
+
+
 function entrar() {
 
     // aguardar();
@@ -227,70 +316,7 @@ function entrar() {
     return false;
 }
 
-async function atualizarSenha() {
-    var idFuncionario = sessionStorage.getItem("ID_FUNCIONARIO");
-    var novaSenha = inpNovaSenha.value;
-    var confirmSenha = inpConfirmSenha.value;
 
-    if (novaSenha != confirmSenha) {
-        inpNovaSenha.style = "border: 3px solid #ff0000 ;";
-        inpConfirmSenha.style = "border: 3px solid #ff0000 ;";
-        alert(`As senhas não coincidem!`)
-
-    } else {
-
-        inpNovaSenha.style = "border: 1px solid #ccc; ";
-        inpConfirmSenha.style = "border: 1px solid #ccc;";
-
-        fetch(`/gerenciadorUsuario/atualizarPassword`, {
-            method: "PUT",
-            body: JSON.stringify({
-                "idFuncionarioServer": idFuncionario,
-                "novaPassServer": novaSenha
-            }
-            ),
-            headers: {
-                "Content-Type": "application/json",
-            },
-        })
-            .then(function (resposta) {
-                console.log("ESTOU NO THEN DO listar()!");
-
-                if (resposta.ok) {
-                    const Toast = Swal.mixin({
-                        toast: true,
-                        position: 'top-end',
-                        showConfirmButton: false,
-                        timer: 3000,
-                        timerProgressBar: true,
-                        didOpen: (toast) => {
-                            toast.addEventListener('mouseenter', Swal.stopTimer)
-                            toast.addEventListener('mouseleave', Swal.resumeTimer)
-                        }
-                    })
-
-                    Toast.fire({
-                        icon: 'success',
-                        title: 'Signed in successfully'
-                    })
-                    setTimeout(() => {
-                        sessionStorage.clear;
-                        window.location = "/"
-                    }, 2000)
-
-
-                } else {
-                    console.log("Houve um erro ao tentar Lista");
-                    resposta.text().then((texto) => {
-                        console.error(texto);
-                    });
-                }
-            })
-            .catch(function (erro) {
-                console.log(erro);
-            });
-    }
-}
 
 
 // Validações e Cadastro da Empresa
