@@ -30,10 +30,11 @@ bntGenerate.addEventListener("click", () =>{
     
 
     if(validarCampo() == true){
-                var conteudo = '<H1> RELATÓRIO <H1>'
+                var conteudo = `Jogaor`;
+                
 
                 var opt = {
-                margin:       1,
+                margin:       .2,
                 filename:     'ErrorEagle-relatório.pdf',
                 image:        { type: 'jpeg', quality: 0.98 },
                 html2canvas:  { scale: 2 },
