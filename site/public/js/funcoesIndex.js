@@ -79,24 +79,24 @@ function checkNovaSenha() {
         // console.log('A string contém caracteres especiais');
     }
     // console.log(states);
-    /*switch (states) {
+    switch (states) {
         case 1:
-            loadingSenha.style = "background:red;  transition: 2s;"
+            loadingAtualizarSenha.style = "background:red;  transition: 2s;"
             break;
         case 2:
-            loadingSenha.style = "background:orange;  transition: 2s;"
+            loadingAtualizarSenha.style = "background:orange;  transition: 2s;"
             break;
         case 3:
-            loadingSenha.style = "background:yellow;  transition: 2s;"
+            loadingAtualizarSenha.style = "background:yellow;  transition: 2s;"
             break;
         case 4:
-            loadingSenha.style = "background:blue;  transition: 2s;"
+            loadingAtualizarSenha.style = "background:blue;  transition: 2s;"
             break;
         case 5:
-            loadingSenha.style = "background:green;  transition: 2s;"
+            loadingAtualizarSenha.style = "background:green;  transition: 2s;"
             return true
             break;
-    }*/
+    }
 }
 
 function validarLogin() {

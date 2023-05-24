@@ -1,5 +1,5 @@
 
-#caixaMenor {
+.caixaMenor {
     width: 100px;
 }
 
@@ -23,8 +23,16 @@
 
 
 #btnNovaSenha {
-    margin-top: 10px;
+    margin-top: 3px;
     border-radius: 5px;
     width: 190px;
     margin-left: 50px;
+}
+
+#loadingAtualizarSenha {
+    border-radius: 10px;
+    /* margin: px; */
+    height: 10px;
+    background-color: #4D4D4D;
+    transition: 2s;
 }

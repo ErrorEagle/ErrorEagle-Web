@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>Dashboard | ErrorEagle</title>
+    <title>Alterar senha | ErrorEagle</title>
 
     <link rel="icon" href="./assets/icon/" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
@@ -49,8 +49,7 @@
 
 
 
-                <div id="caixa-menor" class="caixaMenor d-flex align-items-center flex-column w-100 h-75"
-                    style="background-color: rgb(128, 9, 9);">
+                <div id="caixa-menor" class="caixaMenor d-flex align-items-center flex-column w-100 h-75">
                     <h1 class="titulo-usuario">Olá, (usuário)!</h1>
                     <h2>Por favor, altere sua senha </h2>
                     <div id = "caixa-senha" class="formInput">
@@ -58,6 +57,7 @@
                         <input onkeydown="checkNovaSenha()" id="inpNovaSenha" type="password">
                         <label for="inpConfirmarSenha">Confirme sua senha</label>
                         <input onkeydown="checkNovaSenha()" id="inpConfirmSenha" type="password">
+                        <div id="loadingAtualizarSenha"></div>
                        
                         <button id="btnNovaSenha" onclick="atualizarSenha()">Alterar senha</button>
                     </div>
