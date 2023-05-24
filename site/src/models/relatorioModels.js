@@ -2,7 +2,7 @@ var database = require("../database/config")
 
 function listarRelatorios(fkEmpresa) {
 
-    var instrucao = `SELECT * FROM relatorioManutecao where fkEmpresa = ${fkEmpresa}`
+    var instrucao = `SELECT * FROM relatorioManutencao where fkEmpresa = ${fkEmpresa}`
 
     return database.executar(instrucao);
 }
@@ -21,7 +21,15 @@ function gerarRelatorio(descricaoIncidente, descricaoManutencao, dataManutencao,
     return database.executar(instrucao);
 }
 
+function listarRelatorio(idRelatorio) {
+
+    var instrucao = `SELECT * FROM relatorioManutencao where id = ${idRelatorio}`
+
+    return database.executar(instrucao);
+}
+
 module.exports = {
   listarRelatorios,
-  gerarRelatorio
+  gerarRelatorio,
+  listarRelatorio
 };

@@ -45,9 +45,62 @@ function gerarRelatorio(req,res){
  
 }
 
+function listarRelatorios(req,res){
+
+    var fkEmpresa = req.params.empresa;
+
+    console.log("Teste "+fkEmpresa)
+    if (fkEmpresa == undefined) {
+        
+        res.status(400).send("fkEmpresa esta undefined!");
+    }else {
+        relatorioModel.listarRelatorios(fkEmpresa).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+ 
+}
+
+function listarRelatorio(req,res){
+
+    var idRelatorio = req.params.idRelatorio;
+
+    if (idRelatorio == undefined) {
+        res.status(400).send("idRelatorio esta undefined!");
+    }else {
+        relatorioModel.listarRelatorio(idRelatorio).then(
+            function (resultado) {
+                res.json(resultado);
+            }
+        ).catch(
+            function (erro) {
+                console.log(erro);
+                console.log(
+                    "\nHouve um erro ao realizar o cadastro! Erro: ",
+                    erro.sqlMessage
+                );
+                res.status(500).json(erro.sqlMessage);
+            }
+        )
+    }
+ 
+}
 
 module.exports = {
   gerarRelatorio,
+  listarRelatorios,
+  listarRelatorio
     
 };
 
