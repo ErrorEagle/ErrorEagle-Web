@@ -23,13 +23,23 @@ function gerarRelatorio(descricaoIncidente, descricaoManutencao, dataManutencao,
 
 function listarRelatorio(idRelatorio) {
 
-    var instrucao = `SELECT * FROM relatorioManutencao where id = ${idRelatorio}`
+    var instrucao = `SELECT  
+    t.hostName,
+    f.nome,
+    r.descricaoIncidente,
+    r.descricaoManutencao,
+    FORMAT(dataManutencao, 'dd/MM/yyyy HH:mm:ss') as data_manutencao,
+    FORMAT(dataRelatorio, 'dd/MM/yyyy HH:mm:ss') as data_relatorio,
+    r.fkEmpresa
+FROM relatorioManutencao AS r 
+JOIN [dbo].[Funcionario] AS f on r.fkFuncionario =f.id 
+JOIN [dbo].[Totem] as t on r.fkMaquina = t.id where r.id = ${idRelatorio}`
 
     return database.executar(instrucao);
 }
 
 module.exports = {
-  listarRelatorios,
-  gerarRelatorio,
-  listarRelatorio
+    listarRelatorios,
+    gerarRelatorio,
+    listarRelatorio
 };
