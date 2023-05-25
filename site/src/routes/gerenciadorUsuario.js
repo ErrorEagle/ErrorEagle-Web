@@ -15,6 +15,10 @@ router.get("/listarFuncionarios/:empresa", function (req, res) {
     gerenciadorUsuario.listarFuncionarios(req, res);
 })
 
+router.get("/listarTotens/:empresa", function (req, res) {
+    gerenciadorUsuario.listarTotens(req, res);
+})
+
 router.get("/listarFuncionariosInativos/:empresa", function (req, res) {
     gerenciadorUsuario.listarFuncionariosInativos(req, res);
 })

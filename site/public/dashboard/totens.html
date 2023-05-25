@@ -13,7 +13,7 @@
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styleMenu.css" />
     <link rel="stylesheet" href="css/styleSideBar.css">
-    <link rel="stylesheet" href="css/styleColaboradores.css">
+    <link rel="stylesheet" href="css/styleTotem.css">
     <script src="../js/funcoes.js"></script>
 </head>
 
@@ -23,7 +23,6 @@
         <nav id="navMenu">
             <div class="container d-flex justify-content-center">
                 <a href="menu.html" class="imgNavBar"><img src="../assets/icon/logo.svg" alt=""></a>
-
             </div>
 
         </nav>
@@ -40,8 +39,25 @@
         </div>
     </div>
     <main class="container d-flex flex-column justify-content-start ">
-
-
+        <div class="d-flex flex-column text-light w-100">
+            <div id="headerTitle">
+                <h1 class="mx-3 my-3">Maquinas</h1>
+            </div>
+            <div class=" d-flex justify-content-around" id="descHeader">
+                <h2 class="my-3">Situação</h2>
+                <h2 class="my-3">Nome</h2>
+                <h2 class="my-3">Detalhes</h2>
+            </div>
+            <div id="listaMaquinas" class="d-flex flex-column">
+                <div class="d-flex justify-content-around text-light" id="itenList">
+                    <span class="alert"></span>
+                    <h3>Maquina01</h3> <button>Acessar</button>
+                </div>
+                <div class="d-flex justify-content-around text-light" id="itenList">
+                    <span class="alert"></span>
+                    <h3>Maquina01</h3> <button>Acessar</button>
+                </div>
+            </div>
         </div>
     </main>
 
@@ -50,8 +66,9 @@
 
 </html>
 
-<script src="js/sidebar.js"></script>
-<script src="../js/funcionarios.js"></script>
+<script src=" js/sidebar.js">
+</script>
+<script src="../js/totens.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"
     integrity="sha512-KaIyHb30iXTXfGyI9cyKFUIRSSuekJt6/vqXtyQKhQP6ozZEGY8nOtRS6fExqE4+RbYHus2yGyYg1BrqxzV6YA=="

@@ -1,0 +1,27 @@
+#headerTitle {
+    background: #222222;
+}
+
+#descHeader {
+    background: #3a3a3a;
+}
+
+#listaMaquinas {
+    margin: 10px 0px;
+}
+
+#itenList {
+    margin: 0px 0px;
+    background-color: hsl(0, 0%, 27%);
+    padding: 20px;
+    border-bottom: 1px black solid;
+}
+
+.alert {
+    background-color: red;
+    border-radius: 1000px;
+    width: 25px;
+    height: 25px;
+    padding: 0;
+    margin: 9px 14px;
+}
