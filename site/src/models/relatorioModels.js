@@ -26,6 +26,7 @@ function listarRelatorio(idRelatorio) {
     var instrucao = `SELECT  
     t.hostName,
     f.nome,
+    r.id,
     r.descricaoIncidente,
     r.descricaoManutencao,
     FORMAT(dataManutencao, 'dd/MM/yyyy HH:mm:ss') as data_manutencao,
