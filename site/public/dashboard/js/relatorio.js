@@ -1,30 +1,4 @@
 
-var radioButtons = document.getElementsByName('bolinha');
-var tituloInput = document.getElementById('titulo');
-var descricaoInput = document.getElementById('descricao');
-var responsavelInput = document.getElementById('responsavel');
-
-function validarCampo() {
-    var opcaoSelecionada = false;
-
-    for (var i = 0; i < radioButtons.length; i++) {
-        if (radioButtons[i].checked) {
-            opcaoSelecionada = true;
-            break;
-        }
-    }
-
-    if (!tituloInput.value || !descricaoInput.value || !responsavelInput.value) {
-        alert("Preencha os campo corretamente");
-        return false
-    } else if (!opcaoSelecionada) {
-        alert("Selecione uma opção!");
-        return false;
-    }
-
-    return true;
-}
-
 function listarRelatorios() {
     var empresa = sessionStorage.FK_EMPRESA;
     var relatorios;
@@ -47,8 +21,8 @@ function listarRelatorios() {
 
 
 
-                        listaRelatorios.innerHTML += `<div class="item"> <span class="nomeItemLista">Titulo: ${relatorios[i].descricaoIncidente}</span>
-                            <div class="item"> <span class="nomeItemLista">Data criação: ${relatorios[i].dataRelatorio}</span>   
+                        listaRelatorios.innerHTML += `<div class="item"> <span class="nomeItemLista">Titulo: ${relatorios[i].titulo}</span>
+                            <div class="item"> <span class="nomeItemLista">Data criação: ${(relatorios[i].dataRelatorio)}</span>   
                             <button class="btnDelete" id="#generate-pdf" onclick="baixarPdf(${relatorios[i].id})">Baixar PDF</button>`
 
 
@@ -148,11 +122,11 @@ function baixarPdf(idRelatorio) {
 
     <div class="section">
         <div class="section-title">Dia manutenção:</div>
-        <div class="section-content">${relatorioSelecionado[i].data_manutencao}</div>
+        <div class="section-content">${(relatorioSelecionado[i].data_manutencao)}</div>
     </div>
     <div class="section">
         <div class="section-title">Dia relatorio:</div>
-        <div class="section-content">${relatorioSelecionado[i].data_relatorio}</div>
+        <div class="section-content">${(relatorioSelecionado[i].data_relatorio)}</div>
     </div>
 
     <div class="section">

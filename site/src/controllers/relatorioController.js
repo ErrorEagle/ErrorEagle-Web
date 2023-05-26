@@ -2,6 +2,7 @@ var relatorioModel = require("../models/relatorioModels");
 
 function gerarRelatorio(req,res){
 
+    var titulo = req.body.tituloServer;
     var descricaoIncidente = req.body.descricaoIncidenteServer;
     var descricaoManutencao = req.body.descricaoManutencaoServer;
     var dataManutencao = req.body.dataManutencaoServer;
@@ -11,7 +12,9 @@ function gerarRelatorio(req,res){
     var fkEmpresa = req.body.fkEmpresaServer;
 
 
-    if (descricaoIncidente == undefined) {
+    if(titulo == null){
+        res.resultado(400).send("Titulo esta undefined")
+    }else if (descricaoIncidente == null) {
         res.status(400).send("Descrição incidente esta undefined!");
     } else if (descricaoManutencao == null) {
         res.status(400).send("Descriçáo manutenção está undefined!");
@@ -27,7 +30,7 @@ function gerarRelatorio(req,res){
         res.status(400).send("fkEmpresa está undefined!");
     }
     else {
-        relatorioModel.gerarRelatorio(descricaoIncidente, descricaoManutencao, dataManutencao, dataRelatorio, fkMaquina, fkFuncionario, fkEmpresa).then(
+        relatorioModel.gerarRelatorio(titulo, descricaoIncidente, descricaoManutencao, dataManutencao, dataRelatorio, fkMaquina, fkFuncionario, fkEmpresa).then(
             function (resultado) {
                 res.json(resultado);
             }

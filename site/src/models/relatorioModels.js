@@ -7,16 +7,17 @@ function listarRelatorios(fkEmpresa) {
     return database.executar(instrucao);
 }
 
-function gerarRelatorio(descricaoIncidente, descricaoManutencao, dataManutencao, dataRelatorio, fkMaquina, fkFuncionario, fkEmpresa) {
+function gerarRelatorio(titulo, descricaoIncidente, descricaoManutencao, dataManutencao, dataRelatorio, fkMaquina, fkFuncionario, fkEmpresa) {
 
     var instrucao = `insert into relatorioManutencao (
+        titulo,
         descricaoIncidente,
-        descricaoManutençao,
+        descricaoManutencao,
         dataManutencao,
         dataRelatorio,
         fkMaquina,
         fkFuncionario,
-        fkEmpresa) values ('${descricaoIncidente}','${descricaoManutencao}','${dataManutencao}','${dataRelatorio}', ${fkMaquina},'${fkFuncionario}', '${fkEmpresa}')`
+        fkEmpresa) values ('${titulo}','${descricaoIncidente}','${descricaoManutencao}','${dataManutencao}','${dataRelatorio}', ${fkMaquina},'${fkFuncionario}', '${fkEmpresa}')`
 
     return database.executar(instrucao);
 }
