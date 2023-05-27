@@ -35,7 +35,7 @@
         <div class="container d-flex flex-column align-items-center justify-content-center">
             <span id="nome"><span id="nomeSideBar"></span></span>
             <a href="menu.html">menu</a>
-            <a href="dashboard.html">maquinas</a>
+            <a href="totens.html">maquinas</a>
             <a href="relatorios.html">relatorios</a>
             <a href="funcionarios.html">colaboradores</a>
             <a onclick="limparSessao()" class="btnSair">Sair</a>
@@ -118,7 +118,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="dash_ram" class="h-100 d-none justify-content-center align-items-center flex-column"
                     style="background-color: #454545;">
                     <div class="w-50 h-25 my-5 px-5">
@@ -150,7 +150,7 @@
                         </div>
                     </div>
                 </div>
-                
+
                 <div id="dash_disco" class="h-100 d-flex justify-content-center align-items-center flex-column"
                     style="background-color: #454545;">
                     <div class="w-50 h-25 my-5 px-5">
@@ -214,7 +214,7 @@
                         </div>
                     </div>
                 </div>
-                
+
             </div>
         </section>
     </main>
@@ -231,51 +231,51 @@
     const rede = document.querySelector('#dash_rede');
 
     function abrirDashCpu() {
-            cpu.classList.add('d-flex');
-            cpu.classList.remove('d-none');
+        cpu.classList.add('d-flex');
+        cpu.classList.remove('d-none');
 
-            ram.classList.remove('d-flex');
-            ram.classList.add('d-none');
-            disco.classList.remove('d-flex');
-            disco.classList.add('d-none');
-            rede.classList.remove('d-flex');
-            rede.classList.add('d-none');
+        ram.classList.remove('d-flex');
+        ram.classList.add('d-none');
+        disco.classList.remove('d-flex');
+        disco.classList.add('d-none');
+        rede.classList.remove('d-flex');
+        rede.classList.add('d-none');
     }
 
     function abrirDashRam() {
-            ram.classList.add('d-flex');
-            ram.classList.remove('d-none');
+        ram.classList.add('d-flex');
+        ram.classList.remove('d-none');
 
-            cpu.classList.remove('d-flex');
-            cpu.classList.add('d-none');
-            disco.classList.remove('d-flex');
-            disco.classList.add('d-none');
-            rede.classList.remove('d-flex');
-            rede.classList.add('d-none');
+        cpu.classList.remove('d-flex');
+        cpu.classList.add('d-none');
+        disco.classList.remove('d-flex');
+        disco.classList.add('d-none');
+        rede.classList.remove('d-flex');
+        rede.classList.add('d-none');
     }
 
     function abrirDashDisco() {
-            disco.classList.add('d-flex');
-            disco.classList.remove('d-none');
+        disco.classList.add('d-flex');
+        disco.classList.remove('d-none');
 
-            cpu.classList.remove('d-flex');
-            cpu.classList.add('d-none');
-            ram.classList.remove('d-flex');
-            ram.classList.add('d-none');
-            rede.classList.remove('d-flex');
-            rede.classList.add('d-none');
+        cpu.classList.remove('d-flex');
+        cpu.classList.add('d-none');
+        ram.classList.remove('d-flex');
+        ram.classList.add('d-none');
+        rede.classList.remove('d-flex');
+        rede.classList.add('d-none');
     }
 
     function abrirDashRede() {
-            rede.classList.add('d-flex');
-            rede.classList.remove('d-none');
+        rede.classList.add('d-flex');
+        rede.classList.remove('d-none');
 
-            cpu.classList.remove('d-flex');
-            cpu.classList.add('d-none');
-            ram.classList.remove('d-flex');
-            ram.classList.add('d-none');
-            disco.classList.remove('d-flex');
-            disco.classList.add('d-none');
+        cpu.classList.remove('d-flex');
+        cpu.classList.add('d-none');
+        ram.classList.remove('d-flex');
+        ram.classList.add('d-none');
+        disco.classList.remove('d-flex');
+        disco.classList.add('d-none');
     }
 
 </script>
