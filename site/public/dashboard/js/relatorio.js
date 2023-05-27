@@ -82,8 +82,6 @@ function baixarPdf(idRelatorio) {
                         const formatoDataPtBR = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
                         const data_manutencao_formatada = formatoDataPtBR.format(data_manutencao_obj);
                         const data_relatorio_formatada = formatoDataPtBR.format(data_relatorio_obj);
-                        const data_manutencao_apenas_data = data_manutencao_obj.toISOString().split('T')[0];
-                        const data_relatorio_apenas_data = data_relatorio_obj.toISOString().split('T')[0];
 
                         var conteudo = `
                     <!DOCTYPE html>
@@ -158,8 +156,6 @@ function baixarPdf(idRelatorio) {
         <div class="section-content">${relatorioSelecionado[i].nome}</div>
     </div>
 </body>
-
-<script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"></script>
 
 </html>`;
 
