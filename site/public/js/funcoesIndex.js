@@ -281,6 +281,7 @@ function entrar() {
                                 sessionStorage.SENHA_USUARIO = jsonLogin.senha;
                                 sessionStorage.NOME_EMPRESA = jsonLogin.razaoSocial;
                                 sessionStorage.FIRST_ACESS = jsonLogin.firstAcess;
+                                sessionStorage.totemAtual;
 
                                 fecharModal("#modalLoginForm");
                                 setTimeout(function () {

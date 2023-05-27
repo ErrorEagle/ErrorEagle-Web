@@ -6,10 +6,9 @@ function validarSessao() {
         var email = sessionStorage.EMAIL_USUARIO;
         var nome = sessionStorage.NOME_USUARIO;
         var b_usuario = document.getElementById("b_usuario");
-        console.log("Esta rodando")
+        // console.log("Esta rodando")
         if (email != undefined && nome != undefined) {
             // window.alert(`Seja bem-vindo, ${nome}!`);
-
             const Toast = Swal.mixin({
                 toast: true,
                 position: 'bottom-end',
@@ -100,7 +99,7 @@ function verificarSupervisor() {
 
     document.addEventListener('DOMContentLoaded', function () {
         var nivelUsuario = sessionStorage.getItem("FK_SUPERVISOR");
-        console.log(nivelUsuario);
+        // console.log(nivelUsuario);
 
         var linkColaboradores = document.querySelector('a[href="funcionarios.html"]');
         if (nivelUsuario == 'null') {
