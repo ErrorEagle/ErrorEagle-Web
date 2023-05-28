@@ -103,7 +103,7 @@ function verificarSupervisor() {
 
         var linkColaboradores = document.querySelector('a[href="funcionarios.html"]');
         if (nivelUsuario == 'null') {
-            linkColaboradores.style.display = 'flex';
+            linkColaboradores.style.display = 'block';
         } else {
             linkColaboradores.style.display = 'none';
         }
