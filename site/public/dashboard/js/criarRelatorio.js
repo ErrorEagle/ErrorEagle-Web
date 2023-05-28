@@ -19,12 +19,29 @@ var dataFormatada = ano + "-" + mes + "-" + dia;
 
 console.log(dataFormatada);
 
+function validarAno(dataManutencaoInput) {
+    var data = new Date(dataManutencaoInput);
+    var ano = data.getFullYear();
+    var anoAtual = dataAtual.getFullYear();
+  
+    if (isNaN(data.getTime())) {
+      // A data é inválida
+      return false;
+    } else if (ano == anoAtual) {
+      // O ano está fora do intervalo desejado
+      return true;
+    } else {
+      // A data e o ano são válidos
+      return false;
+    }
+  }
+
 function gerarRelatorio() {
     var fkFuncionario = sessionStorage.ID_FUNCIONARIO
     var fkEmpresa = sessionStorage.FK_EMPRESA
     var fkMaquina = '1'
 
-    if (!tituloInput.value || !descricaoIncidenteInput.value || !descricaoManutencaoInput.value || !dataManutencaoInput.value) {
+    if (!tituloInput.value || !descricaoIncidenteInput.value || !descricaoManutencaoInput.value || !dataManutencaoInput.value || !validarAno(dataManutencaoInput.value)) {
         alert("Preencha os campo corretamente");
     } else {
     console.log(dataManutencaoInput.value)
@@ -46,6 +63,26 @@ function gerarRelatorio() {
     }).then(function (resposta) {
         if(resposta.ok){
             console.log('Enviado para o banco')
+            const Toast = Swal.mixin({
+                toast: true,
+                position: 'top-end',
+                showConfirmButton: false,
+                timer: 3000,
+                timerProgressBar: true,
+                didOpen: (toast) => {
+                    toast.addEventListener('mouseenter', Swal.stopTimer)
+                    toast.addEventListener('mouseleave', Swal.resumeTimer)
+                }
+            })
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Relatório enviado com sucesso!'
+            })
+            setTimeout(() => {
+
+            }, 20000)
+            limparCampos();
         }else{
             console.log('Erro ao enviar para o banco')
         }
@@ -54,4 +91,11 @@ function gerarRelatorio() {
     })
 }
     
+}
+
+function limparCampos() {
+    tituloInput.value = '';
+    descricaoManutencaoInput.value = '';
+    descricaoIncidenteInput.value = '';
+    dataManutencaoInput.value = '';
 }
