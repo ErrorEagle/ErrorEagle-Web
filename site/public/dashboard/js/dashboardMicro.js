@@ -1,4 +1,44 @@
 
+function listarConfigMaquina() {
+
+    var idMaquina = sessionStorage.getItem("ID_MAQUINA")
+
+    fetch(`/totem/listarConfigTotem/${idMaquina}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json",
+        },
+    })
+        .then(function (resposta) {
+            console.log("ESTOU NO THEN DO listar()!");
+
+            if (resposta.ok) {
+                resposta.json().then((json) => {
+                    const configTotem = json;
+                    console.log("Configuração Totem")
+                    // configuracoesMaquinaAtual.innerHTML += "Teste"
+                    // // configuracoesMaquinaAtual.innerHtml += `configTotem[i].nomeComponente + " " + configTotem[i].capacidade`
+                    for (var i = 0; i < configTotem.length; i++) {
+                        configuracoesMaquinaAtual.innerHTML += `<li>${configTotem[i].nomeComponente} ${configTotem[i].capacidade} ${configTotem[i].unidadeMedida}</li>`
+                    }
+
+                });
+            } else {
+                console.log("Houve um erro ao tentar listar as Configuraçoes");
+                resposta.text().then((texto) => {
+                    console.error(texto);
+                    reject(texto);
+                });
+            }
+        })
+        .catch(function (erro) {
+            console.log(erro);
+            reject(erro);
+        });
+}
+listarConfigMaquina()
+
+
 const config = document.querySelector('#dash_config');
 const cpu = document.querySelector('#dash_cpu');
 const ram = document.querySelector('#dash_ram');

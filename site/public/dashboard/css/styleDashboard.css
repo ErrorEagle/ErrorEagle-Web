@@ -51,9 +51,7 @@ main {
     margin: 0px 10px;
 }
 
-main {
-    background-color: #0FFF19;
-}
+
 
 .containerClass {
     width: 100%;
@@ -192,7 +190,9 @@ h3 {
 }
 
 .dashAlturaPadrao {
-    height: 80vh;
+    max-height: 90vh;
+    height: 100vh;
+    min-height: 80vh;
 }
 
 #dash_disco {
@@ -269,10 +269,48 @@ h3 {
 }
 
 #sec01_config {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
     width: 50%;
     height: 90%;
-    background-color: #3b3b3b;
+    background-color: #424242;
     margin: 20px 10px 20px 20px;
+    color: white;
+    padding: 10px;
+}
+
+#sec01_01 {
+
+    height: 40%;
+    background-color: #3b3b3b;
+    margin: 10px;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+#sec01_02 {
+
+    height: 40%;
+    background-color: #3b3b3b;
+    margin: 10px;
+    color: white;
+    padding: 20px;
+    border-radius: 10px;
+}
+
+
+#configuracoesMaquinaAtual li {
+    margin: 20px 20px;
+}
+
+#sec01_config h2 {
+    text-align: center;
 }
 
 #sec02_config {
@@ -280,6 +318,9 @@ h3 {
     height: 90%;
     background-color: #3b3b3b;
     margin: 20px 20px 20px 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .graficos {
@@ -303,3 +344,59 @@ h3 {
     justify-content: center;
     align-items: center;
 }
+
+.formContainer {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin: 20px;
+}
+
+/* forms*/
+#sec02_config form {
+    color: white;
+}
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+.form-group label {
+    display: block;
+
+}
+
+.form-group label h3 {
+    font-size: 15px;
+}
+
+.form-group input[type="text"],
+.form-group textarea,
+.form-group input[type="date"],
+.form-group button {
+    width: 100%;
+    padding: 2px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+    font-size: 16px;
+}
+
+.form-group textarea {
+    height: 150px;
+    resize: vertical;
+}
+
+.form-group button {
+    background-color: #4CAF50;
+    color: #fff;
+    cursor: pointer;
+}
+
+.form-group button:hover {
+    background-color: #45a049;
+}
+
+
+/*forms*/

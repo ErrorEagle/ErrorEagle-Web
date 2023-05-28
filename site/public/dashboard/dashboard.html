@@ -15,6 +15,7 @@
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styleDashboard.css" />
     <link rel="stylesheet" href="css/styleSideBar.css">
+    <script src="js/criarRelatorio.js"></script>
     <script src="../js/funcoes.js"></script>
 
 
@@ -81,10 +82,53 @@
 
                     <div id="dash_config" class="dashAlturaPadrao">
                         <div id="sec01_config" class="">
+                            <div id="sec01_01">
+                                <h2>Configuração</h2>
+                                <div>
+                                    <ul id="configuracoesMaquinaAtual">
 
+                                    </ul>
+                                </div>
+                            </div>
+                            <div id="sec01_02">
+
+                            </div>
                         </div>
                         <div id="sec02_config" class="">
-
+                            <div class="formContainer">
+                                <form>
+                                    <div class="form-group">
+                                        <h1>Relatório de Manutenção</h1>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="titulo">
+                                            <h3>Título</h3>
+                                        </label>
+                                        <input id="titulo" type="text">
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="descricaoIncidente">
+                                            <h3>Descrição do Incidente</h3>
+                                        </label>
+                                        <textarea id="descricaoIncidente" cols="30" rows="10"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="descricaoManutencao">
+                                            <h3>Descrição da Manutenção</h3>
+                                        </label>
+                                        <textarea id="descricaoManutencao" cols="30" rows="10"></textarea>
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="dataM">
+                                            <h3>Data da Manutenção</h3>
+                                        </label>
+                                        <input type="date" id="dataM">
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="button" onclick="gerarRelatorio()">Criar Relatório</button>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
 
@@ -200,5 +244,6 @@
 </body>
 
 </html>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script src="js/dashboardMicro.js"></script>
