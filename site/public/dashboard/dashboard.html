@@ -35,900 +35,170 @@
         <div class="container d-flex flex-column align-items-center justify-content-center">
             <span id="nome"><span id="nomeSideBar"></span></span>
             <a href="menu.html">menu</a>
-            <a href="totens.html">maquinas</a>
+            <a href="dashboard.html">maquinas</a>
             <a href="relatorios.html">relatorios</a>
             <a href="funcionarios.html">colaboradores</a>
             <a onclick="limparSessao()" class="btnSair">Sair</a>
         </div>
     </div>
     <main>
-        <section class="sec_01 w-100 h-100 d-flex justify-content-center">
-            <div id="caixa-maior" class="container d-flex flex-column h-75 px-0" style="margin:40px 0px;">
-                <div class="d-flex  w-100 h-25 align-items-center">
-                    <div class="w-25 h-100 text-light text-center card-infos d-flex align-items-center"
-                        style="height: 20%; border-left: none;">
-                        <h3>Especificações do Totem:</h3>
+        <div class="containerClass">
+            <div class="containerCLASS">
+                <div id="caixa-maior" class="">
+                    <div class="topLabel">
+                        <div onclick="abrirConfiguracoes()" class="itemlabel">
+                            <img src="../assets/icon/iconConfig.png" alt="">
+                        </div>
+                        <div onclick="abrirDashCpu()" class="itemlabel">
+                            <div class="">
+                                <h3>CPU</h3>
+                            </div>
+                            <div class="">
+                                <div id="alert_cpu"></div>
+                            </div>
+                        </div>
+                        <div onclick="abrirDashRam()" class="itemlabel">
+                            <div class="">
+                                <h3>RAM</h3>
+                            </div>
+                            <div class="">
+                                <div id="alert_cpu" class=""></div>
+                            </div>
+                        </div>
+                        <div onclick="abrirDashDisco()" class="itemlabel">
+                            <div class="">
+                                <h3>DISCO</h3>
+                            </div>
+
+                        </div>
+                        <div onclick="abrirDashRede()" class="itemlabel">
+                            <div class="">
+                                <h3>REDE</h3>
+                            </div>
+
+                        </div>
                     </div>
-                    <div onclick="abrirDashCpu()"
-                        class="w-25 h-100 text-light d-flex justify-content-center align-items-center card-infos">
-                        <div class="w-75 d-flex justify-content-center">
-                            <h3 style="cursor: pointer;">CPU</h3>
+
+                    <div id="dash_config" class="dashAlturaPadrao">
+                        <div id="sec01_config" class="">
+
                         </div>
-                        <div class="w-25 d-flex justify-content-center align-self-center" class="">
-                            <div id="alert_cpu" class="alert"></div>
-                        </div>
-                    </div>
-                    <div onclick="abrirDashRam()"
-                        class="w-25 h-100 text-light d-flex justify-content-center align-items-center card-infos">
-                        <div class="w-75 d-flex justify-content-center">
-                            <h3 style="cursor: pointer;">RAM</h3>
-                        </div>
-                        <div class="w-25 d-flex justify-content-center align-self-center" class="">
-                            <div id="alert_ram" class="alert"></div>
+                        <div id="sec02_config" class="">
+
                         </div>
                     </div>
-                    <div onclick="abrirDashDisco()"
-                        class="w-25 h-100 text-light d-flex justify-content-center align-items-center card-infos">
-                        <div class="w-75 d-flex justify-content-center">
-                            <h3 style="cursor: pointer;">Disco</h3>
+
+                    <div id="dash_cpu" class="dashAlturaPadrao">
+                        <div class="">
+                            <div class="legendaContainer">
+                                <h3 class="titleLegenda">CPU</h3>
+                                <div class="legendaColor">
+                                    <div class="verde"></div>
+                                    <div class="amarelo"></div>
+                                    <div class="laranja"></div>
+                                    <div class="vermelho"></div>
+                                </div>
+                                <div class="legendaText">
+                                    <h4 class="">Ideal</h4>
+                                    <h4 class="">Atenção</h4>
+                                    <h4 class="">Urgente</h4>
+                                    <h4 class="">Crítico</h4>
+                                </div>
+                            </div>
                         </div>
-                        <div class="w-25 d-flex justify-content-center align-self-center" class="">
-                            <div id="alert_disco" class="alert"></div>
+                        <div class="graficos">
+                            <div class="graficoEspecifico">
+                                <canvas id="chartCpu"></canvas>
+                            </div>
+
                         </div>
                     </div>
-                    <div onclick="abrirDashRede()"
-                        class="w-25 h-100 text-light d-flex justify-content-center align-items-center card-infos">
-                        <div class="w-75 d-flex justify-content-center">
-                            <h3 style="cursor: pointer;">Redes</h3>
+
+                    <div id="dash_ram" class="dashAlturaPadrao">
+                        <div class="">
+                            <div class="legendaContainer">
+                                <h3 class="titleLegenda">Ram</h3>
+                                <div class="legendaColor">
+                                    <div class="verde"></div>
+                                    <div class="amarelo"></div>
+                                    <div class="laranja"></div>
+                                    <div class="vermelho"></div>
+                                </div>
+                                <div class="legendaText">
+                                    <h4 class="">Ideal</h4>
+                                    <h4 class="">Atenção</h4>
+                                    <h4 class="">Urgente</h4>
+                                    <h4 class="">Crítico</h4>
+                                </div>
+                            </div>
                         </div>
-                        <div class="w-25 d-flex justify-content-center align-self-center" class="">
-                            <div id="alert_rede" class="alert"></div>
+                        <div class="graficos">
+                            <div class="graficoEspecifico">
+                                <canvas id="chartRam"></canvas>
+                            </div>
+
+                        </div>
+                    </div>
+
+
+                    <div id="dash_disco" class="dashAlturaPadrao">
+                        <div class="">
+                            <div class="legendaContainer">
+                                <h3 class="titleLegenda">Disco</h3>
+                                <div class="legendaColor">
+                                    <div class="verde"></div>
+                                    <div class="amarelo"></div>
+                                    <div class="laranja"></div>
+                                    <div class="vermelho"></div>
+                                </div>
+                                <div class="legendaText">
+                                    <h4 class="">Ideal</h4>
+                                    <h4 class="">Atenção</h4>
+                                    <h4 class="">Urgente</h4>
+                                    <h4 class="">Crítico</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graficos">
+                            <div class="graficoEspecifico">
+                                <canvas id="chartDisco"></canvas>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <div id="dash_rede" class="dashAlturaPadrao">
+                        <div class="">
+                            <div class="legendaContainer">
+                                <h3 class="titleLegenda">Rede</h3>
+                                <div class="legendaColor">
+                                    <div class="verde"></div>
+                                    <div class="amarelo"></div>
+                                    <div class="laranja"></div>
+                                    <div class="vermelho"></div>
+                                </div>
+                                <div class="legendaText">
+                                    <h4 class="">Ideal</h4>
+                                    <h4 class="">Atenção</h4>
+                                    <h4 class="">Urgente</h4>
+                                    <h4 class="">Crítico</h4>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="graficos">
+                            <div class="graficoEspecifico">
+                                <canvas id="chartRede"></canvas>
+                            </div>
+
                         </div>
                     </div>
                 </div>
-
-                <div id="dash_cpu" class="h-100 d-flex justify-content-center align-items-center flex-column"
-                    style="background-color: #454545;">
-                    <div class="w-50 h-25 my-5 px-5">
-                        <div class="d-flex flex-column h-25 py-5 justify-content-center "
-                            style="background-color: rgb(96, 96, 96); border-radius: 6px;">
-                            <h3 id="titleLegenda" class="text-center py-3">Legenda</h3>
-                            <div class="d-flex justify-content-center px-4 ">
-                                <div class="verde"></div>
-                                <div class="amarelo"></div>
-                                <div class="laranja"></div>
-                                <div class="vermelho"></div>
-                            </div>
-                            <div class="d-flex py-2 justify-content-center w-100">
-                                <h4 class="txtLegenda text-center w-25">Ideal</h4>
-                                <h4 class="txtLegenda text-center w-25">Atenção</h4>
-                                <h4 class="txtLegenda text-center w-25">Urgente</h4>
-                                <h4 class="txtLegenda text-center w-25">Crítico</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-100 d-flex h-100">
-                        <div class="w-50 h-75 mx-3 d-flex justify-content-center align-items-center"
-                            style="background-color: #7E7E7E;">
-                            <canvas class=" mx-2" id="myChartCpu1"></canvas>
-                        </div>
-                        <div class="w-50 h-75 mx-3 d-flex justify-content-center align-items-center"
-                            style="background-color: #7E7E7E;">
-                            <canvas class="mx-2" id="myChartCpu2"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="dash_ram" class="h-100 d-none justify-content-center align-items-center flex-column"
-                    style="background-color: #454545;">
-                    <div class="w-50 h-25 my-5 px-5">
-                        <div class="d-flex flex-column h-25 py-5 justify-content-center "
-                            style="background-color: rgb(96, 96, 96); border-radius: 6px;">
-                            <h3 id="titleLegenda" class="text-center py-3">Legenda</h3>
-                            <div class="d-flex justify-content-center px-4 ">
-                                <div class="verde"></div>
-                                <div class="amarelo"></div>
-                                <div class="laranja"></div>
-                                <div class="vermelho"></div>
-                            </div>
-                            <div class="d-flex py-2 justify-content-center w-100">
-                                <h4 class="txtLegenda text-center w-25">Ideal</h4>
-                                <h4 class="txtLegenda text-center w-25">Atenção</h4>
-                                <h4 class="txtLegenda text-center w-25">Urgente</h4>
-                                <h4 class="txtLegenda text-center w-25">Crítico</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-100 d-flex h-100">
-                        <div class="w-50 h-75 mx-3 d-flex justify-content-center align-items-center"
-                            style="background-color: #7E7E7E;">
-                            <canvas class=" mx-2" id="myChartRam1"></canvas>
-                        </div>
-                        <div class="w-50 h-75 mx-3 d-flex justify-content-center align-items-center"
-                            style="background-color: #7E7E7E;">
-                            <canvas class="mx-2" id="myChartRam2"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="dash_disco" class="h-100 d-flex justify-content-center align-items-center flex-column"
-                    style="background-color: #454545;">
-                    <div class="w-50 h-25 my-5 px-5">
-                        <div class="d-flex flex-column h-25 py-5 justify-content-center "
-                            style="background-color: rgb(96, 96, 96); border-radius: 6px;">
-                            <h3 id="titleLegenda" class="text-center py-3">Legenda</h3>
-                            <div class="d-flex justify-content-center px-4 ">
-                                <div class="verde"></div>
-                                <div class="amarelo"></div>
-                                <div class="laranja"></div>
-                                <div class="vermelho"></div>
-                            </div>
-                            <div class="d-flex py-2 justify-content-center w-100">
-                                <h4 class="txtLegenda text-center w-25">Ideal</h4>
-                                <h4 class="txtLegenda text-center w-25">Atenção</h4>
-                                <h4 class="txtLegenda text-center w-25">Urgente</h4>
-                                <h4 class="txtLegenda text-center w-25">Crítico</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-100 d-flex h-100">
-                        <div class="w-50 h-75 mx-3 d-flex justify-content-center align-items-center"
-                            style="background-color: #7E7E7E;">
-                            <canvas class=" mx-2" id="myChartDisco1"></canvas>
-                        </div>
-                        <div class="w-50 h-75 mx-3 d-flex justify-content-center align-items-center"
-                            style="background-color: #7E7E7E;">
-                            <canvas class="mx-2" id="myChartDisco2"></canvas>
-                        </div>
-                    </div>
-                </div>
-
-                <div id="dash_rede" class="h-100 d-flex justify-content-center align-items-center flex-column"
-                    style="background-color: #454545;">
-                    <div class="w-50 h-25 my-5 px-5">
-                        <div class="d-flex flex-column h-25 py-5 justify-content-center "
-                            style="background-color: rgb(96, 96, 96); border-radius: 6px;">
-                            <h3 id="titleLegenda" class="text-center py-3">Legenda</h3>
-                            <div class="d-flex justify-content-center px-4 ">
-                                <div class="verde"></div>
-                                <div class="amarelo"></div>
-                                <div class="laranja"></div>
-                                <div class="vermelho"></div>
-                            </div>
-                            <div class="d-flex py-2 justify-content-center w-100">
-                                <h4 class="txtLegenda text-center w-25">Ideal</h4>
-                                <h4 class="txtLegenda text-center w-25">Atenção</h4>
-                                <h4 class="txtLegenda text-center w-25">Urgente</h4>
-                                <h4 class="txtLegenda text-center w-25">Crítico</h4>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="w-100 d-flex h-100">
-                        <div class="w-50 h-75 mx-3 d-flex justify-content-center align-items-center"
-                            style="background-color: #7E7E7E;">
-                            <canvas class=" mx-2" id="myChartRede1"></canvas>
-                        </div>
-                        <div class="w-50 h-75 mx-3 d-flex justify-content-center align-items-center"
-                            style="background-color: #7E7E7E;">
-                            <canvas class="mx-2" id="myChartRede2"></canvas>
-                        </div>
-                    </div>
-                </div>
-
             </div>
-        </section>
+        </div>
     </main>
 
 </body>
 
 </html>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-
-    const cpu = document.querySelector('#dash_cpu');
-    const ram = document.querySelector('#dash_ram');
-    const disco = document.querySelector('#dash_disco');
-    const rede = document.querySelector('#dash_rede');
-
-    function abrirDashCpu() {
-        cpu.classList.add('d-flex');
-        cpu.classList.remove('d-none');
-
-        ram.classList.remove('d-flex');
-        ram.classList.add('d-none');
-        disco.classList.remove('d-flex');
-        disco.classList.add('d-none');
-        rede.classList.remove('d-flex');
-        rede.classList.add('d-none');
-    }
-
-    function abrirDashRam() {
-        ram.classList.add('d-flex');
-        ram.classList.remove('d-none');
-
-        cpu.classList.remove('d-flex');
-        cpu.classList.add('d-none');
-        disco.classList.remove('d-flex');
-        disco.classList.add('d-none');
-        rede.classList.remove('d-flex');
-        rede.classList.add('d-none');
-    }
-
-    function abrirDashDisco() {
-        disco.classList.add('d-flex');
-        disco.classList.remove('d-none');
-
-        cpu.classList.remove('d-flex');
-        cpu.classList.add('d-none');
-        ram.classList.remove('d-flex');
-        ram.classList.add('d-none');
-        rede.classList.remove('d-flex');
-        rede.classList.add('d-none');
-    }
-
-    function abrirDashRede() {
-        rede.classList.add('d-flex');
-        rede.classList.remove('d-none');
-
-        cpu.classList.remove('d-flex');
-        cpu.classList.add('d-none');
-        ram.classList.remove('d-flex');
-        ram.classList.add('d-none');
-        disco.classList.remove('d-flex');
-        disco.classList.add('d-none');
-    }
-
-</script>
-<script>
-    Chart.defaults.color = '#FFF';
-
-    const ctxCpu1 = document.getElementById('myChartCpu1');
-    const ctxCpu2 = document.getElementById('myChartCpu2');
-    const ctxRam1 = document.getElementById('myChartRam1');
-    const ctxRam2 = document.getElementById('myChartRam2');
-    const ctxDisco1 = document.getElementById('myChartDisco1');
-    const ctxDisco2 = document.getElementById('myChartDisco2');
-    const ctxRede1 = document.getElementById('myChartRede1');
-    const ctxRede2 = document.getElementById('myChartRede2');
-
-    var myChart1 = new Chart(ctxCpu1, {
-        type: 'line',
-        data: {
-            labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
-            datasets: [{
-                label: 'Essa Semana',
-                data: [12, 19, 3, 5, 7, 13, 6],
-                borderWidth: 1,
-
-
-            }, {
-                label: 'Semana Passada',
-                data: [8, 16, 5, 10, 7, 3, 19],
-                borderWidth: 1,
-
-
-            }]
-        },
-        options: {
-
-            plugins: {
-                title: {
-                    display: true,
-                    align: 'center',
-                    text: 'Percentual de alertas críticos em relação semana passada',
-                    color: 'white',
-                    font: {
-                        weight: 'bold',
-                        size: 20
-                    },
-                    padding: {
-                        top: '5px',
-                        bottom: '5px',
-                    }
-                }
-            },
-
-
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                }
-            },
-            // legend: {
-            //     labels: {
-            //         fontColor: "#FFF"
-            //     }
-            // }
-
-        }
-    });
-
-    var myChart2 = new Chart(ctxCpu2, {
-        type: 'line',
-        data: {
-            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'],
-            datasets: [{
-                label: 'Essa Semana',
-                data: [12, 19, 3, 5, 7, 13, 6],
-                borderWidth: 1,
-
-
-            },]
-        },
-        options: {
-
-            plugins: {
-                title: {
-                    display: true,
-                    align: 'center',
-                    text: 'Percentual de uso de RAM em tempo real',
-                    color: 'white',
-                    font: {
-                        weight: 'bold',
-                        size: 20
-                    },
-                    padding: {
-                        top: '5px',
-                        bottom: '5px',
-                    }
-                }
-            },
-
-
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                }
-            },
-            // legend: {
-            //     labels: {
-            //         fontColor: "#FFF"
-            //     }
-            // }
-
-        }
-    });
-
-    var myChart3 = new Chart(ctxRam1, {
-        type: 'line',
-        data: {
-            labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
-            datasets: [{
-                label: 'Essa Semana',
-                data: [12, 19, 3, 5, 7, 13, 6],
-                borderWidth: 1,
-
-
-            }, {
-                label: 'Semana Passada',
-                data: [8, 16, 5, 10, 7, 3, 19],
-                borderWidth: 1,
-
-
-            }]
-        },
-        options: {
-
-            plugins: {
-                title: {
-                    display: true,
-                    align: 'center',
-                    text: 'Percentual de alertas críticos em relação semana passada',
-                    color: 'white',
-                    font: {
-                        weight: 'bold',
-                        size: 20
-                    },
-                    padding: {
-                        top: '5px',
-                        bottom: '5px',
-                    }
-                }
-            },
-
-
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                }
-            },
-            // legend: {
-            //     labels: {
-            //         fontColor: "#FFF"
-            //     }
-            // }
-
-        }
-    });
-
-    var myChart4 = new Chart(ctxRam2, {
-        type: 'line',
-        data: {
-            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'],
-            datasets: [{
-                label: 'Essa Semana',
-                data: [12, 19, 3, 5, 7, 13, 6],
-                borderWidth: 1,
-
-
-            },]
-        },
-        options: {
-
-            plugins: {
-                title: {
-                    display: true,
-                    align: 'center',
-                    text: 'Percentual de uso de RAM em tempo real',
-                    color: 'white',
-                    font: {
-                        weight: 'bold',
-                        size: 20
-                    },
-                    padding: {
-                        top: '5px',
-                        bottom: '5px',
-                    }
-                }
-            },
-
-
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                }
-            },
-            // legend: {
-            //     labels: {
-            //         fontColor: "#FFF"
-            //     }
-            // }
-
-        }
-    });
-
-    var myChart5 = new Chart(ctxDisco1, {
-        type: 'line',
-        data: {
-            labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
-            datasets: [{
-                label: 'Essa Semana',
-                data: [12, 19, 3, 5, 7, 13, 6],
-                borderWidth: 1,
-
-
-            }, {
-                label: 'Semana Passada',
-                data: [8, 16, 5, 10, 7, 3, 19],
-                borderWidth: 1,
-
-
-            }]
-        },
-        options: {
-
-            plugins: {
-                title: {
-                    display: true,
-                    align: 'center',
-                    text: 'Percentual de alertas críticos em relação semana passada',
-                    color: 'white',
-                    font: {
-                        weight: 'bold',
-                        size: 20
-                    },
-                    padding: {
-                        top: '5px',
-                        bottom: '5px',
-                    }
-                }
-            },
-
-
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                }
-            },
-            // legend: {
-            //     labels: {
-            //         fontColor: "#FFF"
-            //     }
-            // }
-
-        }
-    });
-
-    var myChart6 = new Chart(ctxDisco2, {
-        type: 'line',
-        data: {
-            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'],
-            datasets: [{
-                label: 'Essa Semana',
-                data: [12, 19, 3, 5, 7, 13, 6],
-                borderWidth: 1,
-
-
-            },]
-        },
-        options: {
-
-            plugins: {
-                title: {
-                    display: true,
-                    align: 'center',
-                    text: 'Percentual de uso de RAM em tempo real',
-                    color: 'white',
-                    font: {
-                        weight: 'bold',
-                        size: 20
-                    },
-                    padding: {
-                        top: '5px',
-                        bottom: '5px',
-                    }
-                }
-            },
-
-
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                }
-            },
-            // legend: {
-            //     labels: {
-            //         fontColor: "#FFF"
-            //     }
-            // }
-
-        }
-    });
-
-    var myChart7 = new Chart(ctxRede1, {
-        type: 'line',
-        data: {
-            labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
-            datasets: [{
-                label: 'Essa Semana',
-                data: [12, 19, 3, 5, 7, 13, 6],
-                borderWidth: 1,
-
-
-            }, {
-                label: 'Semana Passada',
-                data: [8, 16, 5, 10, 7, 3, 19],
-                borderWidth: 1,
-
-
-            }]
-        },
-        options: {
-
-            plugins: {
-                title: {
-                    display: true,
-                    align: 'center',
-                    text: 'Percentual de alertas críticos em relação semana passada',
-                    color: 'white',
-                    font: {
-                        weight: 'bold',
-                        size: 20
-                    },
-                    padding: {
-                        top: '5px',
-                        bottom: '5px',
-                    }
-                }
-            },
-
-
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                }
-            },
-            // legend: {
-            //     labels: {
-            //         fontColor: "#FFF"
-            //     }
-            // }
-
-        }
-    });
-
-    var myChart8 = new Chart(ctxRede2, {
-        type: 'line',
-        data: {
-            labels: ['10:00', '11:00', '12:00', '13:00', '14:00', '15:00', '16:00'],
-            datasets: [{
-                label: 'Essa Semana',
-                data: [12, 19, 3, 5, 7, 13, 6],
-                borderWidth: 1,
-
-
-            },]
-        },
-        options: {
-
-            plugins: {
-                title: {
-                    display: true,
-                    align: 'center',
-                    text: 'Percentual de uso de RAM em tempo real',
-                    color: 'white',
-                    font: {
-                        weight: 'bold',
-                        size: 20
-                    },
-                    padding: {
-                        top: '5px',
-                        bottom: '5px',
-                    }
-                }
-            },
-
-
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                }
-            },
-            // legend: {
-            //     labels: {
-            //         fontColor: "#FFF"
-            //     }
-            // }
-
-        }
-    });
-
-</script>
-<!-- <script>
-    Chart.defaults.color = '#FFF';
-    const ctx = document.getElementById('grafico1');
-
-    var myChart = new Chart(ctx, {
-        type: 'line',
-        data: {
-            labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
-            datasets: [{
-                label: 'Essa Semana',
-                data: [12, 19, 3, 5, 7, 13, 6],
-                borderWidth: 1,
-
-
-            }, {
-                label: 'Semana Passada',
-                data: [8, 16, 5, 10, 7, 3, 19],
-                borderWidth: 1,
-
-
-            }]
-        },
-        options: {
-
-            plugins: {
-                title: {
-                    display: true,
-                    align: 'center',
-                    text: 'Percentual de alertas críticos por dia em relação à semana passada',
-                    color: 'white',
-                    font: {
-                        weight: 'bold',
-                        size: 20
-                    },
-                    padding: {
-                        top: '5px',
-                        bottom: '5px',
-                    }
-                }
-            },
-
-
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                },
-                x: {
-                    ticks: {
-                        color: 'white',
-                        font: {
-                            size: 14,
-                            weight: 'bold'
-                        }
-                    },
-                    grid: {
-                        color: 'black'
-                    }
-                }
-            },
-            // legend: {
-            //     labels: {
-             </script> -->
+<script src="js/dashboardMicro.js"></script>

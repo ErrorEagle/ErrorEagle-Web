@@ -52,8 +52,22 @@ main {
 }
 
 main {
-    height: 100vh;
+    background-color: #0FFF19;
 }
+
+.containerClass {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+
+}
+
+.containerCLASS {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+}
+
 
 .alert {
     background-color: red;
@@ -77,32 +91,34 @@ h3 {
 }
 
 #caixa-maior {
+    width: 100%;
     box-shadow: rgba(10, 9, 9, 0.2) 0px 2px 8px 0px;
     background-color: #222121;
     border-radius: 7px;
+    margin: 20px 0px;
 }
 
 .verde {
     background-color: #0FFF19;
-    height: 15px;
+    height: 100%;
     width: 25%;
 }
 
 .amarelo {
     background-color: #FFF50F;
-    height: 15px;
+    height: 100%;
     width: 25%;
 }
 
 .laranja {
     background-color: #FF6B00;
-    height: 15px;
+    height: 100%;
     width: 25%;
 }
 
 .vermelho {
     background-color: #FF0F0F;
-    height: 15px;
+    height: 100%;
     width: 25%;
 }
 
@@ -110,6 +126,7 @@ h3 {
     font-weight: bold;
     font-size: 24px;
     color: white;
+    margin: 10px 0px 0px 0px;
 }
 
 .txtLegenda {
@@ -129,3 +146,160 @@ h3 {
 }
 
 
+.selectDash {
+    user-select: none;
+    cursor: pointer;
+}
+
+.legenda_dash {
+    height: fit-content;
+    background-color: rgb(96, 96, 96);
+    border-radius: 6px;
+    padding: 20px 0px;
+    margin: 20px 0px;
+}
+
+.legenda_dash h3 {
+
+    padding: 20px 0px;
+    margin: 20px 0px;
+}
+
+.ativo {
+    background: #303030;
+}
+
+.desativado {
+    background: #222222;
+}
+
+.topLabel {
+    display: flex;
+    background-color: rgb(75, 75, 75);
+    color: white;
+
+}
+
+.itemlabel {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 20%;
+    text-align: center;
+    cursor: pointer;
+    border-right: 1px solid black;
+    padding: 30px 0px;
+}
+
+.dashAlturaPadrao {
+    height: 80vh;
+}
+
+#dash_disco {
+    display: flex;
+    flex-direction: column;
+
+}
+
+#dash_cpu {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+#dash_ram {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+#dash_rede {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+}
+
+
+.titleLegenda {
+    color: white;
+    padding: 20px 0px;
+}
+
+.legendaContainer {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 60%;
+    background-color: #6d6d6d;
+    margin: 20px auto;
+    border-radius: 8px;
+}
+
+.legendaColor {
+    width: 95%;
+    height: 30px;
+    display: flex;
+}
+
+.legendaText {
+    display: flex;
+    justify-content: space-around;
+    width: 95%;
+    color: white;
+}
+
+.legendaText {
+    padding: 5px 0px;
+}
+
+.legendaText h4 {
+    padding: 0px;
+    margin: 0px;
+}
+
+#dash_config {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+#sec01_config {
+    width: 50%;
+    height: 90%;
+    background-color: #3b3b3b;
+    margin: 20px 10px 20px 20px;
+}
+
+#sec02_config {
+    width: 50%;
+    height: 90%;
+    background-color: #3b3b3b;
+    margin: 20px 20px 20px 10px;
+}
+
+.graficos {
+    margin: 50px;
+}
+
+.graficoEspecifico {
+    display: flex;
+    justify-content: center;
+    height: 400px;
+
+}
+
+#chartRede {
+
+    width: 500px;
+}
+
+#dashRede {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
