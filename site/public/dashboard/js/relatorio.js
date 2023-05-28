@@ -42,6 +42,21 @@ function listarRelatorios() {
         });
 }
 
+function converterStringParaData(stringData) {
+    const partes = stringData.split(' ');
+    const dataPartes = partes[0].split('/');
+    const horaPartes = partes[1].split(':');
+    
+    const dia = parseInt(dataPartes[0], 10);
+    const mes = parseInt(dataPartes[1], 10) - 1; // Mês começa em 0 no JavaScript
+    const ano = parseInt(dataPartes[2], 10);
+    const hora = parseInt(horaPartes[0], 10);
+    const minuto = parseInt(horaPartes[1], 10);
+    const segundo = parseInt(horaPartes[2], 10);
+    
+    return new Date(ano, mes, dia, hora, minuto, segundo);
+  }
+
 function baixarPdf(idRelatorio) {
     var relatorioSelecionado
 
@@ -58,8 +73,15 @@ function baixarPdf(idRelatorio) {
                 resposta.json().then((json) => {
 
                     relatorioSelecionado = json;
+                    
 
                     for (var i = 0; i < relatorioSelecionado.length;) {
+
+                        const data_manutencao_obj = converterStringParaData(relatorioSelecionado[i].data_manutencao);
+                        const data_relatorio_obj = converterStringParaData(relatorioSelecionado[i].data_relatorio);
+                        const formatoDataPtBR = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
+                        const data_manutencao_formatada = formatoDataPtBR.format(data_manutencao_obj);
+                        const data_relatorio_formatada = formatoDataPtBR.format(data_relatorio_obj);
 
                         var conteudo = `
                     <!DOCTYPE html>
@@ -122,11 +144,11 @@ function baixarPdf(idRelatorio) {
 
     <div class="section">
         <div class="section-title">Dia manutenção:</div>
-        <div class="section-content">${(relatorioSelecionado[i].data_manutencao)}</div>
+        <div class="section-content">${data_manutencao_formatada}</div>
     </div>
     <div class="section">
         <div class="section-title">Dia relatorio:</div>
-        <div class="section-content">${(relatorioSelecionado[i].data_relatorio)}</div>
+        <div class="section-content">${data_relatorio_formatada}</div>
     </div>
 
     <div class="section">
