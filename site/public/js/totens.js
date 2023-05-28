@@ -78,8 +78,10 @@ async function listarTotens() {
                     }
                     var msgAtencao = " ";
                     for (var l = 0; l < alertaListaAtual.length; l++) {
-                        msgAtencao += `${alertaListaAtual[l].nome} `
-                        console.log(msgAtencao)
+                        if (alertaListaAtual[l].id != 1) {
+                            msgAtencao += `${alertaListaAtual[l].nome} `
+                            console.log(msgAtencao)
+                        }
                     }
                     console.log(msgAtencao)
 

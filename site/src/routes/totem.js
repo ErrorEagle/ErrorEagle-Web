@@ -14,4 +14,8 @@ router.get("/listarRelatorios/:empresa", function (req, res) {
     totem.listarRelatorios(req, res)
 })
 
+router.get("/listarConfigTotem/:totem", function (req, res) {
+    totem.listarConfigTotem(req, res)
+})
+
 module.exports = router;

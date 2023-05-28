@@ -11,8 +11,12 @@ function listarAlertasTotem(idMaquina) {
     var instrucao = `SELECT * FROM dbo.medida_Alerta(${idMaquina});`
     return database.executar(instrucao);
 }
+function listarConfigTotem(totemAtual) {
+    var instrucao = `SELECT * FROM configuracoesTotem WHERE idTotem = ${totemAtual};`
+    return database.executar(instrucao);
+}
 
 module.exports = {
     listarTotem,
-    listarAlertasTotem
+    listarAlertasTotem, listarConfigTotem
 };

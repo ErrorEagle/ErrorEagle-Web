@@ -2,6 +2,30 @@
 
 var totemModel = require("../models/totemModel");
 
+
+function listarConfigTotem(req, res) {
+    var totemAtual = req.params.totem;
+
+    if (totemAtual == undefined) {
+        res.status(400).send("Totem Undefined");
+    } else {
+
+        totemModel.listarConfigTotem(totemAtual)
+            .then(
+                function (resultado) {
+                    res.json(resultado);
+                }
+            ).catch(
+                function (erro) {
+                    console.log(erro);
+                    console.log("\Houve um erro ao realizar o login! Erro: ", erro.sqlMessage);
+                    res.status(500).json(erro.sqlMessage);
+                }
+            );
+
+    }
+}
+
 function listarTotens(req, res) {
 
     var empresa = req.params.empresa;
@@ -53,6 +77,6 @@ function listarAlertasTotem(req, res) {
 
 module.exports = {
     listarTotens,
-    listarAlertasTotem
-
+    listarAlertasTotem,
+    listarConfigTotem
 }
