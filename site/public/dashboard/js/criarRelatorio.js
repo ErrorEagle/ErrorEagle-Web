@@ -25,13 +25,10 @@ function validarAno(dataManutencaoInput) {
     var anoAtual = dataAtual.getFullYear();
   
     if (isNaN(data.getTime())) {
-      // A data é inválida
       return false;
     } else if (ano == anoAtual) {
-      // O ano está fora do intervalo desejado
       return true;
     } else {
-      // A data e o ano são válidos
       return false;
     }
   }
@@ -42,7 +39,25 @@ function gerarRelatorio() {
     var fkMaquina = '1'
 
     if (!tituloInput.value || !descricaoIncidenteInput.value || !descricaoManutencaoInput.value || !dataManutencaoInput.value || !validarAno(dataManutencaoInput.value)) {
-        alert("Preencha os campo corretamente");
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 7000,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+        })
+
+        Toast.fire({
+            icon: 'error',
+            title: 'Preencha corretamente os campos!'
+        })
+        setTimeout(() => {
+
+        }, 1000)
     } else {
     console.log(dataManutencaoInput.value)
     fetch("/relatorio/gerarRelatorio", {
