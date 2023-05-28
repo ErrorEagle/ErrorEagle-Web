@@ -281,15 +281,10 @@ function entrar() {
                                 sessionStorage.SENHA_USUARIO = jsonLogin.senha;
                                 sessionStorage.NOME_EMPRESA = jsonLogin.razaoSocial;
                                 sessionStorage.FIRST_ACESS = jsonLogin.firstAcess;
-                                sessionStorage.totemAtual;
-
                                 fecharModal("#modalLoginForm");
                                 setTimeout(function () {
                                     window.location = "./dashboard/DashboardGeral.html";
                                 }, 1000); // apenas para exibir o loading
-
-
-
                             } else {
                                 console.log('Houve um erro ao realizar o seu login! Tente mais tarde.')
                                 fecharModal("#modalLoginForm");

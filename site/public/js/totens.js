@@ -1,5 +1,19 @@
 
 
+function abrirMaquina(id) {
+    console.log(id);
+    if (sessionStorage.getItem("ID_MAQUINA") == null) {
+        sessionStorage.setItem("ID_MAQUINA", id);
+        console.log(sessionStorage)
+    } else {
+        sessionStorage.setItem("ID_MAQUINA", id)
+        console.log(sessionStorage)
+    }
+
+    window.location = "../dashboard/dashboard.html";
+
+}
+
 function listarAlertas(idMaquina) {
     return new Promise((resolve, reject) => {
         fetch(`/totem/listarAlertasTotem/${idMaquina}`, {
@@ -90,7 +104,7 @@ async function listarTotens() {
                     // Adicione o event listener à div
                     div.addEventListener("click", (function (id) {
                         return function () {
-                            console.log("IdMaquina selecionada: " + id)
+                            abrirMaquina(id);
                         };
                     })(totens[i].id));
 
