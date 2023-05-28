@@ -18,14 +18,8 @@ function listarRelatorios() {
                     relatorios = json;
                     console.log(relatorios)
                     for (var i = 0; i < relatorios.length;) {
-
-
-
-                        listaRelatorios.innerHTML += `<div class="item"> <span class="nomeItemLista">Titulo: ${relatorios[i].titulo}</span>
-                            <div class="item"> <span class="nomeItemLista">Data criação: ${(relatorios[i].dataRelatorio)}</span>   
+                        listaRelatorios.innerHTML += `<div class="item"> <span class="nomeItemLista">Titulo: ${relatorios[i].titulo}</span> <span class="nomeItemLista">Data criação: ${(relatorios[i].dataRelatorio)}</span>   
                             <button class="btnDelete" id="#generate-pdf" onclick="baixarPdf(${relatorios[i].id})">Baixar PDF</button>`
-
-
                         i++;
                     }
 
@@ -46,16 +40,16 @@ function converterStringParaData(stringData) {
     const partes = stringData.split(' ');
     const dataPartes = partes[0].split('/');
     const horaPartes = partes[1].split(':');
-    
+
     const dia = parseInt(dataPartes[0], 10);
     const mes = parseInt(dataPartes[1], 10) - 1; // Mês começa em 0 no JavaScript
     const ano = parseInt(dataPartes[2], 10);
     const hora = parseInt(horaPartes[0], 10);
     const minuto = parseInt(horaPartes[1], 10);
     const segundo = parseInt(horaPartes[2], 10);
-    
+
     return new Date(ano, mes, dia, hora, minuto, segundo);
-  }
+}
 
 function baixarPdf(idRelatorio) {
     var relatorioSelecionado
@@ -73,7 +67,7 @@ function baixarPdf(idRelatorio) {
                 resposta.json().then((json) => {
 
                     relatorioSelecionado = json;
-                    
+
 
                     for (var i = 0; i < relatorioSelecionado.length;) {
 
