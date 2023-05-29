@@ -1,8 +1,7 @@
+var idMaquina = sessionStorage.getItem("ID_MAQUINA")
 
 function listarConfigMaquina() {
-
     var idMaquina = sessionStorage.getItem("ID_MAQUINA")
-
     fetch(`/totem/listarConfigTotem/${idMaquina}`, {
         method: "GET",
         headers: {
@@ -11,7 +10,6 @@ function listarConfigMaquina() {
     })
         .then(function (resposta) {
             console.log("ESTOU NO THEN DO listar()!");
-
             if (resposta.ok) {
                 resposta.json().then((json) => {
                     const configTotem = json;
@@ -21,7 +19,6 @@ function listarConfigMaquina() {
                     for (var i = 0; i < configTotem.length; i++) {
                         configuracoesMaquinaAtual.innerHTML += `<li>${configTotem[i].nomeComponente} ${configTotem[i].capacidade} ${configTotem[i].unidadeMedida}</li>`
                     }
-
                 });
             } else {
                 console.log("Houve um erro ao tentar listar as Configuraçoes");
@@ -37,7 +34,6 @@ function listarConfigMaquina() {
         });
 }
 listarConfigMaquina()
-
 
 const config = document.querySelector('#dash_config');
 const cpu = document.querySelector('#dash_cpu');
@@ -90,18 +86,85 @@ function abrirDashRede() {
     abrirPainel(rede);
 }
 
+
+
+
 const ctxCpu = document.getElementById('chartCpu');
-const ctxDisco = document.getElementById('chartDisco');
-const ctxRam = document.getElementById('chartRam');
+var chartCpu1 = new Chart(ctxCpu, {
+    type: 'line',
+    data: {
+        labels: [],
+        datasets: [{
+            label: 'taxa',
+            data: [],
+            borderWidth: 1,
+        }]
+    },
+    options: {
+
+        plugins: {
+            title: {
+                display: true,
+                align: 'center',
+                text: 'Uso de CPU',
+                color: 'white',
+                font: {
+                    weight: 'bold',
+                    size: 20
+                },
+                padding: {
+                    top: '5px',
+                    bottom: '5px',
+                }
+            }
+        },
+
+
+        scales: {
+            y: {
+                suggestedMax: 100,
+                beginAtZero: true,
+                ticks: {
+                    color: 'white',
+                    font: {
+                        size: 14,
+                        weight: 'bold'
+                    }
+                },
+                grid: {
+                    color: 'gray'
+                }
+            },
+            x: {
+                ticks: {
+                    color: 'white',
+                    font: {
+                        size: 14,
+                        weight: 'bold'
+                    }
+                },
+                grid: {
+                    color: 'gray'
+                }
+            }
+        },
+        // legend: {
+        //     labels: {
+        //         fontColor: "#FFF"
+        //     }
+        // }
+
+    }
+});
+
 const ctxRede = document.getElementById('chartRede');
-
-var myChartCpu1 = new Chart(ctxCpu, {
+var chartRede1 = new Chart(ctxRede, {
     type: 'line',
     data: {
-        labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
+        labels: [],
         datasets: [{
             label: 'taxa',
-            data: [12, 19, 3, 5, 7, 13, 6, 100],
+            data: [],
             borderWidth: 1,
         }]
     },
@@ -127,6 +190,7 @@ var myChartCpu1 = new Chart(ctxCpu, {
 
         scales: {
             y: {
+                suggestedMax: 100,
                 beginAtZero: true,
                 ticks: {
                     color: 'white',
@@ -161,13 +225,14 @@ var myChartCpu1 = new Chart(ctxCpu, {
     }
 });
 
-var myChartRede1 = new Chart(ctxRede, {
+const ctxRam = document.getElementById('chartRam');
+var chartRam1 = new Chart(ctxRam, {
     type: 'line',
     data: {
-        labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
+        labels: [],
         datasets: [{
             label: 'taxa',
-            data: [12, 19, 3, 5, 7, 13, 6, 100],
+            data: [],
             borderWidth: 1,
         }]
     },
@@ -177,7 +242,7 @@ var myChartRede1 = new Chart(ctxRede, {
             title: {
                 display: true,
                 align: 'center',
-                text: 'Taxa de transferencia de rede',
+                text: 'Uso de RAM',
                 color: 'white',
                 font: {
                     weight: 'bold',
@@ -193,6 +258,7 @@ var myChartRede1 = new Chart(ctxRede, {
 
         scales: {
             y: {
+                suggestedMax: 100,
                 beginAtZero: true,
                 ticks: {
                     color: 'white',
@@ -226,14 +292,14 @@ var myChartRede1 = new Chart(ctxRede, {
 
     }
 });
-
-var myChartRam1 = new Chart(ctxRam, {
+const ctxDisco = document.getElementById('chartDisco');
+var chartDisco1 = new Chart(ctxDisco, {
     type: 'line',
     data: {
-        labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
+        labels: [],
         datasets: [{
             label: 'taxa',
-            data: [12, 19, 3, 5, 7, 13, 6, 100],
+            data: [],
             borderWidth: 1,
         }]
     },
@@ -243,7 +309,7 @@ var myChartRam1 = new Chart(ctxRam, {
             title: {
                 display: true,
                 align: 'center',
-                text: 'Taxa de transferencia de rede',
+                text: 'Disco em uso',
                 color: 'white',
                 font: {
                     weight: 'bold',
@@ -259,72 +325,7 @@ var myChartRam1 = new Chart(ctxRam, {
 
         scales: {
             y: {
-                beginAtZero: true,
-                ticks: {
-                    color: 'white',
-                    font: {
-                        size: 14,
-                        weight: 'bold'
-                    }
-                },
-                grid: {
-                    color: 'gray'
-                }
-            },
-            x: {
-                ticks: {
-                    color: 'white',
-                    font: {
-                        size: 14,
-                        weight: 'bold'
-                    }
-                },
-                grid: {
-                    color: 'gray'
-                }
-            }
-        },
-        // legend: {
-        //     labels: {
-        //         fontColor: "#FFF"
-        //     }
-        // }
-
-    }
-});
-
-var myChartCpu1 = new Chart(ctxDisco, {
-    type: 'line',
-    data: {
-        labels: ['Seg', 'Ter', 'Qua', 'Qui', 'Sex', 'Sab', 'Dom'],
-        datasets: [{
-            label: 'taxa',
-            data: [12, 19, 3, 5, 7, 13, 6, 100],
-            borderWidth: 1,
-        }]
-    },
-    options: {
-
-        plugins: {
-            title: {
-                display: true,
-                align: 'center',
-                text: 'Taxa de transferencia de rede',
-                color: 'white',
-                font: {
-                    weight: 'bold',
-                    size: 20
-                },
-                padding: {
-                    top: '5px',
-                    bottom: '5px',
-                }
-            }
-        },
-
-
-        scales: {
-            y: {
+                suggestedMax: 100,
                 beginAtZero: true,
                 ticks: {
                     color: 'white',
@@ -360,5 +361,41 @@ var myChartCpu1 = new Chart(ctxDisco, {
 });
 
 
+function pegarDados(componente, idMaquina, grafico) {
+    fetch(`/medidas/medidaMicro/${idMaquina}/${componente}`, {
+        method: "GET",
+        headers: {
+            "Content-Type": "application/json"
+        }
+    }).then(function (resposta) {
+        if (resposta.ok) {
+            console.log("Estou no then do pegarDados");
+            resposta.json().then((json) => {
+                // Limpe os dados existentes
+                grafico.data.labels = [];
+                grafico.data.datasets[0].data = [];
+                // Adicione os novos dados
+                for (var i = json.length - 1; i >= 0; i--) {
+                    grafico.data.labels.push(json[i].hora);
+                    grafico.data.datasets[0].data.push(json[i].percentual.toFixed(2));
+                }
+                // Atualize o gráfico
+                grafico.update();
+            });
+        } else {
+            console.log("Não cadastrei um funcionário!");
+        }
+    });
+}
 
+pegarDados(1, idMaquina, chartCpu1);
+pegarDados(2, idMaquina, chartRam1);
+pegarDados(3, idMaquina, chartDisco1);
+pegarDados(4, idMaquina, chartRede1);
 
+setInterval(function () {
+    pegarDados(1, idMaquina, chartCpu1);
+    pegarDados(2, idMaquina, chartRam1);
+    pegarDados(3, idMaquina, chartDisco1);
+    pegarDados(4, idMaquina, chartRede1);
+}, 6000); // Executa a cada 5 segundos (5000 milissegundos)
