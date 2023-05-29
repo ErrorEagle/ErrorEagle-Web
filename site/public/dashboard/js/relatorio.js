@@ -75,7 +75,8 @@ function baixarPdf(idRelatorio) {
                         const data_relatorio_obj = converterStringParaData(relatorioSelecionado[i].data_relatorio);
                         const formatoDataPtBR = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
                         const data_manutencao_formatada = formatoDataPtBR.format(data_manutencao_obj);
-                        const data_relatorio_formatada = formatoDataPtBR.format(data_relatorio_obj);
+                        var data_relatorio_formatada = formatoDataPtBR.format(data_relatorio_obj);
+                        var tituloRelatorio = relatorioSelecionado[i].titulo
 
                         var conteudo = `
                     <!DOCTYPE html>
@@ -159,7 +160,7 @@ function baixarPdf(idRelatorio) {
 
                     var opt = {
                         margin: .2,
-                        filename: 'ErrorEagle-relatório.pdf',
+                        filename: `${tituloRelatorio}-${data_relatorio_formatada}.pdf`,
                         image: { type: 'jpeg', quality: 0.98 },
                         html2canvas: { scale: 2 },
                         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
