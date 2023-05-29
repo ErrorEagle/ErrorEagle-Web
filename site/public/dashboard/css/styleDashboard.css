@@ -198,7 +198,7 @@ h3 {
 #dash_disco {
     display: flex;
     flex-direction: column;
-
+    justify-content: center;
 }
 
 #dash_cpu {
