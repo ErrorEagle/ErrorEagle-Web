@@ -9,12 +9,14 @@
 }
 
 .formInput input {
+
     display: flex;
     flex-direction: column;
     width: 300px;
     margin-bottom: 10px;
     border: solid 3px #222121;
     border-radius: 5px;
+
 }
 
 .formInput label {
@@ -35,4 +37,19 @@
     height: 10px;
     background-color: #4D4D4D;
     transition: 2s;
+}
+
+.titulo {
+    display: flex;
+    width: 950px;
+    height: 70px;
+    justify-content: center;
+    
+}
+
+.titulo span {
+    color: aliceblue;
+    font-size: 30px;
+    width: 500px;
+    height: 50px;
 }

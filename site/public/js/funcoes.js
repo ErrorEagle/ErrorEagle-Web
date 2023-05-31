@@ -45,7 +45,7 @@ function validarSessao() {
 
             Toast.fire({
                 icon: 'error',
-                title: 'Você esta sendo disconectado'
+                title: 'Você esta sendo desconectado'
             })
             sessionStorage.clear();
             window.location = "../index.html";

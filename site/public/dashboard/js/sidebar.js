@@ -5,5 +5,8 @@
 //     sidebar.style.width = '30';
 // }, 2000);
 
-nomeSideBar.innerHTML += " " + sessionStorage.NOME_USUARIO;
-empresaSideBar.innerHTML += " " + sessionStorage.EMPRESA;
+nomeSideBar.innerHTML += " " + sessionStorage.getItem("NOME_USUARIO");
+// empresaSideBar.innerHTML += " " + sessionStorage.FK_EMPRESA;
+var nomeDiv = document.getElementById("nomeTitulo")
+nomeDiv.innerHTML += `Olá, ${sessionStorage.getItem("NOME_USUARIO")}!`
+console.log("inserirNome");
