@@ -28,6 +28,7 @@ function listarRelatorio(idRelatorio) {
     t.hostName,
     f.nome,
     r.id,
+    r.titulo,
     r.descricaoIncidente,
     r.descricaoManutencao,
     FORMAT(dataManutencao, 'dd/MM/yyyy HH:mm:ss') as data_manutencao,

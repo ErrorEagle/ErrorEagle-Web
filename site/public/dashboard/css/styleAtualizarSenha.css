@@ -3,6 +3,10 @@
     width: 100px;
 }
 
+.caixaMaior {
+    margin: 40px 0px;
+}
+
 #caixa-menor {
     margin-bottom: 1px;
     color: white;
@@ -18,6 +22,7 @@
     border-radius: 5px;
 
 }
+
 
 .formInput label {
     margin-bottom: 1px;

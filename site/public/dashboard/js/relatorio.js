@@ -75,83 +75,131 @@ function baixarPdf(idRelatorio) {
                         const data_relatorio_obj = converterStringParaData(relatorioSelecionado[i].data_relatorio);
                         const formatoDataPtBR = new Intl.DateTimeFormat('pt-BR', { day: '2-digit', month: '2-digit', year: 'numeric' });
                         const data_manutencao_formatada = formatoDataPtBR.format(data_manutencao_obj);
-                        const data_relatorio_formatada = formatoDataPtBR.format(data_relatorio_obj);
+                        var data_relatorio_formatada = formatoDataPtBR.format(data_relatorio_obj);
+                        var tituloRelatorio = relatorioSelecionado[i].titulo
 
                         var conteudo = `
-                    <!DOCTYPE html>
-<html>
-
-<head>
-    <meta charset="UTF-8">
-    <title>Relatório</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 50px;
-        }
-
-        h1 {
-            color: #3366cc;
-            text-align: center;
-        }
-
-        .section {
-            margin-bottom: 30px;
-        }
-
-        .section-title {
-            font-size: 18px;
-            font-weight: bold;
-            margin-bottom: 5px;
-            text-transform: uppercase;
-        }
-
-        .section-content {
-            font-size: 16px;
-            line-height: 1.5;
-        }
-    </style>
-</head>
-
-<body>
-    <h1>RELÁTORIO DE MANUTENÇÃO</h1>
-
-    <div class="section">
-        <div class="section-title">N° idRelatorio:</div>
-        <div class="section-content">${relatorioSelecionado[i].id}</div>
-    </div>
-
-    <div class="section">
-        <div class="section-title">ID hostname:</div>
-        <div class="section-content">${relatorioSelecionado[i].hostName}</div>
-    </div>
-
-    <div class="section">
-        <div class="section-title">Descrição incidente:</div>
-        <div class="section-content">${relatorioSelecionado[i].descricaoIncidente}</div>
-    </div>
-
-    <div class="section">
-        <div class="section-title">Descrição manutenção:</div>
-        <div class="section-content">${relatorioSelecionado[i].descricaoManutencao}</div>
-    </div>
-
-    <div class="section">
-        <div class="section-title">Dia manutenção:</div>
-        <div class="section-content">${data_manutencao_formatada}</div>
-    </div>
-    <div class="section">
-        <div class="section-title">Dia relatorio:</div>
-        <div class="section-content">${data_relatorio_formatada}</div>
-    </div>
-
-    <div class="section">
-        <div class="section-title">Assinatura:</div>
-        <div class="section-content">${relatorioSelecionado[i].nome}</div>
-    </div>
-</body>
-
-</html>`;
+                        <!DOCTYPE html>
+                        <html>
+                        <head>
+                          <meta charset="UTF-8">
+                          <title>Relatório de Manutenção</title>
+                          <style>
+                          body {
+                            font-family: Arial, sans-serif;
+                         }
+                      
+                         .page {
+                            box-sizing: border-box;
+                            background-color: white;
+                            display: flex;
+                            flex-direction: column;
+                            align-items: center;
+                            justify-content: center;
+                         }
+                      
+                         .relatorio {
+                            display: flex;
+                            flex-wrap: wrap;
+                            flex-direction: column;
+                            align-items: flex-start;
+                            justify-content: center;
+                            width: 60%; /* Ajuste o valor para aumentar ou diminuir o tamanho da caixa */
+                         }
+                      
+                         .titulo {
+                            background-size: 80%;
+                            padding: 30px; 
+                         }
+                      
+                         .caixa-1 {
+                            flex-basis: 50%;
+                            display: flex;
+                            margin-bottom: 20px; /* Adiciona espaçamento entre as caixas */
+                         }
+                      
+                         .conteudo-2-caixa1{
+                            margin-left: 65px;
+                         }
+                      
+                         .descricao1,
+                         .descricao2,
+                         .dataM,
+                         .dataR {
+                            flex-basis: 100%;
+                            margin-bottom: 40px; /* Adiciona espaçamento entre as descrições e dados */
+                            align-items: start;
+                         }
+                      
+                         .relatorio.assinatura {
+                            margin-top: 20px;
+                            display: flex;
+                            justify-content: start;
+                            position: relative; 
+                         }
+                      
+                         .assinatura {
+                            margin-right: 2cm;
+                            text-align: center;
+                         }
+                      
+                         .conteudo-assinatura {
+                            position: absolute;
+                            bottom: 100%;
+                            margin-left: 100px;
+                         }
+                         .section-content {
+                            font-size: 16px;
+                            line-height: 1.5;
+                         }
+                      
+                         .relatorio p {
+                            margin-bottom: 0;
+                         }
+                          </style>
+                        </head>
+                        <body>
+                        <div class="page">
+                          <h1 class="titulo"><b>Relatório de Manutenção</b></h1>
+                          
+                          <div class="relatorio">
+                            <div class="caixa-1">
+                                <div class="conteudo-caixa1">
+                                    <p>N °1 - <b>ID RELATORIO</b></p>
+                                    <div class="section-content">${relatorioSelecionado[i].id}</div>
+                                </div>
+                                <div class="conteudo-2-caixa1">
+                                    <p>N °2 - <b>HOSTNAME</b></p>
+                                    <div class="section-content">${relatorioSelecionado[i].hostName}</div>
+                                </div>
+                            </div>
+                            <div class="descricao1">
+                                <p>N °3 - <b>DESCRIÇÃO INCIDENTE</b></p>
+                                <div class="section-content">${relatorioSelecionado[i].descricaoIncidente}</div>
+                            </div>
+                            <div class="descricao2">
+                                <p>N °4 - <b>DESCRIÇÃO MANUTENÇÃO</b></p>
+                                <div class="section-content">${relatorioSelecionado[i].descricaoManutencao}</div>
+                            </div>
+                            <div class="dataM">
+                                <p>N °5 - <b>DATA MANUTENÇÃO</b></p>
+                                <div class="section-content">${data_manutencao_formatada}</div>
+                            </div>
+                            <div class="dataR">
+                                <p>N °6 - <b>DATA RELATÓRIO</b></p>
+                                <div class="section-content">${data_relatorio_formatada}</div>
+                            </div>
+                            <div class="relatorio assinatura">
+                                <div class="conteudo-assinatura">${relatorioSelecionado[i].nome}</div>
+                                <p> ______________________________________</p>
+                                <p><b>Assinatura do responsável</b></p>
+                              </div>
+                            </div>
+                            
+                          </div>
+                        </body>
+                        </html>
+                        `;
 
                         i++;
                     }
@@ -159,7 +207,7 @@ function baixarPdf(idRelatorio) {
 
                     var opt = {
                         margin: .2,
-                        filename: 'ErrorEagle-relatório.pdf',
+                        filename: `${tituloRelatorio}-${data_relatorio_formatada}.pdf`,
                         image: { type: 'jpeg', quality: 0.98 },
                         html2canvas: { scale: 2 },
                         jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }

@@ -1,6 +1,6 @@
 var relatorioModel = require("../models/relatorioModels");
 
-function gerarRelatorio(req,res){
+function gerarRelatorio(req, res) {
 
     var titulo = req.body.tituloServer;
     var descricaoIncidente = req.body.descricaoIncidenteServer;
@@ -12,9 +12,9 @@ function gerarRelatorio(req,res){
     var fkEmpresa = req.body.fkEmpresaServer;
 
 
-    if(titulo == null){
+    if (titulo == null) {
         res.resultado(400).send("Titulo esta undefined")
-    }else if (descricaoIncidente == null) {
+    } else if (descricaoIncidente == null) {
         res.status(400).send("Descrição incidente esta undefined!");
     } else if (descricaoManutencao == null) {
         res.status(400).send("Descriçáo manutenção está undefined!");
@@ -26,7 +26,7 @@ function gerarRelatorio(req,res){
         res.status(400).send("fkMáquina está undefined!");
     } else if (fkFuncionario == null) {
         res.status(400).send("fkFuncionario está undefined!");
-    }else if (fkEmpresa == null) {
+    } else if (fkEmpresa == null) {
         res.status(400).send("fkEmpresa está undefined!");
     }
     else {
@@ -45,18 +45,18 @@ function gerarRelatorio(req,res){
             }
         )
     }
- 
+
 }
 
-function listarRelatorios(req,res){
+function listarRelatorios(req, res) {
 
     var fkEmpresa = req.params.empresa;
 
-    console.log("Teste "+fkEmpresa)
+    console.log("Teste " + fkEmpresa)
     if (fkEmpresa == undefined) {
-        
+
         res.status(400).send("fkEmpresa esta undefined!");
-    }else {
+    } else {
         relatorioModel.listarRelatorios(fkEmpresa).then(
             function (resultado) {
                 res.json(resultado);
@@ -72,16 +72,16 @@ function listarRelatorios(req,res){
             }
         )
     }
- 
+
 }
 
-function listarRelatorio(req,res){
+function listarRelatorio(req, res) {
 
     var idRelatorio = req.params.idRelatorio;
 
     if (idRelatorio == undefined) {
         res.status(400).send("idRelatorio esta undefined!");
-    }else {
+    } else {
         relatorioModel.listarRelatorio(idRelatorio).then(
             function (resultado) {
                 res.json(resultado);
@@ -97,13 +97,13 @@ function listarRelatorio(req,res){
             }
         )
     }
- 
+
 }
 
 module.exports = {
-  gerarRelatorio,
-  listarRelatorios,
-  listarRelatorio
-    
+    gerarRelatorio,
+    listarRelatorios,
+    listarRelatorio
+
 };
 
