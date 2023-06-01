@@ -86,7 +86,7 @@ function gerarRelatorio() {
                 descricaoManutencaoServer: descricaoManutencaoInput.value,
                 dataManutencaoServer: dataManutencaoInput.value,
                 dataRelatorioServer: dataFormatada,
-                fkMaquinaServer: "2",
+                fkMaquinaServer: fkMaquina,
                 fkFuncionarioServer: fkFuncionario,
                 fkEmpresaServer: fkEmpresa
             })
