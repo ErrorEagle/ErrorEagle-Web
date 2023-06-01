@@ -1,9 +1,15 @@
-
 .caixaMenor {
-    width: 100px;
+    height: 600px;
+    background-color: blanchedalmond;
 }
 
-.caixaMaior {
+.form {
+    background-color: aquamarine;
+     width: 100%;
+}
+
+/* #caixaMaior {
+    height: 100vh;
     margin: 40px 0px;
 }
 
@@ -37,8 +43,7 @@
 }
 
 #loadingAtualizarSenha {
-    border-radius: 10px;
-    /* margin: px; */
+    
     height: 10px;
     background-color: #4D4D4D;
     transition: 2s;
@@ -57,4 +62,5 @@
     font-size: 30px;
     width: 500px;
     height: 50px;
-}
+    text-align: center;
+} */

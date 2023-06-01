@@ -46,28 +46,28 @@
         </div>
     </div>
     <main>
-        <section class="w-100 h-100 d-flex justify-content-center">
-            <div id="caixa-maior" class="caixaMaior container d-flex align-items-center w-100 h-50 px-0">
-
-
-
-                <div id="caixa-menor" class="caixaMenor d-flex align-items-center flex-column w-100 h-75">
-                   <div class="titulo"><span id="nomeTitulo"></span></div>
-                    <h2>Por favor, altere sua senha </h2>
-                    <div id="caixa-senha" class="formInput">
-                        <label for="inpNovaSenha">Digite uma nova senha</label>
-                        <input onkeydown="checkNovaSenha()" id="inpNovaSenha" type="password">
-                        <label for="inpConfirmarSenha">Confirme sua senha</label>
-                        <input onkeydown="checkNovaSenha()" id="inpConfirmSenha" type="password">
-                        <div id="loadingAtualizarSenha"></div>
-
-                        <button id="btnNovaSenha" onclick="atualizarSenha()">Alterar senha</button>
+        
+            
+                
+                <div id="caixa-menor" class="caixaMenor d-flex align-items-center justify-content-center flex-column w-100 ">
+                    <div class="form">
+                        <div class="titulo"><span id="nomeTitulo"></span></div>
+                     <h2>Por favor, altere sua senha </h2>
+                     <div id="caixa-senha" class="formInput d-flex align-items-center flex-column" >
+                         <label for="inpNovaSenha">Digite uma nova senha</label>
+                         <input onkeydown="checkNovaSenha()" id="inpNovaSenha" type="password" style="margin:5px">
+                         <label for="inpConfirmarSenha">Confirme sua senha</label>
+                         <input onkeydown="checkNovaSenha()" id="inpConfirmSenha" type="password" style="margin:5px">
+                         <div id="loadingAtualizarSenha"></div>
+ 
+                         <button id="btnNovaSenha" onclick="atualizarSenha()">Alterar senha</button>
+                     </div>
                     </div>
-                </div>
 
+                 </div>
 
-            </div>
-        </section>
+            
+        
     </main>
 
 </body>
