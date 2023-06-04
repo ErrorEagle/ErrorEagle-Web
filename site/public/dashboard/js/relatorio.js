@@ -2,6 +2,7 @@
 function listarRelatorios() {
     var empresa = sessionStorage.FK_EMPRESA;
     var relatorios;
+    console.log(empresa)
 
     fetch(`/relatorio/listarRelatorios/${empresa}`, {
         method: "GET",

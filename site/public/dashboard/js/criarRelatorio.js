@@ -1,8 +1,3 @@
-
-
-
-
-
 var dataAtual = new Date();
 var dia = dataAtual.getDate();
 var mes = dataAtual.getMonth() + 1;
@@ -40,11 +35,12 @@ function gerarRelatorio() {
     var descricaoManutencaoInput = document.getElementById('descricaoManutencao');
     var descricaoIncidenteInput = document.getElementById('descricaoIncidente');
     var dataManutencaoInput = document.getElementById('dataM')
-    var fkFuncionario = sessionStorage.ID_FUNCIONARIO
-    var fkEmpresa = sessionStorage.FK_EMPRESA
-    var fkMaquina = sessionStorage.getItem("ID_MAQUINA");
-    console.log("titulo: " + tituloInput.value)
-    console.log("fkFuncionario " + fkFuncionario.value + "fkEmpresa " + fkEmpresa.value + "fkMaquina " + fkMaquina.value)
+    var fkFuncionario = sessionStorage.ID_FUNCIONARIO0
+    var fkTotem = sessionStorage.ID_MAQUINA
+    console.log("Título: " + tituloInput.value);
+    console.log("Descrição Manutenção: " + descricaoManutencaoInput.value);
+    console.log("Descrição Incidente: " + descricaoIncidenteInput.value);
+    console.log("Data Manutenção: " + dataManutencaoInput.value);
 
     function limparCampos() {
         tituloInput.value = '';
@@ -81,14 +77,13 @@ function gerarRelatorio() {
                 "Content-Type": "application/json"
             },
             body: JSON.stringify({
+                fkFuncionarioServer: fkFuncionario,
+                fkTotemServer: fkTotem,
                 tituloServer: tituloInput.value,
                 descricaoIncidenteServer: descricaoIncidenteInput.value,
                 descricaoManutencaoServer: descricaoManutencaoInput.value,
                 dataManutencaoServer: dataManutencaoInput.value,
-                dataRelatorioServer: dataFormatada,
-                fkMaquinaServer: fkMaquina,
-                fkFuncionarioServer: fkFuncionario,
-                fkEmpresaServer: fkEmpresa
+                dataRelatorioServer: dataFormatada
             })
         }).then(function (resposta) {
             if (resposta.ok) {
@@ -124,4 +119,3 @@ function gerarRelatorio() {
     }
 
 }
-

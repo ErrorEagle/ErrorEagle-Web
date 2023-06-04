@@ -6,7 +6,7 @@ nomeSideBar.innerHTML += " " + sessionStorage.getItem("NOME_USUARIO");
 
 //TITULO ATUALIZAR SENHA
 var nomeDiv = document.getElementById("nomeTitulo")
-nomeDiv.innerHTML += `Olá, ${sessionStorage.getItem("NOME_USUARIO")}!`
+// nomeDiv.innerHTML += `Olá, ${sessionStorage.getItem("NOME_USUARIO")}!`
 
 
 

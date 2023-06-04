@@ -7,9 +7,8 @@ function gerarRelatorio(req, res) {
     var descricaoManutencao = req.body.descricaoManutencaoServer;
     var dataManutencao = req.body.dataManutencaoServer;
     var dataRelatorio = req.body.dataRelatorioServer;
-    var fkMaquina = req.body.fkMaquinaServer;
+    var fkTotem = req.body.fkTotemServer;
     var fkFuncionario = req.body.fkFuncionarioServer;
-    var fkEmpresa = req.body.fkEmpresaServer;
 
 
     if (titulo == null) {
@@ -22,15 +21,13 @@ function gerarRelatorio(req, res) {
         res.status(400).send("Data manutenção está undefined!");
     } else if (dataRelatorio == null) {
         res.status(400).send("Data relatório está undefined!");
-    } else if (fkMaquina == null) {
+    } else if (fkTotem == null) {
         res.status(400).send("fkMáquina está undefined!");
     } else if (fkFuncionario == null) {
         res.status(400).send("fkFuncionario está undefined!");
-    } else if (fkEmpresa == null) {
-        res.status(400).send("fkEmpresa está undefined!");
     }
     else {
-        relatorioModel.gerarRelatorio(titulo, descricaoIncidente, descricaoManutencao, dataManutencao, dataRelatorio, fkMaquina, fkFuncionario, fkEmpresa).then(
+        relatorioModel.gerarRelatorio(fkFuncionario, fkTotem, titulo, descricaoIncidente, descricaoManutencao, dataManutencao, dataRelatorio).then(
             function (resultado) {
                 res.json(resultado);
             }
@@ -49,8 +46,8 @@ function gerarRelatorio(req, res) {
 }
 
 function listarRelatorios(req, res) {
-
     var fkEmpresa = req.params.empresa;
+    console.log(req.params.empresa)
 
     console.log("Teste " + fkEmpresa)
     if (fkEmpresa == undefined) {
