@@ -191,8 +191,9 @@ h3 {
 
 .dashAlturaPadrao {
     max-height: 90vh;
-    height: 100vh;
+    min-height: 100vh;
     min-height: 80vh;
+    padding: 40px 0px;
 }
 
 #dash_disco {
@@ -330,13 +331,15 @@ h3 {
 .graficoEspecifico {
     display: flex;
     justify-content: center;
-    height: 400px;
+
+
+    height: 500px;
 
 }
 
-#chartRede {
 
-    width: 500px;
+#chartRede {
+    width: 100%;
 }
 
 #dashRede {
