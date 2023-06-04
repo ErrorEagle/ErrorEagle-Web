@@ -17,7 +17,7 @@ function listarConfigMaquina() {
                     // configuracoesMaquinaAtual.innerHTML += "Teste"
                     // // configuracoesMaquinaAtual.innerHtml += `configTotem[i].nomeComponente + " " + configTotem[i].capacidade`
                     for (var i = 0; i < configTotem.length; i++) {
-                        configuracoesMaquinaAtual.innerHTML += `<li>${configTotem[i].nomeComponente} ${configTotem[i].capacidade} ${configTotem[i].unidadeMedida}</li>`
+                        configuracoesMaquinaAtual.innerHTML += `<li>${configTotem[i].nomeComponente} ${configTotem[i].capacidade.toFixed(2)} ${configTotem[i].unidadeMedida}</li>`
                     }
                 });
             } else {
@@ -293,72 +293,37 @@ var chartRam1 = new Chart(ctxRam, {
     }
 });
 const ctxDisco = document.getElementById('chartDisco');
-var chartDisco1 = new Chart(ctxDisco, {
-    type: 'line',
-    data: {
-        labels: [],
-        datasets: [{
-            label: 'taxa',
-            data: [],
-            borderWidth: 1,
-        }]
-    },
-    options: {
-
-        plugins: {
-            title: {
-                display: true,
-                align: 'center',
-                text: 'Disco em uso',
-                color: 'white',
-                font: {
-                    weight: 'bold',
-                    size: 20
+var chartDisco1 = new Chart(ctxDisco,
+    {
+        type: 'pie',
+        data: {
+            labels: [
+                "Espaço do disco livre", "Espaço do disco em uso"
+            ],
+            datasets: [{
+                label: ['Espaço %'],
+                data: [300, 50],
+                backgroundColor: [
+                    'rgb(255, 99, 132)',
+                    'rgb(54, 162, 235)'
+                ],
+                hoverOffset: 4
+            }]
+        },
+        options: {
+            responsive: true,
+            plugins: {
+                legend: {
+                    position: 'top',
                 },
-                padding: {
-                    top: '5px',
-                    bottom: '5px',
+                title: {
+                    display: true,
+                    text: 'Disco em uso'
                 }
             }
         },
-
-
-        scales: {
-            y: {
-                suggestedMax: 100,
-                beginAtZero: true,
-                ticks: {
-                    color: 'white',
-                    font: {
-                        size: 14,
-                        weight: 'bold'
-                    }
-                },
-                grid: {
-                    color: 'gray'
-                }
-            },
-            x: {
-                ticks: {
-                    color: 'white',
-                    font: {
-                        size: 14,
-                        weight: 'bold'
-                    }
-                },
-                grid: {
-                    color: 'gray'
-                }
-            }
-        },
-        // legend: {
-        //     labels: {
-        //         fontColor: "#FFF"
-        //     }
-        // }
-
     }
-});
+);
 
 
 function pegarDados(componente, idMaquina, grafico) {
@@ -369,15 +334,19 @@ function pegarDados(componente, idMaquina, grafico) {
         }
     }).then(function (resposta) {
         if (resposta.ok) {
-            console.log("Estou no then do pegarDados");
             resposta.json().then((json) => {
                 // Limpe os dados existentes
                 grafico.data.labels = [];
                 grafico.data.datasets[0].data = [];
                 // Adicione os novos dados
                 for (var i = json.length - 1; i >= 0; i--) {
-                    grafico.data.labels.push(json[i].hora);
-                    grafico.data.datasets[0].data.push(json[i].percentual.toFixed(2));
+                    if (componente == 3) {
+                        grafico.data.labels.push("Livre", "Em uso");
+                        grafico.data.datasets[0].data.push(json[i].percentual.toFixed(2), (100 - json[i].percentual.toFixed(2)));
+                    } else {
+                        grafico.data.labels.push(json[i].hora);
+                        grafico.data.datasets[0].data.push(json[i].percentual.toFixed(2));
+                    }
                 }
                 // Atualize o gráfico
                 grafico.update();
@@ -396,6 +365,6 @@ pegarDados(4, idMaquina, chartRede1);
 setInterval(function () {
     pegarDados(1, idMaquina, chartCpu1);
     pegarDados(2, idMaquina, chartRam1);
-    pegarDados(3, idMaquina, chartDisco1);
+    // pegarDados(3, idMaquina, chartDisco1);
     pegarDados(4, idMaquina, chartRede1);
 }, 6000); // Executa a cada 5 segundos (5000 milissegundos)
