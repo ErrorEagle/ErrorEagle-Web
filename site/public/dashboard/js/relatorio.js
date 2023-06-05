@@ -19,7 +19,9 @@ function listarRelatorios() {
                     relatorios = json;
                     console.log(relatorios)
                     for (var i = 0; i < relatorios.length;) {
-                        listaRelatorios.innerHTML += `<div class="item"> <span class="nomeItemLista">Titulo: ${relatorios[i].titulo}</span> <span class="nomeItemLista">Data criação: ${(relatorios[i].dataRelatorio)}</span>   
+                        const data_relatorio_obj = new Date(relatorios[i].dataRelatorio);
+                        const data_relatorio_formatada = data_relatorio_obj.toLocaleDateString('pt-BR');
+                        listaRelatorios.innerHTML += `<div class="item"> <span class="nomeItemLista">Titulo: ${relatorios[i].titulo}</span> <span class="nomeItemLista">Data criação: ${data_relatorio_formatada}</span>   
                             <button class="btnDelete" id="#generate-pdf" onclick="baixarPdf(${relatorios[i].id})">Baixar PDF</button>`
                         i++;
                     }

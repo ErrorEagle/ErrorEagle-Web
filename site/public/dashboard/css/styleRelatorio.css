@@ -14,6 +14,14 @@ main{
     background: #7B0909;
 }
 
+.nomeItemLista {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  width: 300px;
+  text-align: left;
+}
+
 .relatorio-conteudo{
     display: flex;
     flex-direction: column;
