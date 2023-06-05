@@ -36,9 +36,9 @@ router.get("/verificar/empresa/:cnpj", function (req, res) {
 });
 
 
- router.post("/cadastrar/funcionario/plataforma", function (req, res) {
-     empresaController.cadastrarFuncionarioPlataforma(req, res);
- });
+router.post("/cadastrar/funcionario/plataforma", function (req, res) {
+    empresaController.cadastrarFuncionarioPlataforma(req, res);
+});
 
 
 router.post("/cadastrar/funcionario/sistema", function (req, res) {

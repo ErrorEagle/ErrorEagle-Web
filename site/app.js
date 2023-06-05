@@ -15,6 +15,7 @@ var medidasRouter = require("./src/routes/medidas");
 var supervisorRouter = require("./src/routes/gerenciadorUsuario");
 var relatorioRouter = require("./src/routes/relatorio")
 var totemRouter = require("./src/routes/totem")
+var dashboardGeralRouter = require("./src/routes/dashboardGeral")
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
@@ -29,6 +30,7 @@ app.use("/medidas", medidasRouter);
 app.use("/gerenciadorUsuario", supervisorRouter);
 app.use("/relatorio", relatorioRouter)
 app.use("/totem", totemRouter)
+app.use("/dashboardGeral", dashboardGeralRouter)
 
 app.listen(PORTA, function () {
     console.log(`Servidor do seu site já está rodando! Acesse o caminho a seguir para visualizar: http://localhost:${PORTA} \n

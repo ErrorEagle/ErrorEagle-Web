@@ -7,7 +7,6 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Dashboard - Geral</title>
     <link rel="icon" href="./assets/icon/" />
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css" />
     <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
@@ -70,12 +69,12 @@
                     <div class="d-flex flex-column justify-content-center w-50 px-3 py-3 my-4 mx-2"
                         style="background-color: rgb(96, 96, 96); border-radius: 6px;">
                         <h5 class="txtTituloPequeno">Total de alertas hoje:</h5>
-                        <span class="txtValor"> 32</span>
+                        <span class="txtValor" id="qntAlertaHJ"></span>
                     </div>
                     <div class="d-flex flex-column justify-content-center w-50 px-3 py-3 my-4 mx-2"
                         style="background-color: rgb(96, 96, 96); border-radius: 6px;">
                         <h5 class="txtTituloPequeno">Percentual de alertas fora do ideal hoje:</h5>
-                        <span class="txtValor">23%</span>
+                        <span class="txtValor" id="percentAlertaNideal">23%</span>
                     </div>
                 </div>
 
@@ -99,54 +98,23 @@
 
                 <h4 class="txtLegenda text-center w-100 ">Alertas mais recentes das máquinas</h4>
                 <div class="w-100 d-flex justify-content-between px-5">
-                    <select class="filtro" style="border-radius: 6px;">
-                        <option value="1">Crítico</option>
-                        <option value="2">Urgente</option>
-                        <option value="3">Atenção</option>
+                    <select id="inpTipoMensagem" class="filtro" style="border-radius: 6px;">
+                        <option value="0">Alerta</option>
+                        <option value="Critico">Crítico</option>
+                        <option value="Urgente">Urgente</option>
+                        <option value="Atenção">Atenção</option>
                     </select>
-                    <select class="filtro" style="border-radius: 6px;">
-                        <option value="1">CPU</option>
-                        <option value="2">REDE</option>
-                        <option value="3">RAM</option>
-                        <option value="3">DISCO</option>
+                    <select id="inpTipoComponente" class="filtro" style="border-radius: 6px;">
+                        <option value="0">Componente</option>
+                        <option value="CPU">Cpu</option>
+                        <option value="REDE">Rede</option>
+                        <option value="RAM">Ram</option>
+                        <option value="DISCO">Disco</option>
                     </select>
+                    <button class="filtro" onclick="listarAlertasRecentes()">Filtrar</button>
                 </div>
                 <div id="listaAlerta" class="d-flex flex-column align-items-center">
-                    <div class=" d-flex justify-content-around w-75 my-2 p-2 backButton">
-                        <div class="bolinhaVermelha mx-4"></div>
-                        <span>Máquina 20</span>
-                        <span class="mx-4">Rede</span>
-                    </div>
 
-                    <div class="d-flex justify-content-around w-75 my-2 p-2 backButton">
-                        <div class="bolinhaAmerelo mx-4"></div>
-                        <span>Máquina 2</span>
-                        <span class="mx-4">CPU</span>
-                    </div>
-
-                    <div class="d-flex justify-content-around w-75 my-2 p-2 backButton">
-                        <div class="bolinhaLaranja mx-4"></div>
-                        <span>Máquina 20</span>
-                        <span class="mx-4">Rede</span>
-                    </div>
-
-                    <div class="d-flex justify-content-around w-75 my-2 p-2 backButton">
-                        <div class="bolinhaLaranja mx-4"></div>
-                        <span>Máquina 20</span>
-                        <span class="mx-4">Rede</span>
-                    </div>
-
-                    <div class="d-flex justify-content-around w-75 my-2 p-2 backButton">
-                        <div class="bolinhaLaranja mx-4"></div>
-                        <span>Máquina 20</span>
-                        <span class="mx-4">Rede</span>
-                    </div>
-
-                    <div class="d-flex justify-content-around w-75 my-2 p-2 backButton">
-                        <div class="bolinhaLaranja mx-4"></div>
-                        <span>Máquina 20</span>
-                        <span class="mx-4">Rede</span>
-                    </div>
                 </div>
             </div>
 
@@ -174,6 +142,7 @@
 
 </html>
 
+<script src="js/dashboardGeral.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 <script>
     Chart.defaults.color = '#FFF';
@@ -322,12 +291,6 @@
 <script src="js/sidebar.js"></script>
 
 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/cleave.min.js"
-    integrity="sha512-KaIyHb30iXTXfGyI9cyKFUIRSSuekJt6/vqXtyQKhQP6ozZEGY8nOtRS6fExqE4+RbYHus2yGyYg1BrqxzV6YA=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-<script src="https://cdnjs.cloudflare.com/ajax/libs/cleave.js/1.6.0/addons/cleave-phone.br.js"
-    integrity="sha512-5s5PrEH+KcfrS+Yx68NHOOS4J6wHfn2+f/p2UFONTn7+0f5pcNVsU8FD1IfsrCywo7g/HvCBNrcAPv1EcsDu7Q=="
-    crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
     integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
     crossorigin="anonymous"></script>
