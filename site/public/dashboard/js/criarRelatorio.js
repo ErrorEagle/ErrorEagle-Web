@@ -14,8 +14,6 @@ var dataFormatada = ano + "-" + mes + "-" + dia;
 
 console.log(dataFormatada);
 
-
-
 function validarAno(dataManutencaoInput) {
     var data = new Date(dataManutencaoInput);
     var ano = data.getFullYear();
@@ -35,12 +33,9 @@ function gerarRelatorio() {
     var descricaoManutencaoInput = document.getElementById('descricaoManutencao');
     var descricaoIncidenteInput = document.getElementById('descricaoIncidente');
     var dataManutencaoInput = document.getElementById('dataM')
-    var fkFuncionario = sessionStorage.ID_FUNCIONARIO0
+    var fkFuncionario = sessionStorage.ID_FUNCIONARIO
     var fkTotem = sessionStorage.ID_MAQUINA
-    console.log("Título: " + tituloInput.value);
-    console.log("Descrição Manutenção: " + descricaoManutencaoInput.value);
-    console.log("Descrição Incidente: " + descricaoIncidenteInput.value);
-    console.log("Data Manutenção: " + dataManutencaoInput.value);
+
 
     function limparCampos() {
         tituloInput.value = '';
@@ -86,6 +81,7 @@ function gerarRelatorio() {
                 dataRelatorioServer: dataFormatada
             })
         }).then(function (resposta) {
+            console.log(resposta)
             if (resposta.ok) {
 
                 console.log('Enviado para o banco')

@@ -2,6 +2,7 @@ var relatorioModel = require("../models/relatorioModels");
 
 function gerarRelatorio(req, res) {
 
+    console.log("Cheguei no Controller")
     var titulo = req.body.tituloServer;
     var descricaoIncidente = req.body.descricaoIncidenteServer;
     var descricaoManutencao = req.body.descricaoManutencaoServer;
@@ -27,6 +28,7 @@ function gerarRelatorio(req, res) {
         res.status(400).send("fkFuncionario está undefined!");
     }
     else {
+        console.log("Cheguei no Controller")
         relatorioModel.gerarRelatorio(fkFuncionario, fkTotem, titulo, descricaoIncidente, descricaoManutencao, dataManutencao, dataRelatorio).then(
             function (resultado) {
                 res.json(resultado);

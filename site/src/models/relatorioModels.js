@@ -21,7 +21,7 @@ function gerarRelatorio(fkFuncionario, fkTotem, titulo, descricaoIncidente, desc
         descricaoManutencao,
         dataManutencao,
         dataRelatorio
-        ) values ('${fkFuncionario}','${fkTotem}','${titulo}','${descricaoIncidente}','${descricaoManutencao}', ${dataManutencao},'${dataRelatorio}')`
+        ) values ('${fkFuncionario}','${fkTotem}','${titulo}','${descricaoIncidente}','${descricaoManutencao}', '${dataManutencao}','${dataRelatorio}')`
 
     return database.executar(instrucao);
 }
