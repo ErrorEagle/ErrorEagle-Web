@@ -95,8 +95,20 @@ function checkNovaSenha() {
         case 5:
             loadingAtualizarSenha.style = "background:green;  transition: 2s;"
             return true
-            break;
+
     }
+}
+
+function mostrarSenha() {
+
+    if (inpNovaSenha.type == "password") {
+        inpNovaSenha.type = "text";
+        inpConfirmSenha.type = "text";
+    } else {
+        inpNovaSenha.type = "password";
+        inpConfirmSenha.type = "password";
+    }
+
 }
 
 function validarLogin() {

@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/funcoes.js"></script>
+    <script src="../js/funcoesIndex.js"></script>
 
 </head>
 
@@ -52,13 +53,18 @@
 
         <div id="caixa-menor" class="caixaMenor d-flex align-items-center justify-content-center flex-column w-100 ">
             <div class="form">
-                <div class="titulo"><span id="nomeTitulo"></span></div>
-                <h2>Por favor, altere sua senha </h2>
+                <div class="titulo"><span id="nomeTitulo"></span>
+                    <h2>Por favor, altere sua senha </h2>
+                </div>
+
                 <div id="caixa-senha" class="formInput d-flex align-items-center flex-column">
                     <label for="inpNovaSenha">Digite uma nova senha</label>
                     <input onkeydown="checkNovaSenha()" id="inpNovaSenha" type="password" style="margin:5px">
                     <label for="inpConfirmarSenha">Confirme sua senha</label>
                     <input onkeydown="checkNovaSenha()" id="inpConfirmSenha" type="password" style="margin:5px">
+                    <label for="">Mostrar senha</label><input style="width: auto;" onclick="mostrarSenha()"
+                        id="inpMostrarSenha" type="checkbox">
+
                     <div id="loadingAtualizarSenha"></div>
 
                     <button id="btnNovaSenha" onclick="atualizarSenha()">Alterar senha</button>

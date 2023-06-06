@@ -1,29 +1,56 @@
 .caixaMenor {
-    height: 600px;
-    background-color: blanchedalmond;
+    height: 500px;
+    background-color: #282828;
 }
 
 .form {
-    background-color: aquamarine;
-     width: 100%;
+    background-color: rgb(81, 79, 79);
+    width: 80%;
+    height: 65%;
+    border: solid 1px #817979;
+    border-radius: 8px;
 }
 
-/* #caixaMaior {
-    height: 100vh;
-    margin: 40px 0px;
-}
 
 #caixa-menor {
     margin-bottom: 1px;
-    color: white;
+    color: rgb(255, 255, 255);
+}
+
+.titulo {
+
+    display: flex;
+    flex-direction: column;
+    height: 70px;
+    align-items: center;
+
+}
+
+.titulo span {
+
+    color: aliceblue;
+    font-size: 25px;
+    text-align: center;
+}
+
+.titulo h2 {
+    text-align: center;
+    padding: 20px;
+    display: flex;
+    align-items: center;
+    font-size: 25px;
+
+}
+
+.h2 {
+    text-align: center;
+    width: fit-content;
 }
 
 .formInput input {
 
-    display: flex;
     flex-direction: column;
     width: 300px;
-    margin-bottom: 10px;
     border: solid 3px #222121;
     border-radius: 5px;
 
@@ -31,6 +58,7 @@
 
 
 .formInput label {
+    margin-top: 4px;
     margin-bottom: 1px;
 }
 
@@ -39,28 +67,13 @@
     margin-top: 3px;
     border-radius: 5px;
     width: 190px;
-    margin-left: 50px;
 }
 
 #loadingAtualizarSenha {
-    
-    height: 10px;
-    background-color: #4D4D4D;
+    width: 300px;
+    border-radius: 10px;
+    margin: 10px;
+    height: 15px;
+    background-color: #948f8f;
     transition: 2s;
 }
-
-.titulo {
-    display: flex;
-    width: 950px;
-    height: 70px;
-    justify-content: center;
-    
-}
-
-.titulo span {
-    color: aliceblue;
-    font-size: 30px;
-    width: 500px;
-    height: 50px;
-    text-align: center;
-} */
