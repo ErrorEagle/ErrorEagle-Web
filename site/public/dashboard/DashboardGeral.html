@@ -11,6 +11,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css"
         integrity="sha384-xOolHFLEh07PJGoPkLv1IbcEPTNtaed2xpHsD9ESMhqIYd0nLMwNLD69Npy4HI+N" crossorigin="anonymous">
     <link rel="stylesheet" href="css/styleMenu.css" />
+    <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="css/styleSideBar.css">
     <link rel="stylesheet" href="css/styleDashboardGeral.css">
     <script src="../js/funcoes.js"></script>
@@ -83,12 +84,12 @@
             <div class=" h-50 w-100 ">
                 <div class="d-flex flex-column justify-content-center py-3 h-100 w-100"
                     style="background-color: rgb(96, 96, 96); border-radius: 6px;">
-                    <select class="filtro" style="border-radius: 6px;">
-                        <option value="1">Crítico</option>
-                        <option value="2">Urgente</option>
-                        <option value="3">Atenção</option>
+                    <select id="selectCriticidade" class="filtro" style="border-radius: 6px;">
+                        <option value="Critico">Crítico</option>
+                        <option value="Urgente">Urgente</option>
+                        <option value="Atenção">Atenção</option>
                     </select>
-                    <canvas id="grafico1" class='px-4 py-4 h-100' style="border-radius: 6px;"></canvas>
+                    <canvas id="chart1" class='px-4 py-4 h-100' style="border-radius: 6px;"></canvas>
                 </div>
             </div>
         </div>
@@ -121,32 +122,29 @@
             <div id='quadrante04' class="h-50 w-100">
                 <div class="d-flex flex-column py-3 h-100 w-100 justify-content-center"
                     style="background-color: rgb(96, 96, 96); border-radius: 6px;">
-                    <select class="filtro" style="border-radius: 6px;">
+                    <select onchange="" id="selectNivelComponente" class="filtro" style="border-radius: 6px;">
                         <option value="1">CPU</option>
-                        <option value="2">REDE</option>
-                        <option value="3">RAM</option>
+                        <option value="2">RAM</option>
                         <option value="3">DISCO</option>
                     </select>
-                    <canvas id="grafico2" class='px-3 py-3 h-100' style="border-radius: 6px;"></canvas>
+                    <canvas id="chart2" class='px-3 py-3 h-100' style="border-radius: 6px;"></canvas>
                 </div>
             </div>
         </div>
     </main>
     <footer>
         <div class="h-100">
-            adsada
+
         </div>
     </footer>
 </body>
 
 
 </html>
-
-<script src="js/dashboardGeral.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
-<script>
-    Chart.defaults.color = '#FFF';
-    const ctx = document.getElementById('grafico1');
+<script src="js/dashboardGeral.js"></script>
+
+<!-- <script>
 
     var myChart = new Chart(ctx, {
         type: 'line',
@@ -172,7 +170,7 @@
                 title: {
                     display: true,
                     align: 'center',
-                    text: 'Percentual de alertas críticos por dia em relação à semana passada',
+                    text: 'Percentual de alertas por dia em relação à semana passada',
                     color: 'white',
                     font: {
                         weight: 'bold',
@@ -222,10 +220,6 @@
         }
     });
 
-
-</script>
-
-<script>
     Chart.defaults.color = '#FFF';
 
     const cty = document.getElementById('grafico2');
@@ -249,7 +243,7 @@
         plugins: {
             title: {
                 display: true,
-                text: 'Percentual do total de alertas fora do ideal de CPU hoje',
+                text: 'Percentual do total de alertas fora do ideal de hoje',
                 font: {
                     size: 20
                 },
@@ -286,7 +280,7 @@
     });
 
 
-</script>
+</script> -->
 
 <script src="js/sidebar.js"></script>
 

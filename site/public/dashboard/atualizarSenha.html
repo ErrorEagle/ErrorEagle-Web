@@ -16,10 +16,11 @@
     <link rel="stylesheet" href="css/styleDashboard.css" />
     <link rel="stylesheet" href="css/styleAtualizarSenha.css">
     <link rel="stylesheet" href="css/styleSideBar.css">
+    <link rel="shortcut icon" href="../assets/icon/favicon.ico" type="image/x-icon">
     <link rel="stylesheet" href="../css/style.css">
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="../js/funcoes.js"></script>
- 
+
 </head>
 
 <body onload="">
@@ -46,30 +47,31 @@
         </div>
     </div>
     <main>
-        
-            
-                
-                <div id="caixa-menor" class="caixaMenor d-flex align-items-center justify-content-center flex-column w-100 ">
-                    <div class="form">
-                        <div class="titulo"><span id="nomeTitulo"></span></div>
-                     <h2>Por favor, altere sua senha </h2>
-                     <div id="caixa-senha" class="formInput d-flex align-items-center flex-column" >
-                         <label for="inpNovaSenha">Digite uma nova senha</label>
-                         <input onkeydown="checkNovaSenha()" id="inpNovaSenha" type="password" style="margin:5px">
-                         <label for="inpConfirmarSenha">Confirme sua senha</label>
-                         <input onkeydown="checkNovaSenha()" id="inpConfirmSenha" type="password" style="margin:5px">
-                         <div id="loadingAtualizarSenha"></div>
- 
-                         <button id="btnNovaSenha" onclick="atualizarSenha()">Alterar senha</button>
-                     </div>
-                    </div>
 
-                 </div>
 
-            
-        
+
+        <div id="caixa-menor" class="caixaMenor d-flex align-items-center justify-content-center flex-column w-100 ">
+            <div class="form">
+                <div class="titulo"><span id="nomeTitulo"></span></div>
+                <h2>Por favor, altere sua senha </h2>
+                <div id="caixa-senha" class="formInput d-flex align-items-center flex-column">
+                    <label for="inpNovaSenha">Digite uma nova senha</label>
+                    <input onkeydown="checkNovaSenha()" id="inpNovaSenha" type="password" style="margin:5px">
+                    <label for="inpConfirmarSenha">Confirme sua senha</label>
+                    <input onkeydown="checkNovaSenha()" id="inpConfirmSenha" type="password" style="margin:5px">
+                    <div id="loadingAtualizarSenha"></div>
+
+                    <button id="btnNovaSenha" onclick="atualizarSenha()">Alterar senha</button>
+                </div>
+            </div>
+
+        </div>
+
+
+
     </main>
 
 </body>
-<script src="./js/sidebar.js"></script> 
+<script src="./js/sidebar.js"></script>
+
 </html>

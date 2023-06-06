@@ -86,7 +86,7 @@ var chart2 = new Chart(ctxGrafico2, {
         plugins: {
             title: {
                 display: true,
-                text: 'Percentual do total de alertas fora do ideal de hoje',
+                text: 'Percentual do total de alertas de hoje',
                 font: {
                     size: 20
                 },

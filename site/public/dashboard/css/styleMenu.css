@@ -112,7 +112,7 @@ header {
 }
 
 #relatorioFuncionario {
-    width: 60%;
+    width: 95%;
     height: 150px;
     background-color: #b3b3b3;
     display: flex;
@@ -148,7 +148,7 @@ header {
     margin: 0px 0px 60px 0px;
 }
 
-#line2 a{
+#line2 a {
     text-decoration: none;
 }
 

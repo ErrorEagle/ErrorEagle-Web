@@ -15,5 +15,14 @@ router.get("/listarAlertasFiltro/:tipoComponente/:tipoMensagem/:empresa/:data", 
     dashboardGeralController.listarAlertasFiltro(req, res);
 });
 
+router.get("/listarAlertasDia/:tipoMensagem/:empresa/:data", function (req, res) {
+    dashboardGeralController.listarAlertasDia(req, res);
+});
+router.get("/porcentagemAlertas/:componente/:empresa/:data", function (req, res) {
+    dashboardGeralController.porcentagemAlertas(req, res);
+})
+
+
+
 
 module.exports = router;
