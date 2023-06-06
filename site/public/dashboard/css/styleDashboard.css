@@ -100,24 +100,33 @@ h3 {
     background-color: #0FFF19;
     height: 100%;
     width: 25%;
+    text-align: center;
+    font-weight: bold;
 }
 
 .amarelo {
     background-color: #FFF50F;
     height: 100%;
     width: 25%;
+    text-align: center;
+    font-weight: bold;
 }
 
 .laranja {
     background-color: #FF6B00;
     height: 100%;
     width: 25%;
+    text-align: center;
+    font-weight: bold;
+    margin: auto 0;
 }
 
 .vermelho {
     background-color: #FF0F0F;
     height: 100%;
     width: 25%;
+    text-align: center;
+    font-weight: bold;
 }
 
 #titleLegenda {
